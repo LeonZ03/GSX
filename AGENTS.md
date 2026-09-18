@@ -15,7 +15,20 @@
 - origin使用ssh.github.com:443/LeonZ03/GSX.git；仓库为公开。命令级safe.directory，不改全局Git，不强推。
 - 已推送d497004与9fbcbf5；本轮后续提交需再核对范围，仅显式暂存代码/文档/控制数据。
 
-## 当前状态 V2 / r09（以本节为准）
+## 当前状态 V2 / r10（以本节为准）
+- 最新源reconstruction_v2/blends/10_gray_review.blend；MCP当前场景GSX250R_Reconstruction_V2_Gray_r10.002；588对象、19个quad控制网格。r09与全部旧源保留，M1_NOT_PASSED。
+- 本轮只修改Seat_Rider、Body_SeatSide两段上沿、Body_PillionBase前端；后座本体/尾罩主体/镜头和其它cage未改。原镜头和标注哈希冻结在r09_tail_frozen；实际场景相机矩阵与内参也比对未变。
+- 骑手座13参数小幅拟合62/69，7参数触及预设边界，不继续扩大边界。63新增开放可见下缘标注，只检查未优化；63此前已用过，不能称项目独立holdout。
+- 实际求值网格：62中位7.2→3.0px/P9516.6→13.0；69中位12.5→6.0/P9522.6→16.8；63开放下缘单向12.1→9.0/P9521.8→18.6。约±4px标注不确定，不是关键点误差或整车相似度。
+- 新骑手座端面封闭；局部相关求值网格非流形边为0。构造尺寸检查维持。r09后座高度假设未定型，本轮未再改。
+- 新Tool_SeatClearance在Blockout隐藏，export_exclude=True，共享骑手座mesh并COPY_TRANSFORMS；法向外扩3mm供两处Editable_SeatClearance差集。3mm是构造间隙，不是实测。若显式替换Seat_Rider.data，必须同步helper.data；正常apply_cages改点会共享更新。
+- 骑手座与Body_Tail/Body_SeatSide/Body_PillionBase求值表面相交对为0；与Body_Tank仍有363对，不能称装配通过，计数不是可见质量评分。
+- 最新局部对照renders/seat_tail_r10_comparison.jpg，四角度review_r10_{62,63,64,69}.jpg/contact_sheet；qa/seat_tail_r10.json、seat_interfaces_r10.json、geometry_r10.json。review_tail支持before/after标签，r10的63是单向开放边界。
+- 记录reviews/r10_rider_seat.md。下一步先骑手座前端—油箱连接、座尾接口及固定参考关键点，后座独立验证和镜头敏感性仍未通过。不进入贴花/材质/4K。
+- 子任务tail_evidence请求gpt-5.6-luna/low，只读证据复核，未写文件；工具未确认实际配置。主线程完成标注、曲面及验收。
+- extract_seat_basis/fit_rider_seat/apply_rider_candidate/prepare_seat_joins/add_seat_clearance是本轮候选流程；从明确修订运行，不能对精修网格随意重放。后续以最新JSON/独立blend为准。
+
+## 历史状态 V2 / r09
 - 最新源reconstruction_v2/blends/09_gray_review.blend；MCP当前追加场景GSX250R_Reconstruction_V2_Gray_r09.002；r08及旧场景保留。
 - 本轮不启用子智能体，用户要求兼顾质量与额度；只做座尾，低采样对照，无4K和细节扩展。
 - 587对象、19个quad控制网格。保留Seat_Pillion、Body_Tail修改，新增Body_PillionBase可见黑色过渡壳；骑手座和Body_SeatSide试改因62侧面退步已回退。

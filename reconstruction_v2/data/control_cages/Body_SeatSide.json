@@ -41,19 +41,19 @@
     ],
     [
       [
-        145.0,
+        137.0,
         -401.8405,
-        784.0
+        775.6040306091309
       ],
       [
-        146.667,
+        141.467,
         -396.0239,
-        761.8563
+        756.3989198959351
       ],
       [
-        147.797,
+        145.797,
         -390.2132,
-        739.6852
+        737.5862076522827
       ],
       [
         148.0,
@@ -78,19 +78,19 @@
     ],
     [
       [
-        150.0,
+        134.0,
         -252.1864,
-        762.0
+        757.8321905136108
       ],
       [
-        152.1667,
+        141.7667,
         -248.4236,
-        734.6726
+        731.963523833847
       ],
       [
-        153.7973,
+        149.7973,
         -244.6637,
-        707.3115
+        706.2695476284027
       ],
       [
         154.5,
@@ -234,7 +234,9 @@
     "owner_photo_63"
   ],
   "status": "provisional_multiview_review_required",
-  "revision": "r08",
+  "revision": "r10",
   "notes": "Explicitly separate under-seat blue shell and dark triangular side cover. Photo-derived rails, provisional transverse widths. Evidence preserved through joint camera correction; not metric certified. Raised upper joint to the rider-seat underside after new photo 69 revealed an open gap in r07. Lower observed rail preserved. No metric acceptance.",
-  "crease_boundary": 0.55
+  "crease_boundary": 0.55,
+  "acceptance": "pending_interface_review",
+  "revision_note": "Upper lip inset to the evaluated rider-seat underside; 3mm modeled clearance, hidden fit unverified."
 }

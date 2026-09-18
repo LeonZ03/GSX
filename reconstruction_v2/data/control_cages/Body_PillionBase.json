@@ -124,34 +124,34 @@
       [
         0,
         -468,
-        847
+        798.077054977417
       ],
       [
         70,
         -468,
-        840
+        800.0918111801147
       ],
       [
         122,
         -468,
-        827
+        807.4326596260071
       ]
     ],
     [
       [
         0,
         -438,
-        815
+        782.3560914993286
       ],
       [
         72,
         -438,
-        809
+        784.1642580032349
       ],
       [
         126,
         -438,
-        799
+        787.7991876602173
       ]
     ]
   ],
@@ -160,7 +160,7 @@
   "thickness_mm": 3,
   "material": "trim",
   "crease_boundary": 0.6,
-  "revision": "r09",
+  "revision": "r10",
   "acceptance": "pending",
-  "revision_note": "Visible pillion-to-rider black ramp from photo69. Hidden brackets and depth remain unverified."
+  "revision_note": "Front ramp lowered beneath evaluated rider cushion where ray hits exist; 4mm modeled clearance, unseen bracket unverified."
 }
