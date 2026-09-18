@@ -13,9 +13,22 @@
 - 真实牌号只使用config/*.local.json，不输出日志或文档。57/59指定京B；60及新增图片的旧牌不替换它。M1只有空白牌板、无文字对象。
 - 本地预览先遮蔽车牌及固定排除区，不推送照片。不可把允许推代码理解为允许发布真实号牌成品。
 - origin使用ssh.github.com:443/LeonZ03/GSX.git；仓库为公开。命令级safe.directory，不改全局Git，不强推。
-- 已推送d497004与9fbcbf5；本轮后续提交需再核对范围，仅显式暂存代码/文档/控制数据。
+- 已推送至r11的3a547bc；本轮后续提交需再核对范围，仅显式暂存代码/文档/控制数据。
 
-## 当前状态 V2 / r11（以本节为准）
+## 当前证据检查 V2 / r12（模型仍为r11，以本节为准）
+- 完成69镜头假设敏感性与后座投影传播；本轮未改相机/控制网格/模型，最新源仍blends/11_gray_review.blend，未制作虚假的12几何文件。M1_NOT_PASSED。
+- Blender MCP后台读取r11实际求值网格，写qa/tail_mesh_r11.json；没有保存场景。环境仍5.2.2 LTS。
+- scripts/camera_sensitivity.py：仅轮圈68观测+原转向先验拟合25组离散焦距/半径/主点假设，16组通过RMS≤1/P95≤2/无贴边等诊断筛查。主点±3%是测试幅度，非真实参数边界；高焦距存在局部极小值，不能作为全局排除证据。
+- calibration/camera69_sensitivity_r12_refined.json为本轮传播输入；初版camera69_sensitivity_r12.json保留。两个文件均仅诊断，不可覆盖正式camera_69.json。新脚本默认拒绝覆盖，后续另存新修订。
+- 新轮圈RMS排除转向先验，冻结镜头约0.383px；旧0.395包含先验，不能写成改善。低残差不等于相机验收。
+- scripts/pillion_camera_sensitivity.py：相机拟合后才对固定r08/r11后座做投影和诊断Z平移，所有位移均未写回mesh。23份相关相机/标注/cage/mesh输入哈希不变。
+- 16候选下旧r08诊断上调+78.5..+104.7mm，r11诊断补偿−13.0..+15.8mm；固定r11质心投影横/纵跨度24.5/15.8px。支持保留上调方向，但不是实测精度、连续范围保证或统计置信区间。
+- 仍用拟合视图69和±4px人工后座闭合边界；独立分件投影不含相邻遮挡。两个可靠独立视角门槛仍未通过，70仍失败。没有新增形体改善或验收。
+- 本地renders/camera69_sensitivity_r12.jpg；qa/pillion_camera_sensitivity_r12.json、camera_sensitivity_frozen_r12.json；公开记录reviews/r12_camera_sensitivity.md。不渲染4K，不推照片或对照图。
+- 下一步补油箱—座垫可见接缝/跨图稳定特征，继续后座高度独立依据。69镜头畸变、圈贴侧偏及车型先验尚未扰动，后续标定另立修订；不得边动镜头边改cage。61仍保留。
+- 只读camera_audit请求gpt-5.6-luna/low，实际运行配置未回传；主线程复核其结论并完成计算/图检。初次helper失败后已授权只读重试完成，子任务未改文件/无下级委派。
+
+## 模型状态 V2 / r11（r12未改形）
 - 最新源reconstruction_v2/blends/11_gray_review.blend；589对象、19个quad控制网格，M1_NOT_PASSED。r01–r10及r6.2旧源保留。
 - 本机已为5.2.2 LTS；本轮通过Blender MCP后台CLI处理独立源，交互127.0.0.1:9876未连接，未向GUI追加场景。勿把历史r10会话状态当当前可用连接。
 - 仅处理油箱—骑手座求值表面接口，所有19个cage、相机/标注共34份输入哈希未变；场景相机签名也未变。冻结快照calibration/r10_interface_frozen。

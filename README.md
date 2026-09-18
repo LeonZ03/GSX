@@ -2,7 +2,7 @@
 
 以本机 `IMG/` 的 **12 张实车照片**为外观依据，使用 **Blender 5.2.2 LTS / Blender MCP** 重建。目标包含蓝白版画、荧光轮圈贴、对称三角管护杠、手机支架、方向阻尼器及指定的京 B 车牌；排除尾包、网绳、手套和骑手。
 
-**当前：V2 / r11 油箱—座垫接口灰模候选，第一里程碑未通过，尚未达到 1:1。** 车头、座尾曲面和机械结构仍有明显偏差。灰模通过前，不制作新版完整贴花、最终材质、4K 成片或三格式交付。旧 r6.2 已冻结，只作失败对照。
+**当前：V2 / r12 相机敏感性复核，最新模型仍为r11；第一里程碑未通过，尚未达到1:1。** 车头、座尾曲面和机械结构仍有明显偏差。灰模通过前，不制作新版完整贴花、最终材质、4K 成片或三格式交付。旧 r6.2 已冻结，只作失败对照。
 
 ## 当前文件
 
@@ -10,6 +10,7 @@
 
 | 内容 | 本地路径 |
 |---|---|
+| 本轮镜头／后座敏感性对照 | `reconstruction_v2/renders/camera69_sensitivity_r12.jpg` |
 | 最新可编辑灰模 | `reconstruction_v2/blends/11_gray_review.blend` |
 | 四角度四联对照总览 | `reconstruction_v2/renders/review_r11_contact_sheet.jpg` |
 | 原照／灰模／叠加／轮廓对照 | `reconstruction_v2/renders/review_r11_{62,63,64,69}.jpg` |
@@ -21,17 +22,23 @@
 | 尚未解决的问题 | [ISSUES.md](reconstruction_v2/ISSUES.md) |
 | 官方证据 | [资料索引](reconstruction_v2/references/evidence.md)、[件号核对](reconstruction_v2/references/review.md) |
 
-r01–r10 的独立文件仍保留。本轮使用 Blender MCP 后台接口处理独立文件；交互端未连接，未改动GUI会话。
+r01–r10 的独立文件仍保留。r12通过Blender MCP后台读取r11求值网格；本轮没有修改或另存模型，也没有替换正式镜头。
 
 用户已授权推送非照片内容。GitHub 保存代码、文档和控制网格；**真实照片、含原照的对照图、真实车牌配置及相关成品不推送**。本次继续将参考下载、照片标注、相机参数、blend 和检查渲染保存在本地。灰模车牌为空白，无真实号牌文字。
 
 ## 迭代路线
 
-详见[迭代路线与每轮验收](reconstruction_v2/ITERATION_PLAN.md)。当前只处于准确灰模阶段；本轮完成油箱—骑手座局部穿插修正，外形仍未通过。接下来复核座尾相机依据和可见接缝，再依次处理油箱主体、车头和侧罩。
+详见[迭代路线与每轮验收](reconstruction_v2/ITERATION_PLAN.md)。当前只处于准确灰模阶段；本轮检查69镜头假设对后座高度的影响，支持保留此前上调方向，但具体高度仍未独立验证。接下来完善可见接缝和稳定特征，再调整局部曲面。
 
 对照图的纯灰模面板现已取消排除遮罩，显示完整模型。原照、叠加、轮廓面板用带文字斜线区标明排除区域；旧图中的车尾黑箱是尾包遮罩，不是模型部件。该展示纠正发生在r08，不计为形体进步。
 
-## r11 本轮结果
+## r12 本轮结果
+
+在25组焦距、圈贴半径和镜头主点假设中，16组通过轮圈低残差诊断筛查。它们对应的旧后座Z补偿仍为约+78–105 mm，支持保留此前上调方向；当前r11后座的诊断补偿为约−13至+16 mm，说明具体高度仍受相机假设影响。这些数值不是实测精度或统计置信区间。
+
+**本轮模型与正式镜头未改，不能算新的外形改善，也没有通过独立角度验收。** 相机先只用轮圈拟合，随后才检查后座；没有根据后座误差挑选新的正式镜头。对照见上表，方法、局限和复现见[本轮证据记录](reconstruction_v2/reviews/r12_camera_sensitivity.md)。
+
+## r11 历史修订
 
 消除油箱后端与骑手座前端的求值表面穿插，保留19个四边面控制网格和可撤销修改器。固定相机下，局部相交三角面对从583降为0；油箱、座垫未检出非流形边或非相邻面自交候选。3 mm辅助间隙仅为构造余量，没有实测依据。
 
@@ -99,6 +106,9 @@ $python = 'C:\Users\22797\.cache\codex-runtimes\codex-primary-runtime\dependenci
 & $blender --background reconstruction_v2/blends/11_gray_review.blend --python reconstruction_v2/scripts/render_interface_crops.py
 & $python reconstruction_v2/scripts/review_tank_interface.py
 
+# 只读敏感性结果的展示复算（读取本地r12候选，不修改模型）
+& $python reconstruction_v2/scripts/review_camera_sensitivity.py
+
 # JSON同步到新文件，保留修改器；拒绝覆盖与未经迁移的拓扑改变
 & $blender --background reconstruction_v2/blends/11_gray_review.blend --python reconstruction_v2/scripts/apply_cages.py -- working_next.blend r12
 ```
@@ -109,4 +119,4 @@ $python = 'C:\Users\22797\.cache\codex-runtimes\codex-primary-runtime\dependenci
 
 `prepare_r05.py`、`refine_r06.py`、`refine_r07.py`、`refine_r08.py`、`refine_tail_r09.py`、`upgrade_r05.py` 是本轮历史迁移，**不要对精修后的数据随意重复运行**。`apply_cages.py` 以 JSON 为权威，Blender 手改后应先同步控制网格或另存，防止精修丢失。重新克隆时需恢复本地参考与标定，公开代码不足以替代这些证据。
 
-下一步继续座尾证据：69镜头敏感性、后座高度独立验证及油箱—座垫可见边界；镜头修订另立标定记录，不与形体修改混记。通过灰模后才进入机械细节、逐笔贴花、实物磨损、PBR/UV，以及最终源文件、FBX/GLB/OBJ 和六张 4K 图。旧流程见 [r6.2 历史记录](docs/legacy_r6_2.md)，不要对新版运行旧 `build_all.py`。
+下一步继续座尾证据：后座高度独立验证、油箱—座垫可见边界及跨图稳定特征；镜头修订另立标定记录，不与形体修改混记。通过灰模后才进入机械细节、逐笔贴花、实物磨损、PBR/UV，以及最终源文件、FBX/GLB/OBJ 和六张 4K 图。旧流程见 [r6.2 历史记录](docs/legacy_r6_2.md)，不要对新版运行旧 `build_all.py`。
