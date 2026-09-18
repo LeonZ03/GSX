@@ -1,122 +1,88 @@
-# GSX250R 实车重建
+# Suzuki GSX250R 实车重建
 
-以车主提供的 10 张多角度实车照片为主要依据，用 Blender Python 与 Blender MCP 从零制作的 Suzuki GSX250R/A 可编辑模型。采用照片中的蓝色车身、白色大幅字样、荧光黄轮圈贴、黑色三角管护杠、左侧手机支架及京 B 黄色车牌；不含尾包、网绳、手套和骑手。
+以 `IMG/` 中的十张车主照片为外观依据，通过本机 **Blender 5.2.1 LTS / Blender MCP** 重建蓝白版 GSX250R。最终保留三角管护杠、手机支架、方向阻尼器及用户指定的京 B 车牌；排除尾包、网绳、手套和骑手。
 
-**当前状态：可编辑重建首版 r6.2，完整文件管线已建立，但尚未达到 100% 外观还原，也不是扫描、测绘或可制造 CAD。** 头灯/车头曲率、整流罩接缝、大字版画形状、发动机铸件与小贴纸仍有可见近似。4K 表示输出分辨率，不表示已经达到摄影级真实性。
+**当前为 V2 / r04 灰模重建，第一里程碑尚未通过。不是 1:1 已验收成品。** r6.2 的外观已被否决，旧文件只作失败对照；旧 4K 图和旧三格式导出不代表新版。新版不含贴花或最终材质，错误的“ヨシムラ”字样没有进入新版。
 
-按用户补充，以本机 **Blender 5.2.1 LTS** 为准，不再以 Blender 4.x 为交付要求。脚本不依赖收费模型、生成图片贴图或网上下载的成品三维模型。
+## 现在查看什么
 
-## 本地交付
+项目根目录：`D:\Work\gadgets\GSX`。
 
-项目目录：`D:\Work\gadgets\GSX`。用户原始照片保留在 `IMG/`，没有修改。
-
-| 内容 | 路径 |
+| 内容 | 本地路径 |
 |---|---|
-| 可编辑源文件 | `blends/10_final.blend` |
-| 十阶段快照 | `blends/01_reference.blend` 到 `blends/10_final.blend` |
-| 求值后的网格版 | `exports/GSX250R_evaluated.blend` |
-| GLB | `exports/GSX250R.glb` |
-| FBX | `exports/GSX250R.fbx` |
-| OBJ 与材质 | `exports/GSX250R.obj`、`exports/GSX250R.mtl` |
-| 4K Cycles 渲染 | `renders/final/` |
-| 隐藏真实牌号的检查图 | `renders/checks/` |
-| 官方 PDF、零件图页、八个转台视角 | `references/public/` |
-| 参考来源 | [references/sources.md](references/sources.md) |
-| 尺寸、导出与回导报告 | `qa/dimensions.json`、`qa/export_report.json`、`qa/roundtrip.json` |
+| 最新可编辑灰模 | `reconstruction_v2/blends/04_gray_review.blend` |
+| 前三轮独立源文件 | `reconstruction_v2/blends/01_gray_r01.blend`、`02_gray_r02.blend`、`03_gray_review.blend` |
+| 三视角四联对照总览 | `reconstruction_v2/renders/review_r04_contact_sheet.jpg` |
+| 每角度原照／灰模／叠加／轮廓 | `reconstruction_v2/renders/review_r04_62.jpg`、`review_r04_63.jpg`、`review_r04_64.jpg` |
+| 灰模原始透明渲染 | `reconstruction_v2/renders/gray_r04_*.png` |
+| 实际几何测量 | `reconstruction_v2/qa/geometry_r04.json` |
+| 验收状态与误差说明 | `reconstruction_v2/qa/review_r04.json`、[差距记录](reconstruction_v2/ISSUES.md) |
+| 可编辑四边面控制网格 | `reconstruction_v2/data/control_cages/*.json` |
+| 官方资料及版本排除 | [资料索引](reconstruction_v2/references/evidence.md)、[件号复核](reconstruction_v2/references/review.md) |
+| 旧版冻结与哈希 | `reconstruction_v2/baseline/` |
 
-本地产物、原照片、车牌配置和第三方参考下载不提交 Git。GitHub 保存脚本、需求、来源索引和开发记录。重新克隆后须使用本地原照片与私有配置才能构建车主版；缺少私有配置时自动使用通用占位牌号。
+本轮代码、文档和控制网格已保存为本地 Git 提交，尚未推送到公开远程仓库。
 
-## 已建立的结构
+原照片、照片标注、镜头参数、参考下载、源文件、渲染和真实号牌配置只保存在本地，不上传 GitHub。仓库保存脚本、控制网格、文档和公开资料索引。没有修改原照片；私有号牌配置仍保留，灰模只使用空白牌板。
 
-- 按名义轮胎规格建立前后轮，十辐条轮毂、几何胎纹、实孔刹车盘、ABS 圈、卡钳、轮轴、气门嘴和荧光贴环。
-- 正立前叉、上下联板、分体车把、开关、拉杆、后视镜、前挡泥板、风挡、中央大灯、位置灯、转向灯、数字仪表与钥匙孔。
-- 发动机外壳、缸体/缸头、散热器、水管、车架、摆臂、减震、链轮和链条、脚踏、侧撑、双排气头段、消音器与独立隔热罩。
-- 油箱、座垫、尾罩、侧罩、下包围、加油口、牌照架、尾灯、线管和常见紧固件。
-- 自制几何文字/贴花、PBR 表面、打包 HDRI、四盏工作室面积灯与多个相机。
+## 已落实的工作
 
-首版采用程序化曲面、实体化、倒角、细分和独立零件。r6.2 已将车头上罩与侧罩改为共享边界的连续曲面，重新制作盾形灯罩、内凹反射碗和风挡。两侧指定基础网格边界的坐标检查误差为 0 mm（不代表整车所有接缝或实体化厚度均已验证）。车身仍需要进一步手工造型及逐角度拟合，不能把上述结构清单理解为每个原厂零件都已精确复刻。
+- 冻结 r6.2 源文件和状态，使用新增独立场景重建，不清空用户当前 Blender 场景。
+- 建立油箱、座垫、尾罩、侧整流罩、下包围、上罩、座下侧罩、三角侧盖、风挡、灯罩与挡泥板等 **16 份四边面控制网格**；保留镜像、细分和厚度修改器。
+- 62、63 两张照片以真实荧光轮圈贴弧线与轮心拟合相机；保存焦距、姿态、前轮转向参数和版本。相机按轮组证据校正，不以车身观感任意调镜头。
+- 64 作为左侧独立诊断视角。其前轮严重裁切，镜头仍欠约束，不能计为已通过的独立标定。
+- 为上述三视角建立固定排除区和四联对照。轮廓页青色为灰模外轮廓，橙色为已标注的实物边缘／轮圈点；橙色并不是完整前景分割。
+- 修正座下侧盖缺失、上罩侧面缺失及发动机、脚踏、护杠的明显位置偏差。机械件仍属于待逐件重核的占位结构。
+- 几何检查直接读取求值后的网格：轴距约 **1430.0001 mm**；制动盘约 **290 / 240 mm**；胎宽约 **110 / 140 mm**。这些是模型对公开名义尺寸的检查，不是对实车的测量证明。
 
-## 尺寸与坐标
+## 当前不能宣称完成的部分
 
-`+X` 为车辆右侧，`+Y` 为前方，`+Z` 向上。网格单位为米，脚本中的构造数值按毫米乘 `0.001` 转换，因此场景 `scale_length=1`，不会再重复缩小。
+轮圈贴中心的实际半径仍采用 `220 ± 5 mm` 估计；17 寸是轮胎胎圈座直径，不能直接当作可见轮圈外缘。没有 EXIF，镜头畸变尚未标定，车身侧倾包含在相对相机姿态中。低轮圈残差不能证明车身形状正确。
 
-| 项目 | 官方/输入基准 | 当前模型 |
-|---|---:|---:|
-| 轴距 | 1430 mm | 1430 mm 构造锚点 |
-| 全长 | 2085 mm | 2074.2 mm |
-| 全宽 | 740 mm | 736.4 mm |
-| 全高 | 1110 mm | 1102.0 mm |
-| 座高 | 790 mm | 以 790 mm 座面控制点构造，曲面存在局部起伏 |
-| 前胎 | 110/80-17 | 名义宽 110、外径 607.8 mm |
-| 后胎 | 140/70-17 | 名义宽 140、外径 627.8 mm |
+尚无通过复核的完整整车及分件遮罩，因此 **没有公布轮廓 IoU，也没有声称达到 98%**。车身关键点误差门槛与至少两个可靠独立视角的门槛均未通过。61、66 暂保留，未参与本轮控制网格调整；驾驶位 65 和后部照片仍需后续匹配。
 
-尺寸来自求值网格，不使用 Blender 5.2 对部分 Curve 对象返回的异常扩大包围盒。护杠主要控制点左右镜像误差为 0 mm。该检查没有测量实车管径或隐藏安装点。
+车头、风挡、镜子、座尾曲率、外露机械形状及护杠安装关系仍有可见差距。材质、逐笔贴花、真实磨损、UV、最终三格式导出及六张 4K 图尚未开始新版制作。不得以文件存在或尺寸检查通过代替外观验收。
 
-官方规格交叉核对：248 cc 水冷 SOHC 并列双缸、15 L 油箱、18.4 kW / 8000 rpm、23.4 N·m / 6500 rpm。早期 ABS 官方型录标注整备质量 181 kg，与需求中的“约 178 kg”存在版本差异，未把不同市场年份混为同一实车测量值。来源见来源索引。
+## 尺寸与证据
 
-## 实车识别与不确定项
+`+X` 向右、`+Y` 向前、`+Z` 向上。场景按米，控制网格按毫米除以 1000 写入，`scale_length=1`，不再重复缩小。
 
-| 部位 | 采用依据 | 仍存在的近似 |
-|---|---|---|
-| 蓝色漆、白字版画 | 用户 62、63、64、66 号照片 | 照片光照不同，未取得实体色卡；大字用重新制作的粗体几何近似，并非原厂贴花矢量 |
-| 护杠 | 62、63 的黑色三角管架；用户要求两侧对称 | 25 mm 管径、隐藏支座和三维伸出量为图像估计；未做应力/装配验证 |
-| 车牌 | 用户明确选京 B，与 57、59 一致 | 文字已录入本地私有配置；牌照字体、圆角、固定螺钉尺寸为近似 |
-| 手机支架与阻尼器 | 65 驾驶位近照 | 左把安装位置、四角夹持和横向阻尼器已建立；背面机构、品牌和精确长度未知 |
-| 尾部 | 57、59、64 与原厂公开图 | 去掉尾包/网绳后，部分原来被遮挡的尾罩、后座采用原厂结构推定 |
-| 发动机/底部 | 官方零件目录，实车外露部分 | 铸件、管线、传感器、底面内部简化；没有完整标定底视照片 |
-| 头灯、风挡、镜子 | 58、61、65、66 与官方 360 图 | 曲率、灯内反射器、镜面轮廓仍偏近似；接缝不能宣称与原厂一致 |
-| 小标识、使用痕迹 | 照片能辨识处 | 若干小标识、字形、轮胎品牌、磨损、油漆划痕未逐一复制 |
+[豪爵 GSX250R-A 官方参数](https://en.haojue.com/NEWGSX250R/canshu.html)确认轴距 1430 mm、前后盘 290/240 mm、轮胎 110/80-17 与 140/70-17、座高 790 mm、油箱 15 L。GSX250R-F 的资料已排除。其他市场的铃木零件目录仅提供同车型家族分件和结构证据；中国实车的年份和具体件号仍需交叉核对。爆炸图和官方转台照片都不是尺寸蓝图。
 
-原照片都是透视照片；没有伪称找到官方正交蓝图。`01_reference.blend` 含四个图片空物体、正交相机与尺寸辅助线，图片摆放是近似参考定位，不能当作镜头标定完成或四视图严格对齐。
+原厂长宽高 2085×740×1110 mm 不用来强行缩放包含护杠、支架及镜子调整的整个模型包络。
 
 ## 重要命令
 
-也可以使用统一入口：`./scripts/gsx.ps1 -Task Build`、`-Task Preview`、`-Task Export`、`-Task Validate`、`-Task Render`；`-Task All` 执行完整本地流程。
-
-在项目根目录的 PowerShell 中运行。下列命令默认使用本机 Steam 安装位置，可根据实际路径调整。
+在项目根目录的 PowerShell 运行：
 
 ```powershell
 $blender = 'D:\Program Files\Steam\steamapps\common\Blender\blender.exe'
+$python = 'C:\Users\22797\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
 
-# 打开可编辑源文件
-& $blender blends/10_final.blend
+# 打开最新独立灰模
+& $blender reconstruction_v2/blends/04_gray_review.blend
 
-# 从零重建十阶段快照，再执行外观修正，生成最新源文件
-& $blender --background --factory-startup --python scripts/build_all.py
+# 按当前相机重新渲染本轮灰模、生成对照和检查报告
+& $blender --background reconstruction_v2/blends/04_gray_review.blend --python reconstruction_v2/scripts/render_gray.py -- 62 63 64 r04
+& $python reconstruction_v2/scripts/make_review_boards.py r04
+& $blender --background reconstruction_v2/blends/04_gray_review.blend --python reconstruction_v2/scripts/audit_gray.py
 
-# 快速检查，自动将预览中的牌号替换为通用文本
-& $blender --background blends/10_final.blend --python scripts/render.py -- --preview
+# 从 JSON 控制网格生成新的独立修订文件；不会改写输入 .blend
+& $blender --background reconstruction_v2/blends/04_gray_review.blend --python reconstruction_v2/scripts/apply_cages.py -- working_next.blend
 
-# 4K Cycles：真实车牌保留在本地输出
-& $blender --background blends/10_final.blend --python scripts/render.py -- Camera_Front_3Q Camera_Right_Ortho Camera_Rear_3Q Camera_Left_3Q Camera_Cockpit Camera_Wheel_Detail
-
-# 输出 GLB / FBX / OBJ，随后做三格式回导检查
-& $blender --background blends/10_final.blend --python scripts/export_model.py
-& $blender --background blends/10_final.blend --python scripts/validate_source.py
-& $blender --background --factory-startup --python scripts/validate_exports.py
+# 相机拟合默认保留已有参数；证据修正后才显式重拟合，并自动归档旧参数
+& $python reconstruction_v2/scripts/fit_cameras.py
+# & $python reconstruction_v2/scripts/fit_cameras.py --refit
 ```
 
-MCP 建模用 `execute_blender_code` 调用项目脚本；后台环境需要窗口上下文时使用 `bpy.context.temp_override(window=bpy.context.window_manager.windows[0])`。初次构建请使用 `build_all.py`；单独重复运行修正脚本可能再次缩放灯光或局部几何。
+相机工具使用隔离于 `.tools/calibration/` 的 NumPy、SciPy 和 OpenCV。重新克隆时，先在本机恢复原照片和本地标注／相机数据；不能把缺少证据的构建当成车主版重建。
 
-## 渲染与导出设置
+`initialize_cages.py` 只用于首次初始化，遇到已有控制网格会拒绝覆盖。`apply_cages.py` 明确以 JSON 为准；在 Blender 中手工精修后，应先将修改写回控制网格或保存独立源文件，避免把精修网格同步回旧数据。`upgrade_r03.py` 是一次历史迁移，不能代替日常编辑入口。
 
-最终渲染为 Cycles、3840×2160、160 samples 上限、自适应阈值 0.01、降噪、AgX。优先 OptiX GPU；本机 RTX 3050 Ti Laptop 4 GB。环境使用本机 Blender 自带 `studio.exr` 并打包到 `.blend`。背景与工作室灯光保留在源文件，不进入模型导出。
+## 后续推进顺序
 
-可编辑源保留造型修改器。导出副本将曲线、文字与修改器求值成网格，保留零件名、米制单位与材质。GLB 使用标准 Y-up 转换；FBX/OBJ 指定 Y forward / Z up。OBJ 材质依赖同目录 MTL。
+1. 继续第一里程碑：完善稳定关键点和闭合分件遮罩，解决镜头欠约束；修正灰模并通过至少两个可靠独立视角。
+2. 主要覆盖件通过后，再逐件重建驾驶位、灯具、轮组机械和实车改装件。
+3. 最后制作实车矢量贴花、明确可见的磨损、材质与 UV，完成新版源文件、FBX/GLB/OBJ 和六张 4K Cycles 图。
 
-当前导出约 36.6 万顶点、41.1 万面，不是移动端优化资产。每个导出网格均有 UV 和材质。导出副本使用 Smart UV Project，按部件分岛排列到各自 0–1 范围，并检查无非有限坐标或越界；不同部件复用 UV 空间。可编辑源保留基础 UV，整理后的 UV 在求值网格版与三格式导出中。**尚未制作整车共用的烘焙图集或统一纹素密度**。Blender 程序化微观凹凸、复杂玻璃和某些表面节点不能在 FBX/OBJ 中完全等价还原；跨软件优先 GLB 或 `.blend`。
-
-## 本次文件验收
-
-已完成 10 个阶段 .blend、3 种模型导出及 6 张 3840×2160 Cycles 渲染。导出分别回读验证，尺寸一致，无材质/UV 缺失；完整重建在无私有输入的隔离目录通过。文件哈希和分辨率记录于本地 qa/artifact_manifest.json，概要为 qa/delivery.json。最终视角为 Front_3Q、Right_Ortho、Rear_3Q、Left_3Q、Cockpit、Wheel_Detail。
-
-这些通过项针对文件完整性和可重复运行，不替代实车外观精度验收。
-
-## 后续精修优先级
-
-1. 根据照片校正车头/侧罩连续曲率与接缝，修整局部穿插及遮挡关系。
-2. 逐笔描绘真实 SUZUKI 大字与小贴纸，替换当前近似字形。
-3. 校正发动机铸件、排气端盖、轮胎胎纹与磨损；补充支架背面、护杠隐藏固定点证据。
-4. 制作统一纹素密度的整车烘焙图集、降低面数，再做渲染器之间的外观一致性检查。
-
-不得在没有这些验证的情况下把当前首版标为“100%还原”“测绘精度”或“已完成产品摄影级验收”。
+每阶段保存独立版本、保留误差记录。旧版说明及命令已归档为 [r6.2 历史记录](docs/legacy_r6_2.md)，不要对新版运行旧 `build_all.py`。

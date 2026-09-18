@@ -1,0 +1,258 @@
+{
+  "Body_BellyPan": {
+    "control_cage": "reconstruction_v2/data/control_cages/Body_BellyPan.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "official_turntable_05"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Body_CowlingSide": {
+    "control_cage": "reconstruction_v2/data/control_cages/Body_CowlingSide.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Body_FairingBlade": {
+    "control_cage": "reconstruction_v2/data/control_cages/Body_FairingBlade.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "official_turntable_05"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Body_MidSideCover": {
+    "control_cage": "reconstruction_v2/data/control_cages/Body_MidSideCover.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Body_SeatSide": {
+    "control_cage": "reconstruction_v2/data/control_cages/Body_SeatSide.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Body_SideFairing": {
+    "control_cage": "reconstruction_v2/data/control_cages/Body_SideFairing.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "official_turntable_05"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Body_Tail": {
+    "control_cage": "reconstruction_v2/data/control_cages/Body_Tail.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "official_turntable_05"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Body_Tank": {
+    "control_cage": "reconstruction_v2/data/control_cages/Body_Tank.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "official_turntable_05"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Body_TankSideTrim": {
+    "control_cage": "reconstruction_v2/data/control_cages/Body_TankSideTrim.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "official_turntable_05"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Body_UpperCowling": {
+    "control_cage": "reconstruction_v2/data/control_cages/Body_UpperCowling.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "official_turntable_05"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Fender_Front": {
+    "control_cage": "reconstruction_v2/data/control_cages/Fender_Front.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "official_turntable_05"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Headlight_Lens": {
+    "control_cage": "reconstruction_v2/data/control_cages/Headlight_Lens.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "official_turntable_05"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Headlight_Surround": {
+    "control_cage": "reconstruction_v2/data/control_cages/Headlight_Surround.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "official_turntable_05"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Seat_Pillion": {
+    "control_cage": "reconstruction_v2/data/control_cages/Seat_Pillion.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "official_turntable_05"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Seat_Rider": {
+    "control_cage": "reconstruction_v2/data/control_cages/Seat_Rider.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "official_turntable_05"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Windscreen": {
+    "control_cage": "reconstruction_v2/data/control_cages/Windscreen.json",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "official_turntable_05"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "transverse section and hidden joins",
+      "full multiview silhouette acceptance"
+    ],
+    "status": "editable_gray_cage_not_accepted"
+  },
+  "Wheel_Assemblies": {
+    "evidence": [
+      "haojue_specs",
+      "owner_photo_62",
+      "owner_photo_63"
+    ],
+    "measurements_verified": [
+      "wheelbase nominal 1430 mm",
+      "brake discs nominal 290/240 mm",
+      "tire nominal widths 110/140 mm"
+    ],
+    "uncertain": [
+      "rim stripe radius estimate",
+      "spoke profile",
+      "brand-specific tread",
+      "axle end and steering geometry"
+    ],
+    "status": "nominal_dimensions_only"
+  },
+  "Mechanical_Proxies": {
+    "evidence": [
+      "existing_r6_2_structure",
+      "owner_photo_62"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "engine castings",
+      "muffler shield",
+      "swingarm",
+      "guard mounting points",
+      "phone holder",
+      "instrument pod"
+    ],
+    "status": "must_rebuild_or_verify_individually"
+  }
+}

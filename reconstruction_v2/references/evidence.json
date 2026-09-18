@@ -1,0 +1,20 @@
+{
+  "checked_date": "2026-09-18",
+  "subject": "GSX250R-A / GSX250RA Chinese-market family",
+  "sources": [
+    {"id":"haojue_specs","url":"https://en.haojue.com/NEWGSX250R/canshu.html","archived":"raw/haojue_NEWGSX250R_canshu.html","authority":"Haojue official product page","supports":["model GSX250R-A","wheelbase 1430 mm","dimensions 2085x740x1110 mm","brakes front 290 mm rear 240 mm","tyres 110/80-17 M/C 57H and 140/70-17 M/C 66H","seat 790 mm","tank 15 L"]},
+    {"id":"suzuki_parts","url":"https://www1.suzuki.co.jp/motor/support/parts_catalog_manage/files/GSX250RAM1_GSX250RAZM1.pdf","archived":"raw/suzuki_GSX250RAM1_GSX250RAZM1.pdf","authority":"Suzuki Japan official parts catalogue, 108 pages","supports":["GSX250RA parts family","fuel tank FIG.420A","headlamp FIG.333A","side cowling FIG.485A","seat FIG.505A"]}
+  ],
+  "specifications": {"wheelbase_mm":1430,"overall_mm":{"length":2085,"width":740,"height":1110},"brake_rotor_mm":{"front":290,"rear":240},"tyres":{"front":"110/80-17 M/C 57H","rear":"140/70-17 M/C 66H"},"seat_height_mm":790,"fuel_capacity_l":15},
+  "parts": {
+    "fuel_tank_blue_BY7":"44100-20K00-W6B",
+    "fuel_tank_center_cover":"44191-20K00",
+    "headlamp_assembly":"35100-20K01",
+    "side_cowling_shared_family":["94461-20K00","94462-20K00","94475-20K00-YAY","94481-20K00","94485-20K00-YAY"],
+    "rider_seat":"45100-20K01-QFE",
+    "pillion_seat":"45300-20K01-QFE"
+  },
+  "variant_exclusion": "GSX250R-F is excluded; do not mix its evidence with GSX250R-A/GSX250RA.",
+  "uncertain": ["camera calibration","hidden mounting points","fairing curvature","guard bars","phone mount and steering damper","Chinese plate and decal exact outlines"],
+  "use_note": "Official sources fill structural/specification gaps only; user motorcycle photographs govern appearance. Not a calibrated blueprint or 100% reconstruction validation."
+}

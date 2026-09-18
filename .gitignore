@@ -13,3 +13,9 @@ qa/
 __pycache__/
 *.pyc
 .DS_Store
+
+# Local photo-derived reconstruction evidence and frozen source
+reconstruction_v2/baseline/
+reconstruction_v2/annotations/
+reconstruction_v2/calibration/
+reconstruction_v2/references/raw/
