@@ -13,9 +13,25 @@
 - 真实牌号只使用config/*.local.json，不输出日志或文档。57/59指定京B；60及新增图片的旧牌不替换它。M1只有空白牌板、无文字对象。
 - 本地预览先遮蔽车牌及固定排除区，不推送照片。不可把允许推代码理解为允许发布真实号牌成品。
 - origin使用ssh.github.com:443/LeonZ03/GSX.git；仓库为公开。命令级safe.directory，不改全局Git，不强推。
-- 已推送至r11的3a547bc；本轮后续提交需再核对范围，仅显式暂存代码/文档/控制数据。
+- 已推送至r12的222536c；本轮后续提交需再核对范围，仅显式暂存代码/文档/控制数据。
 
-## 当前证据检查 V2 / r12（模型仍为r11，以本节为准）
+## 当前状态 V2 / r13（以本节为准）
+- 最新源blends/13_gray_review.blend，589对象、19个quad控制网格，仍M1_NOT_PASSED。r11源与r6.2原件未变，r12没有几何文件。本轮MCP后台处理，不宣称GUI场景已更新。
+- 只修改Body_Tank前5个后部截面的Y，分别−3.5/−5/−10/−10/−3.5 mm；X/Z、其它18个cage、相机均未改。r11_interface_frozen的35项中仅Body_Tank JSON变化；实际相机签名未变。
+- 新本地annotations/tank_interface_r13.json：62/63/69油箱后缘、油箱—座垫开放接缝；62/63附黑饰板上沿，约±4px。不是闭合mask或同名三维关键点。62/63排序，69额外检查，不是独立holdout。
+- 初批18大候选、第二批12小候选加1基线；较大后移使69后缘变差，拒绝。2个小候选有自交，拒绝。保留e10_w0_z0。另试1mm倒角有15自交候选，未保留。
+- 注意13_interface_candidate.blend是失败倒角源，不可作为最终版；13_interface_unrounded_candidate.blend才是保留候选，最终13_gray_review.blend。新增倒角不在最终源中，尖折仍未消除。
+- 实际Cycles整帧分件颜色输出计算：62后缘均值25.1→21.2px/P9526.9→22.8；63均值7.3→3.8/P9512.4→7.8；69均值2.8→2.8/P957.8→4.4，但中位1.5→2.9，不能宣称全指标改善。三视角接缝均值9.1→8.5、4.6→4.1、3.5→2.9，变化多在标注不确定性内。
+- 接缝距离是开放参考线到可见油箱边界的单向距离，并筛选距可见座垫≤10px的边缘。10px是图像筛选规则，不是实测间隙。完整轮廓IoU/关键点/独立角度均未通过。
+- CPU深度投影补入23个其它物件的3247个局部遮挡三角面，已对Cycles整帧分件颜色输出核对（实现一致率99.89–100%，绝不是照片IoU）。最终照片指标取实际Cycles输出。
+- Blender原生裁切有取整差异：实际62框[540,720,750,900]，63[445,761,665,945]，69[930,525,1150,705]，通过裁切/整帧ID图精确对应确认；不能只由边界浮点数猜原点。图像和照片按实际框对齐。
+- 最终Tank/Seat无表面相交、非流形边和非相邻自交候选；座垫对Tail/SeatSide/PillionBase仍0相交。名义轴距/盘径维持，不代表实车精度。相邻5个求值网格与r11逐值相同。
+- 本地renders/tank_interface_r13_comparison.jpg、review_r13_{62,63,64,69}.jpg/contact_sheet；qa/interface_review_r13.json、interface_raster_validation_r13.json、interface_frozen_r13.json、tank_interface_13_gray_review.json、geometry_r13.json。记录reviews/r13_tank_rear.md。
+- 下一步针对油箱后半部曲率与接缝：先补跨图稳定特征，分开处理上下边界，不能继续整体后移去迎合62。62约21px残差、尖折、镜头及后座高度不确定性仍开放。不加材质/贴花/4K。
+- generate_interface_candidates只从r11生成本地历史候选且拒绝已有输出，不可对当前r13 JSON随意重跑。export_interface_meshes/renderer/validate/review可复核当前实际源；ID材料仅用于不保存的诊断进程。
+- interface_evidence请求gpt-5.6-luna/low，只读文档/代码；工具未确认实际配置，子任务图像helper失败。主线程完成图检和几何验收；没有采用其关于可见尖折成因的未证实推断。
+
+## 历史证据检查 V2 / r12（当时模型为r11）
 - 完成69镜头假设敏感性与后座投影传播；本轮未改相机/控制网格/模型，最新源仍blends/11_gray_review.blend，未制作虚假的12几何文件。M1_NOT_PASSED。
 - Blender MCP后台读取r11实际求值网格，写qa/tail_mesh_r11.json；没有保存场景。环境仍5.2.2 LTS。
 - scripts/camera_sensitivity.py：仅轮圈68观测+原转向先验拟合25组离散焦距/半径/主点假设，16组通过RMS≤1/P95≤2/无贴边等诊断筛查。主点±3%是测试幅度，非真实参数边界；高焦距存在局部极小值，不能作为全局排除证据。

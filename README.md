@@ -2,7 +2,7 @@
 
 以本机 `IMG/` 的 **12 张实车照片**为外观依据，使用 **Blender 5.2.2 LTS / Blender MCP** 重建。目标包含蓝白版画、荧光轮圈贴、对称三角管护杠、手机支架、方向阻尼器及指定的京 B 车牌；排除尾包、网绳、手套和骑手。
 
-**当前：V2 / r12 相机敏感性复核，最新模型仍为r11；第一里程碑未通过，尚未达到1:1。** 车头、座尾曲面和机械结构仍有明显偏差。灰模通过前，不制作新版完整贴花、最终材质、4K 成片或三格式交付。旧 r6.2 已冻结，只作失败对照。
+**当前：V2 / r13 油箱后缘小幅修正；第一里程碑未通过，尚未达到1:1。** 车头、座尾曲面和机械结构仍有明显偏差。灰模通过前，不制作新版完整贴花、最终材质、4K 成片或三格式交付。旧 r6.2 已冻结，只作失败对照。
 
 ## 当前文件
 
@@ -10,29 +10,36 @@
 
 | 内容 | 本地路径 |
 |---|---|
-| 本轮镜头／后座敏感性对照 | `reconstruction_v2/renders/camera69_sensitivity_r12.jpg` |
-| 最新可编辑灰模 | `reconstruction_v2/blends/11_gray_review.blend` |
-| 四角度四联对照总览 | `reconstruction_v2/renders/review_r11_contact_sheet.jpg` |
-| 原照／灰模／叠加／轮廓对照 | `reconstruction_v2/renders/review_r11_{62,63,64,69}.jpg` |
-| 灰模透明渲染 | `reconstruction_v2/renders/gray_r11_*.png` |
-| 实际几何检查 | `reconstruction_v2/qa/geometry_r11.json` |
-| 对照状态、哈希和错误说明 | `reconstruction_v2/qa/review_r11.json`、`tank_interface_11_gray_review.json` |
+| 本轮油箱后缘局部对照 | `reconstruction_v2/renders/tank_interface_r13_comparison.jpg` |
+| r12镜头／后座敏感性对照 | `reconstruction_v2/renders/camera69_sensitivity_r12.jpg` |
+| 最新可编辑灰模 | `reconstruction_v2/blends/13_gray_review.blend` |
+| 四角度四联对照总览 | `reconstruction_v2/renders/review_r13_contact_sheet.jpg` |
+| 原照／灰模／叠加／轮廓对照 | `reconstruction_v2/renders/review_r13_{62,63,64,69}.jpg` |
+| 灰模透明渲染 | `reconstruction_v2/renders/gray_r13_*.png` |
+| 实际几何检查 | `reconstruction_v2/qa/geometry_r13.json` |
+| 对照状态、哈希和错误说明 | `reconstruction_v2/qa/review_r13.json`、`tank_interface_13_gray_review.json` |
 | 可编辑控制网格 | `reconstruction_v2/data/control_cages/`，19 个四边面网格 |
 | 护杠和镜壳控制数据 | `reconstruction_v2/data/guard_control.json`、`mirror_control.json` |
 | 尚未解决的问题 | [ISSUES.md](reconstruction_v2/ISSUES.md) |
 | 官方证据 | [资料索引](reconstruction_v2/references/evidence.md)、[件号核对](reconstruction_v2/references/review.md) |
 
-r01–r10 的独立文件仍保留。r12通过Blender MCP后台读取r11求值网格；本轮没有修改或另存模型，也没有替换正式镜头。
+r01–r11 的独立模型仍保留；r12只有证据检查，没有几何源。r13通过Blender MCP后台修改独立源，固定原相机，未改动GUI会话。
 
 用户已授权推送非照片内容。GitHub 保存代码、文档和控制网格；**真实照片、含原照的对照图、真实车牌配置及相关成品不推送**。本次继续将参考下载、照片标注、相机参数、blend 和检查渲染保存在本地。灰模车牌为空白，无真实号牌文字。
 
 ## 迭代路线
 
-详见[迭代路线与每轮验收](reconstruction_v2/ITERATION_PLAN.md)。当前只处于准确灰模阶段；本轮检查69镜头假设对后座高度的影响，支持保留此前上调方向，但具体高度仍未独立验证。接下来完善可见接缝和稳定特征，再调整局部曲面。
+详见[迭代路线与每轮验收](reconstruction_v2/ITERATION_PLAN.md)。当前只处于准确灰模阶段；本轮只小幅修正油箱后缘，保留三个固定角度对照。较大改形会使其它角度变差，未采用；接下来补跨图稳定特征，分开处理油箱后部曲率和接口。
 
 对照图的纯灰模面板现已取消排除遮罩，显示完整模型。原照、叠加、轮廓面板用带文字斜线区标明排除区域；旧图中的车尾黑箱是尾包遮罩，不是模型部件。该展示纠正发生在r08，不计为形体进步。
 
-## r12 本轮结果
+## r13 本轮结果
+
+只调整油箱后部控制截面，最大后移10 mm；座垫、后座、饰板和相机未改。油箱后缘平均边界距离在62/63号照片中由25.1/7.3降至21.2/3.8 px，69平均值基本不变。人工描边约±4 px，属于有限的局部修正，不能换算整车还原率。
+
+最终源未检出油箱与座垫的表面相交或局部自交，但**接口尖折和62侧面的大残差仍未解决**。较大改形与新增倒角候选已排除。方法、数值退步项和限制见[本轮复核记录](reconstruction_v2/reviews/r13_tank_rear.md)。
+
+## r12 历史证据检查
 
 在25组焦距、圈贴半径和镜头主点假设中，16组通过轮圈低残差诊断筛查。它们对应的旧后座Z补偿仍为约+78–105 mm，支持保留此前上调方向；当前r11后座的诊断补偿为约−13至+16 mm，说明具体高度仍受相机假设影响。这些数值不是实测精度或统计置信区间。
 
@@ -92,25 +99,26 @@ $blender = 'D:\Program Files\Steam\steamapps\common\Blender\blender.exe'
 $python = 'C:\Users\22797\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
 
 # 打开最新独立灰模
-& $blender reconstruction_v2/blends/11_gray_review.blend
+& $blender reconstruction_v2/blends/13_gray_review.blend
 
 # 低采样四角度诊断；64欠约束，69候选，70仍不参与评分
-& $blender --background reconstruction_v2/blends/11_gray_review.blend --python reconstruction_v2/scripts/render_gray.py -- 62 63 64 69 r11
-& $python reconstruction_v2/scripts/make_review_boards.py r11 62 63 64 69
-& $blender --background reconstruction_v2/blends/11_gray_review.blend --python reconstruction_v2/scripts/audit_gray.py
-& $blender --background reconstruction_v2/blends/11_gray_review.blend --python reconstruction_v2/scripts/audit_seat_interfaces.py
+& $blender --background reconstruction_v2/blends/13_gray_review.blend --python reconstruction_v2/scripts/render_gray.py -- 62 63 64 69 r13
+& $python reconstruction_v2/scripts/make_review_boards.py r13 62 63 64 69
+& $blender --background reconstruction_v2/blends/13_gray_review.blend --python reconstruction_v2/scripts/audit_gray.py
+& $blender --background reconstruction_v2/blends/13_gray_review.blend --python reconstruction_v2/scripts/audit_seat_interfaces.py
 
-# 局部接口检查与同镜头裁切，原照片只在本地读取
-& $blender --background reconstruction_v2/blends/11_gray_review.blend --python reconstruction_v2/scripts/audit_tank_interface.py
-& $blender --background reconstruction_v2/blends/10_gray_review.blend --python reconstruction_v2/scripts/render_interface_crops.py
-& $blender --background reconstruction_v2/blends/11_gray_review.blend --python reconstruction_v2/scripts/render_interface_crops.py
-& $python reconstruction_v2/scripts/review_tank_interface.py
-
-# 只读敏感性结果的展示复算（读取本地r12候选，不修改模型）
-& $python reconstruction_v2/scripts/review_camera_sensitivity.py
+# 局部接口检查；本地照片和标注是必需输入
+& $blender --background reconstruction_v2/blends/13_gray_review.blend --python reconstruction_v2/scripts/audit_tank_interface.py
+& $blender --background reconstruction_v2/blends/13_gray_review.blend --python reconstruction_v2/scripts/export_interface_meshes.py
+& $blender --background reconstruction_v2/blends/13_gray_review.blend --python reconstruction_v2/scripts/render_interface_review.py
+& $blender --background reconstruction_v2/blends/13_gray_review.blend --python reconstruction_v2/scripts/render_interface_review.py -- --ids
+& $blender --background reconstruction_v2/blends/13_gray_review.blend --python reconstruction_v2/scripts/render_interface_review.py -- --ids-full
+& $python reconstruction_v2/scripts/validate_interface_raster.py
+# 下列对照还读取本地已有r11基线渲染
+& $python reconstruction_v2/scripts/review_interface_r13.py
 
 # JSON同步到新文件，保留修改器；拒绝覆盖与未经迁移的拓扑改变
-& $blender --background reconstruction_v2/blends/11_gray_review.blend --python reconstruction_v2/scripts/apply_cages.py -- working_next.blend r12
+& $blender --background reconstruction_v2/blends/13_gray_review.blend --python reconstruction_v2/scripts/apply_cages.py -- working_next.blend r14
 ```
 
 隐藏的 `Tool_SeatClearance` 和 `Tool_TankSeatClearance` 都与骑手座共享网格；替换座垫数据块时须同步两者。最终应用修改器后不导出辅助体。`render_gray.py` 可加 `out=本地子目录`，另存同版Blender下重渲染的基线，避免覆盖历史图。
