@@ -3,7 +3,7 @@
 ## 需求与最高优先级
 - 用户批准 V2 重建计划：先资料纠错、照片匹配、准确灰模。灰模未通过，不进入新版完整贴花、最终材质、4K成片或导出。
 - 目标实车1:1；当前未达标，不用面数、分辨率、文件完整或名义尺寸代替外形验收。隐藏尺寸不能盖章100%。
-- 本机 Blender 5.2.1 LTS，必须使用 Blender MCP。+X右、+Y前、+Z上；场景米、控制网格mm乘0.001。
+- 本机 Blender 5.2.2 LTS（r11实际复核），必须使用 Blender MCP。+X右、+Y前、+Z上；场景米、控制网格mm乘0.001。
 - 以 IMG/ 实车照片为准：蓝白版画、荧光轮圈贴、左右三角管护杠、左把手机夹、方向阻尼器、指定京B。排除尾包、网绳、骑手、手套。只还原可辨认磨损。
 - 不要求用户补照片、测量或选择配色；缺角主动搜原厂证据，不能臆造文字/贴纸。新版未制作错误日文标记。
 
@@ -15,7 +15,21 @@
 - origin使用ssh.github.com:443/LeonZ03/GSX.git；仓库为公开。命令级safe.directory，不改全局Git，不强推。
 - 已推送d497004与9fbcbf5；本轮后续提交需再核对范围，仅显式暂存代码/文档/控制数据。
 
-## 当前状态 V2 / r10（以本节为准）
+## 当前状态 V2 / r11（以本节为准）
+- 最新源reconstruction_v2/blends/11_gray_review.blend；589对象、19个quad控制网格，M1_NOT_PASSED。r01–r10及r6.2旧源保留。
+- 本机已为5.2.2 LTS；本轮通过Blender MCP后台CLI处理独立源，交互127.0.0.1:9876未连接，未向GUI追加场景。勿把历史r10会话状态当当前可用连接。
+- 仅处理油箱—骑手座求值表面接口，所有19个cage、相机/标注共34份输入哈希未变；场景相机签名也未变。冻结快照calibration/r10_interface_frozen。
+- 新Tool_TankSeatClearance复制r10辅助体，与Seat_Rider共享data、COPY_TRANSFORMS，外扩3mm后再三角化；Blockout中隐藏，export_exclude=True。Body_Tank厚度后加Stable_Interface_Triangles和Editable_RiderSeatInterface差集，保留原cage。
+- 两个helper都依赖Seat_Rider.data；显式换mesh必须同步两者。3mm仅构造余量，不是实测或处处精确等距证明。
+- 同版5.2.2下，油箱/座垫三角相交对583→0；两者非流形边/非相邻三角面自交候选均0。骑手座与Tail/SeatSide/PillionBase仍无表面相交。r10原363是多边形计数，不能与三角计数作百分比。
+- 直接移动8个油箱点导致自交的候选已否决；未三角化差集仍有7组自交候选，也否决。失败blend/QA仅本地归档，qa/Body_Tank_r11_candidate.json不可覆盖有效控制网格。
+- 62/63/69原分辨率局部改前/后用同一Blender重渲染，render_interface_crops+review_tank_interface生成renders/tank_seat_r11_comparison.jpg。69浮点裁切多1列，原照框对齐924..1090。
+- 外观变化小：62接口尖折、63后缘曲率/饰板遮挡、69缺口仍不符。未新增轮廓改善指标，更不能称座尾或整车通过。后座高度与69镜头依赖未解除。
+- 四角度review_r11_{62,63,64,69}.jpg/contact_sheet；qa/tank_interface_11_gray_review.json、seat_interfaces_r11.json、geometry_r11.json、interface_frozen_r11.json。记录reviews/r11_tank_interface.md。
+- 下一轮先复核69镜头敏感性和后座高度独立依据，明确油箱—座垫可见分件边界再改形。仍在座尾灰模阶段，不扩展材质/贴花/4K。
+- 本轮未启用子智能体，主线程完成局部修正与复核。refine_tank_interface只从r10另存新候选，拒绝覆盖，不能随意重跑迁移。
+
+## 历史状态 V2 / r10
 - 最新源reconstruction_v2/blends/10_gray_review.blend；MCP当前场景GSX250R_Reconstruction_V2_Gray_r10.002；588对象、19个quad控制网格。r09与全部旧源保留，M1_NOT_PASSED。
 - 本轮只修改Seat_Rider、Body_SeatSide两段上沿、Body_PillionBase前端；后座本体/尾罩主体/镜头和其它cage未改。原镜头和标注哈希冻结在r09_tail_frozen；实际场景相机矩阵与内参也比对未变。
 - 骑手座13参数小幅拟合62/69，7参数触及预设边界，不继续扩大边界。63新增开放可见下缘标注，只检查未优化；63此前已用过，不能称项目独立holdout。

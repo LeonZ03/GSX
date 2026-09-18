@@ -7,6 +7,9 @@ s=next(s for s in bpy.data.scenes if s.name.startswith('GSX250R_Reconstruction_V
 args=sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else []
 ids=[int(x) for x in args if x.isdigit()] or [62,63]
 tag=next((x for x in args if re.fullmatch(r'r\d+',x)),s.get('revision','r01'))
+subdir=next((x[4:] for x in args if x.startswith('out=')),'')
+if subdir and (Path(subdir).name!=subdir or subdir in ('.','..')):raise ValueError('Output subdirectory must be a local name')
+render_dir=V2/'renders'/subdir;render_dir.mkdir(exist_ok=True)
 percentage=60
 s.render.resolution_percentage=percentage;s.cycles.samples=24;s.render.film_transparent=True
 # GPU use re-checked in the actual rendering process.
@@ -27,7 +30,7 @@ for k in ids:
  else:axis=Vector((0,0,1));pivot=Vector((0,.715,.3039))
  T=Matrix.Translation(pivot)@Matrix.Rotation(math.radians(c['front_steer_deg']),4,axis)@Matrix.Translation(-pivot)
  for o in steering:o.matrix_world=T@original[o]
- s.render.filepath=str(V2/f'renders/gray_{tag}_{k}.png');bpy.ops.render.render(write_still=True)
+ s.render.filepath=str(render_dir/f'gray_{tag}_{k}.png');bpy.ops.render.render(write_still=True)
  for o in steering:o.matrix_world=original[o]
  print('GRAY_RENDER_COMPLETE',k,flush=True)
 for o,original_hide in visibility.items():o.hide_render=original_hide
