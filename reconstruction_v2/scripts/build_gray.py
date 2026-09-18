@@ -49,8 +49,20 @@ def apply_creases(o,data):
  attr=o.data.attributes.get('crease_edge') or o.data.attributes.new('crease_edge','FLOAT','EDGE')
  for e in o.data.edges:attr.data[e.index].value=values.get(tuple(sorted((e.vertices[0],e.vertices[1]))),0.0)
 
+def cage_faces(data):
+ """Grid quads, optionally with explicit quad end caps for closed seat cushions."""
+ nr=len(data['grid']);nc=len(data['grid'][0])
+ faces=[(j*nc+i,j*nc+i+1,(j+1)*nc+i+1,(j+1)*nc+i) for j in range(nr-1) for i in range(nc-1)]
+ if data.get('cap_ends'):
+  if nc%2:raise ValueError('Seat end caps require an even transverse profile')
+  for row in (0,nr-1):
+   for i in range(nc//2-1):
+    f=(row*nc+i,row*nc+i+1,row*nc+nc-2-i,row*nc+nc-1-i)
+    faces.append(tuple(reversed(f)) if row==0 else f)
+ return faces
+
 def cage(data):
- rows=data['grid'];nr=len(rows);nc=len(rows[0]);v=[p for row in rows for p in row];faces=[(j*nc+i,j*nc+i+1,(j+1)*nc+i+1,(j+1)*nc+i) for j in range(nr-1) for i in range(nc-1)]
+ rows=data['grid'];nr=len(rows);nc=len(rows[0]);v=[p for row in rows for p in row];faces=cage_faces(data)
  b.COL=C['Body'] if data['name'].startswith(('Body','Seat')) else C['FrontEnd']
  o=b.mesh(data['name'],v,faces,smo=True);o.data.materials.append(M[data['material']]);o['control_cage_source']='reconstruction_v2/data/control_cages/'+data['name']+'.json';o['acceptance']='pending';o['editable_quads']=True
  if data['mirror_x']:

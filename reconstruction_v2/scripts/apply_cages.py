@@ -13,7 +13,7 @@ for p in sorted((V2/'data/control_cages').glob('*.json')):
  if a['name'] not in existing:ns['cage'](a);continue
  o=existing[a['name']];rows=a['grid'];nr=len(rows);nc=len(rows[0]);verts=[v for row in rows for v in row]
  # Preserve sculpted source only when the cage shape/count still agrees; JSON is explicit authority for this command.
- expected={tuple(sorted((j*nc+i,j*nc+i+1,(j+1)*nc+i+1,(j+1)*nc+i))) for j in range(nr-1) for i in range(nc-1)}
+ expected={tuple(sorted(f)) for f in ns['cage_faces'](a)}
  if len(o.data.vertices)!=len(verts) or {tuple(sorted(f.vertices)) for f in o.data.polygons}!=expected:raise RuntimeError('Topology changed: explicit mesh migration required for '+a['name'])
  for v,pco in zip(o.data.vertices,verts):v.co=[x*.001 for x in pco]
  ns['apply_creases'](o,a)

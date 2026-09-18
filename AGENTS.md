@@ -15,7 +15,18 @@
 - origin使用ssh.github.com:443/LeonZ03/GSX.git；仓库为公开。命令级safe.directory，不改全局Git，不强推。
 - 已推送d497004与9fbcbf5；本轮后续提交需再核对范围，仅显式暂存代码/文档/控制数据。
 
-## 当前状态 V2 / r08
+## 当前状态 V2 / r09（以本节为准）
+- 最新源reconstruction_v2/blends/09_gray_review.blend；MCP当前追加场景GSX250R_Reconstruction_V2_Gray_r09.002；r08及旧场景保留。
+- 本轮不启用子智能体，用户要求兼顾质量与额度；只做座尾，低采样对照，无4K和细节扩展。
+- 587对象、19个quad控制网格。保留Seat_Pillion、Body_Tail修改，新增Body_PillionBase可见黑色过渡壳；骑手座和Body_SeatSide试改因62侧面退步已回退。
+- r08_tail_frozen保存旧网格及输入哈希。旧镜头、标注、排除区哈希全部未变；新增seat_tail_r09标注仅本地，约±4px。70仍失败不参与评分。
+- 69后座双向轮廓距离median36.2→3.6px、P9550.2→14.9px，局部IoU约0.802。这是候选镜头下的拟合分件诊断，不是关键点误差、独立验证或整车相似度；整体M1_NOT_PASSED。
+- 后座约90mm高度调整仍依赖69候选，不能作为实测尺寸；隐藏支座/副车架深度及完整穿插未通过。尾罩尚无可靠闭合标注。
+- 后座端面cap_ends由cage_faces显式四边面连接；apply_cages复核完整连接。refine_tail_r09只用于独立r08迁移，不能对精修数据重跑。
+- renders/seat_tail_r09_comparison.jpg为局部改前/后/叠加；review_r09_{62,63,64,69}.jpg和contact_sheet为四角度；qa/seat_tail_r09.json、geometry_r09.json记录误差与实际几何。
+- 详细结果reviews/r09_seat_tail.md。下一轮继续骑手座、尾罩接缝与后座圆角/连接；先修座尾，暂不进入油箱、镜子/灯具或材质。
+
+## 历史状态 V2 / r08
 - 最新源 reconstruction_v2/blends/08_gray_review.blend；r01–r07保留；r6.2 baseline及原blends/10_final.blend保持冻结。
 - 586对象、18个quad控制网格；镜像/细分/厚度保留。data/guard_control.json、mirror_control.json控制附件轮廓。
 - 已改油箱黑饰板边界、连续侧罩/下伸部分、油箱端部反折、尾罩遮挡、座垫连接缺口、对称三角护杠、驾驶位内衬、位置灯、镜壳。仍有明显不符，M1_NOT_PASSED。

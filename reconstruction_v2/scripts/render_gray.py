@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[2];V2=ROOT/'reconstruction_v2'
 s=next(s for s in bpy.data.scenes if s.name.startswith('GSX250R_Reconstruction_V2_Gray'));bpy.context.window.scene=s
 args=sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else []
 ids=[int(x) for x in args if x.isdigit()] or [62,63]
-tag=next((x for x in args if x.startswith('r0')),'r01')
+tag=next((x for x in args if re.fullmatch(r'r\d+',x)),s.get('revision','r01'))
 percentage=60
 s.render.resolution_percentage=percentage;s.cycles.samples=24;s.render.film_transparent=True
 # GPU use re-checked in the actual rendering process.
