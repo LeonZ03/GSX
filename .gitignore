@@ -1,0 +1,15 @@
+# User originals and all artifacts containing the real registration stay local.
+IMG/
+references/local/
+references/public/
+config/*.local.json
+blends/
+exports/
+renders/
+qa/
+.tools/
+*.blend1
+*.blend2
+__pycache__/
+*.pyc
+.DS_Store

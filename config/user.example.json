@@ -1,0 +1,5 @@
+{
+  "plate_top": "LOCAL",
+  "plate_bottom": "GSX250",
+  "note": "Copy to user.local.json and keep the owner registration local. Never commit the private file."
+}
