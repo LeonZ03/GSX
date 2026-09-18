@@ -22,9 +22,16 @@ def camera(q,w,h):
  K=np.array([[f,0,w/2],[0,f,h/2],[0,0,1]])
  return R,t,K
 
-def wheel(k,steer=0,side=1):
+def steering_transform(steer,model='legacy_vertical'):
+ if model=='raked_axis_25_6_trail104':
+  a=math.radians(25.6);axis=np.array([0,-math.sin(a),math.cos(a)]);pivot=np.array([0,.819,0])
+ else:axis=np.array([0,0,1]);pivot=CENTERS['front']
+ return Rotation.from_rotvec(axis*steer).as_matrix(),pivot
+
+def wheel(k,steer=0,side=1,model='legacy_vertical'):
  c=CENTERS[k].copy();x=side*(.042 if k=='front' else .055)
- Q=Rotation.from_rotvec(np.array([0,0,steer if k=='front' else 0])).as_matrix()
+ Q,pivot=steering_transform(steer if k=='front' else 0,model)
+ if k=='front':c=pivot+Q@(c-pivot)
  return c+Q@np.array([x,0,0]),Q@np.array([0,1,0]),Q@np.array([0,0,1])
 
 def project(p,R,t,K):
@@ -36,7 +43,7 @@ def residual(q,a):
  side=1 if a.get('side','right')=='right' else -1
  for k,ann in a['wheels'].items():
   if len(ann.get('rim_points',[]))<5:continue
-  c,u,v=wheel(k,q[7],side)
+  c,u,v=wheel(k,q[7],side,a.get('steering_model','legacy_vertical'))
   H=K@np.column_stack([R@u*RIM_RADIUS,R@v*RIM_RADIUS,R@c+t])
   ih=np.linalg.inv(H);C=ih.T@np.diag([1,1,-1])@ih
   p=np.column_stack([ann['rim_points'],np.ones(len(ann['rim_points']))]);cp=(C@p.T).T
@@ -44,7 +51,7 @@ def residual(q,a):
   res.extend(dist)
   # Axle end sits outside rim plane; center observation must target the visible axle.
   if ann.get('center'):
-   cc=CENTERS[k]+Rotation.from_rotvec([0,0,q[7] if k=='front' else 0]).as_matrix()@np.array([side*(.115 if k=='front' else .125),0,0])
+   Q,pivot=steering_transform(q[7] if k=='front' else 0,a.get('steering_model','legacy_vertical'));cc=CENTERS[k].copy();cc=pivot+Q@(cc-pivot) if k=='front' else cc;cc=cc+Q@np.array([side*(.115 if k=='front' else .125),0,0])
    res.extend((project([cc],R,t,K)[0]-ann['center'])*.5)
  # Soft zero-steer prior prevents a one-wheel ellipse from absorbing camera error.
  res.append(q[7]/.6)

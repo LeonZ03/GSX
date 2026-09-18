@@ -1,0 +1,56 @@
+{
+  "revision": "r07",
+  "units": "mm",
+  "status": "provisional_pose_and_shell_review",
+  "evidence": [
+    "owner_photo_63",
+    "owner_photo_66"
+  ],
+  "center_right": [
+    310,
+    610,
+    1049
+  ],
+  "center_left": [
+    -310,
+    610,
+    1049
+  ],
+  "normal_right": [
+    0.55,
+    0.83,
+    0.08
+  ],
+  "normal_left": [
+    -0.1,
+    0.99,
+    0.08
+  ],
+  "outline_uv_mm": [
+    [
+      -70,
+      60
+    ],
+    [
+      -20,
+      48
+    ],
+    [
+      35,
+      20
+    ],
+    [
+      60,
+      -30
+    ],
+    [
+      36,
+      -57
+    ],
+    [
+      -57,
+      -45
+    ]
+  ],
+  "notes": "Back-shell outline based on visible 63 silhouette. Separate left yaw reflects independently adjustable mirror; no symmetry claim for adjusted mirror pose."
+}

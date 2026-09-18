@@ -21,5 +21,9 @@ for o in s.objects:
  if o.get('control_cage_source'):quads[o.name]={'vertices':len(o.data.vertices),'faces':len(o.data.polygons),'all_quads':all(len(p.vertices)==4 for p in o.data.polygons),'subdivision_retained':any(m.type=='SUBSURF' for m in o.modifiers),'source':o['control_cage_source']}
 out['control_cages']=quads
 out['cameras']=[{'name':o.name,'photo':o.get('image_id'),'status':o.get('fit_status')} for o in s.objects if o.type=='CAMERA']
+left=obj('GuardBar_L');right=obj('GuardBar_R')
+lp=[left.matrix_world@Vector(p.co[:3]) for p in left.data.splines[0].points];rp=[right.matrix_world@Vector(p.co[:3]) for p in right.data.splines[0].points]
+out['guard_centerline_mirror_error_mm']=max((a-Vector((-b.x,b.y,b.z))).length for a,b in zip(lp,rp))*1000 if len(lp)==len(rp) else None
+out['guard_mount_acceptance']='NOT_PASSED: unmeasured attachment depths'
 plate=obj('LicensePlate');out['privacy']={'plate_is_blank_gray_proxy':plate.type=='MESH','no_text_objects':not any(o.type=='FONT' for o in s.objects)}
 (V2/f"qa/geometry_{s.get('revision','r03')}.json").write_text(json.dumps(out,indent=2),encoding='utf8');print(json.dumps(out['measurements'],indent=2));print('CONTROL_CAGES',len(quads),'ALL_QUADS',all(x['all_quads'] for x in quads.values()))

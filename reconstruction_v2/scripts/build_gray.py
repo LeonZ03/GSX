@@ -14,10 +14,13 @@ def empty(name,p,col):
  o=bpy.data.objects.new(name,None);col.objects.link(o);o.location=Vector(p)*.001;o.empty_display_size=.018;return o
 
 def setup():
- # Source r6.2 is on disk and separately frozen. Only reset live memory for a new file.
- for o in list(bpy.data.objects):bpy.data.objects.remove(o,do_unlink=True)
- for c in list(bpy.data.collections):bpy.data.collections.remove(c)
- s=bpy.context.scene;s.name='GSX250R_Reconstruction_V2_Gray';s.unit_settings.system='METRIC';s.unit_settings.scale_length=1
+ # Always create an isolated scene; never clear existing objects or collections.
+ base='GSX250R_Reconstruction_V2_Gray';name=base
+ if name in bpy.data.scenes:
+  i=2
+  while f'{base}_{i}' in bpy.data.scenes:i+=1
+  name=f'{base}_{i}'
+ s=bpy.data.scenes.new(name);bpy.context.window.scene=s;s.unit_settings.system='METRIC';s.unit_settings.scale_length=1
  s['milestone']='M1 gray shape verification';s['visual_acceptance']='NOT_PASSED';s['unit_convention']='+X right +Y forward +Z up; metres'
  for n in ['Reference','Blockout','Wheels','FrontEnd','Engine','Body','Details','Materials','Lights','Cameras']:
   c=bpy.data.collections.new('Collection_'+n);s.collection.children.link(c);C[n]=c
@@ -32,6 +35,20 @@ def setup():
  C['Reference'].hide_render=True;C['Blockout'].hide_render=True
  return s
 
+def apply_creases(o,data):
+ nr=len(data['grid']);nc=len(data['grid'][0]);values={};boundary=data.get('crease_boundary',0.0)
+ for j in range(nr):
+  for i in range(nc-1):
+   if j in (0,nr-1):values[tuple(sorted((j*nc+i,j*nc+i+1)))]=boundary
+ for j in range(nr-1):
+  for i in range(nc):
+   if i in (0,nc-1):values[tuple(sorted((j*nc+i,(j+1)*nc+i)))]=boundary
+ for key,val in data.get('crease_columns',{}).items():
+  i=int(key)
+  for j in range(nr-1):values[tuple(sorted((j*nc+i,(j+1)*nc+i)))]=float(val)
+ attr=o.data.attributes.get('crease_edge') or o.data.attributes.new('crease_edge','FLOAT','EDGE')
+ for e in o.data.edges:attr.data[e.index].value=values.get(tuple(sorted((e.vertices[0],e.vertices[1]))),0.0)
+
 def cage(data):
  rows=data['grid'];nr=len(rows);nc=len(rows[0]);v=[p for row in rows for p in row];faces=[(j*nc+i,j*nc+i+1,(j+1)*nc+i+1,(j+1)*nc+i) for j in range(nr-1) for i in range(nc-1)]
  b.COL=C['Body'] if data['name'].startswith(('Body','Seat')) else C['FrontEnd']
@@ -41,6 +58,7 @@ def cage(data):
  md=o.modifiers.new('Editable_Subdivision','SUBSURF');md.levels=data['subdivision'];md.render_levels=data['subdivision']
  if data['thickness_mm']:
   md=o.modifiers.new('Shell_Thickness','SOLIDIFY');md.thickness=data['thickness_mm']*.001;md.offset=-1
+ apply_creases(o,data)
  return o
 
 def wheels():

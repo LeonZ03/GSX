@@ -17,11 +17,17 @@ try:
 except Exception:s.cycles.device='CPU'
 steer_prefix=('Tire_Front','Wheel_Front','Spoke_Front','Hub_Front','Axle_Front','BrakeDisc_Front','Caliper_Front','RotorCarrier_Front','Fork_','Fender_Front')
 steering=[o for o in s.objects if o.name.startswith(steer_prefix)];original={o:o.matrix_world.copy() for o in steering}
+visibility={o:o.hide_render for o in s.objects if o.name.startswith(('GuardBar','GuardMount'))}
 for k in ids:
+ for o,original_hide in visibility.items():o.hide_render=True if k==69 else original_hide
  c=json.loads((V2/f'calibration/camera_{k}.json').read_text());s.camera=next(o for o in s.objects if o.type=='CAMERA' and o.get('image_id')==k)
  s.render.resolution_x=c['image_size'][0];s.render.resolution_y=c['image_size'][1]
- pivot=Vector((0,.715,.3039));T=Matrix.Translation(pivot)@Matrix.Rotation(math.radians(c['front_steer_deg']),4,'Z')@Matrix.Translation(-pivot)
+ if c.get('steering_model')=='raked_axis_25_6_trail104':
+  rake=math.radians(25.6);axis=Vector((0,-math.sin(rake),math.cos(rake)));pivot=Vector((0,.819,0))
+ else:axis=Vector((0,0,1));pivot=Vector((0,.715,.3039))
+ T=Matrix.Translation(pivot)@Matrix.Rotation(math.radians(c['front_steer_deg']),4,axis)@Matrix.Translation(-pivot)
  for o in steering:o.matrix_world=T@original[o]
  s.render.filepath=str(V2/f'renders/gray_{tag}_{k}.png');bpy.ops.render.render(write_still=True)
  for o in steering:o.matrix_world=original[o]
  print('GRAY_RENDER_COMPLETE',k,flush=True)
+for o,original_hide in visibility.items():o.hide_render=original_hide

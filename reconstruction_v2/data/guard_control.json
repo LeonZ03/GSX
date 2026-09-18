@@ -1,0 +1,34 @@
+{
+  "units": "mm",
+  "revision": "r05",
+  "status": "PROVISIONAL",
+  "notes": "Paired observed tube nodes 62/63; individual mounting depths still unmeasured. Sharp straights joined by short-radius bends.",
+  "right_nodes": {
+    "rear": [
+      218,
+      10,
+      497
+    ],
+    "upper": [
+      303,
+      265,
+      545
+    ],
+    "lower": [
+      297,
+      222,
+      433
+    ],
+    "lower_mount": [
+      210,
+      261,
+      343
+    ],
+    "rear_mount": [
+      145,
+      -183,
+      444
+    ]
+  },
+  "tube_radius_mm": 12.5
+}
