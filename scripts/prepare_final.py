@@ -12,7 +12,7 @@ rays=nodes.new('ShaderNodeLightPath');mix=nodes.new('ShaderNodeMixShader');links
 private=json.loads((ROOT/'config/user.local.json').read_text('utf-8')) if (ROOT/'config/user.local.json').exists() else {'plate_top':'LOCAL','plate_bottom':'GSX250'}
 checks={'plate_text_matches_private_config':bpy.data.objects['LicensePlate_Region'].data.body==private['plate_top'] and bpy.data.objects['LicensePlate_Number'].data.body==private['plate_bottom'],'reference_objects_in_final':sum(o.name.startswith('Reference_') for o in s.objects),'blockout_objects_in_final':sum(o.name.startswith('Blockout_') for o in s.objects),'scene_count':len(bpy.data.scenes),'missing_images':[im.name for im in bpy.data.images if im.source=='FILE' and not im.packed_file and not Path(bpy.path.abspath(im.filepath)).exists()]}
 (ROOT/'qa/source_integrity.json').write_text(json.dumps(checks,indent=2))
-s['revision']='r5.1: cleaned decals, optical corrections and final framing'
+s['revision']='r6.2: continuous fairing and shield-shaped lamp; final framing'
 s.cycles.samples=160;s.cycles.adaptive_threshold=.01;s.render.resolution_x=3840;s.render.resolution_y=2160
 for name in ['09_lighting_render','10_final']:bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'blends'/(name+'.blend')),compress=True)
 print(checks)

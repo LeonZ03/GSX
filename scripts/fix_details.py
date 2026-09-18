@@ -16,7 +16,13 @@ def fix():
     def project(o,target,s,cuts=7):
         b.select(o)
         if o.type!='MESH':bpy.ops.object.convert(target='MESH')
-        bm=bmesh.new();bm.from_mesh(o.data);bmesh.ops.triangulate(bm,faces=list(bm.faces));bmesh.ops.subdivide_edges(bm,edges=list(bm.edges),cuts=cuts,use_grid_fill=True);bm.to_mesh(o.data);bm.free()
+        bm=bmesh.new();bm.from_mesh(o.data);bmesh.ops.triangulate(bm,faces=list(bm.faces));bmesh.ops.subdivide_edges(bm,edges=list(bm.edges),cuts=cuts,use_grid_fill=True)
+        # Refine long faces before ray projection, so artwork follows panel bends.
+        for refinement in range(7):
+            edges=[edge for edge in bm.edges if edge.calc_length()>.008]
+            if not edges:break
+            bmesh.ops.subdivide_edges(bm,edges=edges,cuts=1,use_grid_fill=True)
+        bm.to_mesh(o.data);bm.free()
         bpy.context.view_layer.update();ev=target.evaluated_get(bpy.context.evaluated_depsgraph_get());inv=ev.matrix_world.inverted();valid={}
         for v in o.data.vertices:
             p=o.matrix_world@v.co;hit,co,no,idx=ev.ray_cast(inv@Vector((s*.65,p.y,p.z)),Vector((-s,0,0)));valid[v.index]=hit

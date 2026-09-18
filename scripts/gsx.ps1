@@ -16,7 +16,10 @@ try {
     if ($Task -in @('Preview','Render','Export','All') -and -not (Test-Path -LiteralPath 'blends/10_final.blend')) { throw 'Run -Task Build before rendering or exporting.' }
     if ($Task -eq 'Preview') { Invoke-GsxBlender @('--background','blends/10_final.blend','--python','scripts/render.py','--','--preview') }
     if ($Task -in @('Export','All')) { Invoke-GsxBlender @('--background','blends/10_final.blend','--python','scripts/export_model.py') }
-    if ($Task -in @('Validate','All')) { Invoke-GsxBlender @('--background','--factory-startup','--python','scripts/validate_exports.py') }
+    if ($Task -in @('Validate','All')) {
+        Invoke-GsxBlender @('--background','blends/10_final.blend','--python','scripts/validate_source.py')
+        Invoke-GsxBlender @('--background','--factory-startup','--python','scripts/validate_exports.py')
+    }
     if ($Task -in @('StageChecks','All')) { Invoke-GsxBlender @('--background','--factory-startup','--python','scripts/render_stages.py') }
     if ($Task -in @('Render','All')) { Invoke-GsxBlender @('--background','blends/10_final.blend','--python','scripts/render.py','--','Camera_Front_3Q','Camera_Right_Ortho','Camera_Rear_3Q','Camera_Left_3Q','Camera_Cockpit','Camera_Wheel_Detail') }
 } finally { Pop-Location }

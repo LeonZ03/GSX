@@ -1,4 +1,4 @@
-"""Photo-led GSX250R reconstruction. Run with Blender 4.5+ or via Blender MCP.
+"""Photo-led GSX250R reconstruction. Built and verified with the installed Blender 5.2.1 or via Blender MCP.
 
 All construction coordinates are millimetres; mesh datablocks store metres.
 Private registration is loaded only from config/user.local.json.

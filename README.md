@@ -2,7 +2,7 @@
 
 以车主提供的 10 张多角度实车照片为主要依据，用 Blender Python 与 Blender MCP 从零制作的 Suzuki GSX250R/A 可编辑模型。采用照片中的蓝色车身、白色大幅字样、荧光黄轮圈贴、黑色三角管护杠、左侧手机支架及京 B 黄色车牌；不含尾包、网绳、手套和骑手。
 
-**当前状态：可编辑重建首版 r5.1，完整文件管线已建立，但尚未达到 100% 外观还原，也不是扫描、测绘或可制造 CAD。** 头灯/车头曲率、整流罩接缝、大字版画形状、发动机铸件与小贴纸仍有可见近似。4K 表示输出分辨率，不表示已经达到摄影级真实性。
+**当前状态：可编辑重建首版 r6.2，完整文件管线已建立，但尚未达到 100% 外观还原，也不是扫描、测绘或可制造 CAD。** 头灯/车头曲率、整流罩接缝、大字版画形状、发动机铸件与小贴纸仍有可见近似。4K 表示输出分辨率，不表示已经达到摄影级真实性。
 
 按用户补充，以本机 **Blender 5.2.1 LTS** 为准，不再以 Blender 4.x 为交付要求。脚本不依赖收费模型、生成图片贴图或网上下载的成品三维模型。
 
@@ -34,7 +34,7 @@
 - 油箱、座垫、尾罩、侧罩、下包围、加油口、牌照架、尾灯、线管和常见紧固件。
 - 自制几何文字/贴花、PBR 表面、打包 HDRI、四盏工作室面积灯与多个相机。
 
-首版采用程序化曲面、实体化、倒角、细分和独立零件。车身仍需要进一步手工造型及逐角度拟合，不能把上述结构清单理解为每个原厂零件都已精确复刻。
+首版采用程序化曲面、实体化、倒角、细分和独立零件。r6.2 已将车头上罩与侧罩改为共享边界的连续曲面，重新制作盾形灯罩、内凹反射碗和风挡。两侧指定基础网格边界的坐标检查误差为 0 mm（不代表整车所有接缝或实体化厚度均已验证）。车身仍需要进一步手工造型及逐角度拟合，不能把上述结构清单理解为每个原厂零件都已精确复刻。
 
 ## 尺寸与坐标
 
@@ -71,14 +71,17 @@
 
 ## 重要命令
 
-也可以使用统一入口：./scripts/gsx.ps1 -Task Build、-Task Preview、-Task Export、-Task Validate、-Task Render；-Task All 执行完整本地流程。
+也可以使用统一入口：`./scripts/gsx.ps1 -Task Build`、`-Task Preview`、`-Task Export`、`-Task Validate`、`-Task Render`；`-Task All` 执行完整本地流程。
 
 在项目根目录的 PowerShell 中运行。下列命令默认使用本机 Steam 安装位置，可根据实际路径调整。
 
 ```powershell
 $blender = 'D:\Program Files\Steam\steamapps\common\Blender\blender.exe'
 
-# 从零重建十阶段快照，再执行五轮修正，生成最新源文件
+# 打开可编辑源文件
+& $blender blends/10_final.blend
+
+# 从零重建十阶段快照，再执行外观修正，生成最新源文件
 & $blender --background --factory-startup --python scripts/build_all.py
 
 # 快速检查，自动将预览中的牌号替换为通用文本
@@ -89,6 +92,7 @@ $blender = 'D:\Program Files\Steam\steamapps\common\Blender\blender.exe'
 
 # 输出 GLB / FBX / OBJ，随后做三格式回导检查
 & $blender --background blends/10_final.blend --python scripts/export_model.py
+& $blender --background blends/10_final.blend --python scripts/validate_source.py
 & $blender --background --factory-startup --python scripts/validate_exports.py
 ```
 
@@ -100,7 +104,7 @@ MCP 建模用 `execute_blender_code` 调用项目脚本；后台环境需要窗�
 
 可编辑源保留造型修改器。导出副本将曲线、文字与修改器求值成网格，保留零件名、米制单位与材质。GLB 使用标准 Y-up 转换；FBX/OBJ 指定 Y forward / Z up。OBJ 材质依赖同目录 MTL。
 
-当前导出约 38 万顶点、43 万面，不是移动端优化资产。每个导出网格均有 UV 和材质。UV 为归一化盒式投影，供均匀材质使用，**尚未完成适合手绘/烘焙的无重叠美术 UV 图集**。Blender 程序化微观凹凸、复杂玻璃和某些表面节点不能在 FBX/OBJ 中完全等价还原；跨软件优先 GLB 或 `.blend`。
+当前导出约 36.6 万顶点、41.1 万面，不是移动端优化资产。每个导出网格均有 UV 和材质。导出副本使用 Smart UV Project，按部件分岛排列到各自 0–1 范围，并检查无非有限坐标或越界；不同部件复用 UV 空间。可编辑源保留基础 UV，整理后的 UV 在求值网格版与三格式导出中。**尚未制作整车共用的烘焙图集或统一纹素密度**。Blender 程序化微观凹凸、复杂玻璃和某些表面节点不能在 FBX/OBJ 中完全等价还原；跨软件优先 GLB 或 `.blend`。
 
 ## 本次文件验收
 
@@ -113,6 +117,6 @@ MCP 建模用 `execute_blender_code` 调用项目脚本；后台环境需要窗�
 1. 根据照片校正车头/侧罩连续曲率与接缝，修整局部穿插及遮挡关系。
 2. 逐笔描绘真实 SUZUKI 大字与小贴纸，替换当前近似字形。
 3. 校正发动机铸件、排气端盖、轮胎胎纹与磨损；补充支架背面、护杠隐藏固定点证据。
-4. 制作无重叠 UV、烘焙贴图、降低面数，再做渲染器之间的外观一致性检查。
+4. 制作统一纹素密度的整车烘焙图集、降低面数，再做渲染器之间的外观一致性检查。
 
 不得在没有这些验证的情况下把当前首版标为“100%还原”“测绘精度”或“已完成产品摄影级验收”。
