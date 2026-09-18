@@ -1,8 +1,8 @@
 """Render-only polish: framing, clean background, and local privacy verification."""
-import bpy,json
+import bpy,json,os
 from pathlib import Path
 from mathutils import Vector
-ROOT=Path(__file__).resolve().parents[1]
+ROOT=Path(os.environ.get('GSX_ROOT',Path(__file__).resolve().parents[1]))
 s=next(x for x in bpy.data.scenes if x.name.startswith('GSX250R_User_Reconstruction'))
 for name in ['Camera_Front_3Q','Camera_Rear_3Q','Camera_Left_3Q']:bpy.data.objects[name].data.lens=53
 nodes=s.world.node_tree.nodes;links=s.world.node_tree.links

@@ -71,6 +71,8 @@
 
 ## 重要命令
 
+也可以使用统一入口：./scripts/gsx.ps1 -Task Build、-Task Preview、-Task Export、-Task Validate、-Task Render；-Task All 执行完整本地流程。
+
 在项目根目录的 PowerShell 中运行。下列命令默认使用本机 Steam 安装位置，可根据实际路径调整。
 
 ```powershell
@@ -99,6 +101,12 @@ MCP 建模用 `execute_blender_code` 调用项目脚本；后台环境需要窗�
 可编辑源保留造型修改器。导出副本将曲线、文字与修改器求值成网格，保留零件名、米制单位与材质。GLB 使用标准 Y-up 转换；FBX/OBJ 指定 Y forward / Z up。OBJ 材质依赖同目录 MTL。
 
 当前导出约 38 万顶点、43 万面，不是移动端优化资产。每个导出网格均有 UV 和材质。UV 为归一化盒式投影，供均匀材质使用，**尚未完成适合手绘/烘焙的无重叠美术 UV 图集**。Blender 程序化微观凹凸、复杂玻璃和某些表面节点不能在 FBX/OBJ 中完全等价还原；跨软件优先 GLB 或 `.blend`。
+
+## 本次文件验收
+
+已完成 10 个阶段 .blend、3 种模型导出及 6 张 3840×2160 Cycles 渲染。导出分别回读验证，尺寸一致，无材质/UV 缺失；完整重建在无私有输入的隔离目录通过。文件哈希和分辨率记录于本地 qa/artifact_manifest.json，概要为 qa/delivery.json。最终视角为 Front_3Q、Right_Ortho、Rear_3Q、Left_3Q、Cockpit、Wheel_Detail。
+
+这些通过项针对文件完整性和可重复运行，不替代实车外观精度验收。
 
 ## 后续精修优先级
 
