@@ -15,7 +15,35 @@
 - origin使用ssh.github.com:443/LeonZ03/GSX.git；仓库为公开。命令级safe.directory，不改全局Git，不强推。
 - r15代码、文档与派生控制网格已推送（模型改动提交d13cfe1）；后续仍需核对范围，仅显式暂存代码/文档/控制数据。
 
-## 当前状态 V2 / r20（优先于以下历史状态）
+## 当前状态 V2 / r26（优先于以下历史状态）
+- 最新blends/26_gray_review.blend，926对象/22quad控制网格；B/C仍NOT_PASSED，D/E不启动。实际本机5.2.2LTS、MCP后台，无Computer Use。
+- 同一连续批次r20→r26；r25镜壳/风挡/侧盖/链轮罩/减震保留。r26根据62/63右侧安装点和69左侧轮廓重建不同Rearset_L/R，贯穿孔、折叠脚踏、橡胶/横纹、左换挡连杆、右后刹踏板/可见主缸。隐藏厚度、横向深度、运动行程未验收。
+- 旧脚踏确有r03随发动机+Y140/-Z50偏移；本次按可见安装点重新建，不只机械撤销旧位移。正式相机、车架/摇臂未改。新的扁条GuardMount_Rear左右镜像，主护杠中心线不变；data/guard_control.json已同步后连接端点，旧值data/archive/r20保留。
+- r26新增组65件局部质量/所查相邻表面相交0；连同前批共99件非流形/退化/自交候选0。qa/increment_r26相对r20有35旧对象按范围改变/移除、91新增，无非预期旧变化；22cage同步最大0.00014mm。不是整车装配认证。
+- qa/rearset_r26/actual_mount_projection来自实际求值螺栓：62上/下0.47/0.25px，63为2.34/5.53；仅2个参与拟合点、标注约±4px，不是全局关键点/独立验收。
+- 实际replay_r26.py从r20完整重放，926对象几何/变换/相机签名与最终源一致，qa/replay_r26.json。新脚踏构建只允许独立r25，冻结数据data/revisions/r26；不要对精修源重放。Boolean依赖Tool_Rearset_*隐藏/export_exclude，不可删。
+- 对照renders/rearset_r26_comparison.jpg、stage_bc_r26_comparison.jpg及四角度review_r26；报告reviews/r26_stage_bc.md。原r25及所有失败候选保留。70只诊断候选，仍无2可靠独立角度。
+- 下一主项回到车头—侧罩整个组的边界/接缝与控制网格，不再扩展装饰；C处理发动机铸件和排气。B/C均未通过，没有可信完工轮数，不以修订号作为进度百分比。
+- 实际1新建子任务请求luna/medium、2复用子任务配置未回传；结构子任务再次只读目录核对。主线程最终建模、集成、全部验收。只推送代码/文档/派生控制，原照/含照板/镜头/QA/源/渲染/真实牌号仍本地。
+
+## 历史增量 V2 / r25
+
+- 最新blends/25_gray_review.blend，879对象、22quad控制网格；B/C仍NOT_PASSED，D/E不启动。全程Blender MCP后台，不用Computer Use。
+- 本批次r21–r25：风挡保留下2排后拟合上缘；镜壳扁片改闭合圆润壳/镜片/镜杆；替换Body_MidSideCover左右黑侧盖、Engine_SprocketCover；重建短弹簧/筒体/安装眼/贯轴/垫圈/双耳/紧凑上下横梁。所有隐藏深度、弹簧圈数线径及支座尺寸未验收。
+- 侧盖控制从两侧照片诊断约置于X±113mm、车架内侧，原车架未改。初稿尖端加厚自交370对已修复；最终侧盖对Frame_Main/Body_SeatSide无所查表面穿插。不要恢复失败r23尖端。
+- Tool_SprocketCoverClearance共享Engine_AlternatorCover.data并保留其修改器，额外法线外推1mm供盖板差集；隐藏/export_exclude。盖板Boolean后3微米Weld，镜杆端盖后1微米Weld，不能漏掉或删除工具。
+- qa/increment_r25检查34本批次部件：非流形/退化/所查自交全0；局部非配合件表面相交0，上下横梁对frame/swingarm的配合相交有意保留。不是全车装配认证。22cage同步最大约0.00014mm。
+- 原r20的9对象有意改变，其他原对象几何/变换/相机签名无非预期变化；新增26。所有正式相机未改。实际从r20重放r25后879对象签名一致，qa/replay_r25.json；不扩展成材质/所有modifier比较。
+- data/revisions/r24和r25是公开冻结派生控制；replay_r25.py从r20运行并拒绝已存在输出。rebuild_* / add_missing / repair_*为明确迁移，不对精修源随意重放。apply_cages仅在最新兼容拓扑源同步。
+- 70原失败镜头不覆盖。主线程复核真实黄圈采样后新qa/camera70_r21候选RMS0.62px/P951.16px，留每四点测试RMS0.60px；半径±5mm对应镜头明显变化，仅诊断，不是毫米认证/严格新holdout。render_candidate_camera.py单独渲染且不改正式相机。
+- 子任务59/60错误ROI/双加像素偏移、风挡错位标注均作废，禁止使用其旧残差。失败代码/资料仅qa。60实图前轮圈不可清晰辨认，59前轮短弧需另核。不要再称子任务标注已通过。
+- 风挡root开放线62/63/69都参与拟合，约±5px；62中位22.7→11.7，63 6.4→6.0，69 6.6→4.7。不是完整IoU/关键点/独立角度，63变化小于标注误差。
+- 脚踏r03曾整体+Y140/-Z50，位置明显可疑但清晰铰点未建立，本批次未盲目平移；下一步重建左右脚踏架与操纵连接，并处理车头—侧罩整体曲率。完整分件mask/两独立视角/隐藏尺寸仍未验收。
+- 本轮1新建请求luna/medium，复用2旧子任务配置未确认；主线程负责全部结果复核并重写失败产物。详细reviews/r25_stage_bc.md。照片/车牌/含照板/源/渲染/标定QA仅本地；只显式暂存安全代码/文档/派生控制。
+
+- 最终对象清单纠错：旧Body_MidSideCover一直存在，r24新FrameSidePanel是重建候选，不能两层叠放或声称原件缺失。r25移除旧件并将新件命名Body_MidSideCover，控制总数仍22。后续判缺件前必须同时查场景、控制网格和组件索引。
+
+## 历史批次 V2 / r20
 - 最新20_gray_review.blend，853对象/22quad控制网格。r15–r20为同一连续B/C批次多个候选，不是完成多个阶段；B/C仍NOT_PASSED。全程Blender MCP后台，无Computer Use。
 - 保留r19车头/驾驶位/轮组/侧盖改进，r20侧罩56→70控制点、支持截面收尖。62/63/69实际求值最低点投影诊断26.7/34.9/23.1→6.8/4.5/8.4px，标注约±8px；三图已用于调整，非独立验证或完整关键点验收。复杂加厚消除初次8个内壳自交；canonical及重放方式已同步。
 - r19旧SideFairing控制快照在data/archive/r19；refine_fairing_stage_b只读明确快照，不能改用当前70点JSON作旧输入。原候选/失败加厚源均保留。

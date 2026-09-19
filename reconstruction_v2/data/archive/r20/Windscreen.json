@@ -49,89 +49,89 @@
     [
       [
         0.0,
-        647.3989,
-        947.9251
+        664.5526,
+        949.7002
       ],
       [
-        51.1692,
-        642.9899,
-        952.1379
+        51.6,
+        660.1437,
+        953.9129
       ],
       [
-        97.2214,
-        630.6888,
-        956.1122
+        98.04,
+        647.8425,
+        957.8873
       ],
       [
-        127.9229,
-        621.537,
-        953.5107
+        129.0,
+        638.6907,
+        955.2857
       ]
     ],
     [
       [
         0.0,
-        602.2601,
-        1031.9908
+        576.8113,
+        1011.8098
       ],
       [
-        56.268,
-        597.8843,
-        1036.4237
+        58.4,
+        572.4355,
+        1016.2427
       ],
       [
-        106.9091,
-        585.6174,
-        1040.5896
+        110.96,
+        560.1686,
+        1020.4086
       ],
       [
-        140.6699,
-        576.485,
-        1038.1198
+        146.0,
+        551.0362,
+        1017.9389
       ]
     ],
     [
       [
         0.0,
-        528.1721,
-        1081.0993
+        515.99,
+        1064.9816
       ],
       [
-        61.6737,
-        523.805,
-        1085.8435
+        67.6,
+        511.6229,
+        1069.7258
       ],
       [
-        117.18,
-        511.5499,
-        1090.2788
+        128.44,
+        499.3678,
+        1074.161
       ],
       [
-        154.1842,
-        502.4234,
-        1087.9907
+        169.0,
+        490.2413,
+        1071.8729
       ]
     ],
     [
       [
         0.0,
-        516.1449,
-        1096.5601
+        506.0289,
+        1072.8557
       ],
       [
-        60.4,
-        511.776,
-        1101.3907
+        70.0,
+        501.66,
+        1077.6863
       ],
       [
-        114.76,
-        499.5199,
-        1105.9007
+        133.0,
+        489.4039,
+        1082.1963
       ],
       [
-        151.0,
-        490.3924,
-        1103.6621
+        175.0,
+        480.2764,
+        1079.9577
       ]
     ]
   ],
@@ -145,6 +145,6 @@
     "official_turntable_05"
   ],
   "status": "provisional_multiview_review_required",
-  "notes": "Opaque light gray for shape comparison; transparent material postponed. Evidence preserved through joint camera correction; not metric certified. Bounded upper rim/curvature fit; lower two rows preserved; root reviewed open traces only; shape and lens remain unaccepted.",
-  "revision": "r24"
+  "notes": "Opaque light gray for shape comparison; transparent material postponed. Evidence preserved through joint camera correction; not metric certified.",
+  "revision": "r05"
 }

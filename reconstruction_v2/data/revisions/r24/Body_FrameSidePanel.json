@@ -1,5 +1,5 @@
 {
-  "name": "Body_MidSideCover",
+  "name": "Body_FrameSidePanel",
   "units": "mm",
   "grid": [
     [
@@ -311,12 +311,12 @@
   "use_even_offset": true,
   "thickness_clamp": 0.5,
   "use_thickness_angle_clamp": true,
-  "revision": "r25",
-  "status": "REPLACEMENT_PHOTO_LED_NOT_ACCEPTED",
+  "revision": "r24",
+  "status": "PHOTO_LED_MISSING_PART_RECONSTRUCTION_NOT_ACCEPTED",
   "evidence": [
     "owner_photo_69",
     "owner_photo_70",
     "existing_seat_side_seam"
   ],
-  "notes": "Replaces the existing mid-side cover; not an added duplicate. Opposite-side upper corner diagnostic locates the panel behind exposed frame rail. Hidden depth/mounting remain provisional."
+  "notes": "Black triangular frame side covers previously absent. Visible outline from both sides; exact attachment depth and underlap provisional. Kept separately editable. Opposite-side upper corner projections place panel behind exposed frame rail; full width stays provisional. Tip broadened to remove inner shell folds."
 }

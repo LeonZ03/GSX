@@ -29,15 +29,16 @@
   "Body_MidSideCover": {
     "control_cage": "reconstruction_v2/data/control_cages/Body_MidSideCover.json",
     "evidence": [
-      "owner_photo_62",
-      "owner_photo_63"
+      "owner_photo_69",
+      "owner_photo_70"
     ],
     "measurements_verified": [],
     "uncertain": [
-      "transverse section and hidden joins",
-      "full multiview silhouette acceptance"
+      "camera sensitivity",
+      "hidden depth, mounts and underlap",
+      "full multi-view silhouette"
     ],
-    "status": "editable_gray_cage_not_accepted"
+    "status": "r25_replacement_NOT_PHOTO_ACCEPTED"
   },
   "Body_SeatSide": {
     "control_cage": "reconstruction_v2/data/control_cages/Body_SeatSide.json",
@@ -298,6 +299,83 @@
     ],
     "uncertain": [
       "1mm voxel reconstruction is not manufacturing topology or physical wall evidence"
+    ]
+  },
+  "Engine_SprocketCover": {
+    "control": "reconstruction_v2/data/revisions/r24/sprocket_cover.json",
+    "part_reference": "family FIG112A / 11360-20K00",
+    "evidence": [
+      "owner_photo_69",
+      "official_parts_catalogue"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "concealed flange",
+      "plane depth",
+      "actual-year variant"
+    ],
+    "status": "visible_face_reconstructed_NOT_ACCEPTED"
+  },
+  "RearShock_Assembly": {
+    "evidence": [
+      "owner_photo_70",
+      "official_parts_catalogue_FIG545A"
+    ],
+    "status": "r25_structure_NOT_ACCEPTED",
+    "uncertain": [
+      "coil wire/turn count",
+      "eye coordinates",
+      "hidden frame brackets",
+      "suspension kinematics"
+    ]
+  },
+  "Rearset_R": {
+    "control": "reconstruction_v2/data/revisions/r26/rearset_control.json",
+    "part_reference": "family FIG415A / 43510-20K01",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "owner_photo_69"
+    ],
+    "status": "r26_reconstructed_NOT_ACCEPTED",
+    "measurements_verified": [],
+    "uncertain": [
+      "casting thickness",
+      "transverse depth",
+      "folding hinge geometry",
+      "actual-year fitment"
+    ]
+  },
+  "Rearset_L": {
+    "control": "reconstruction_v2/data/revisions/r26/rearset_control.json",
+    "part_reference": "family FIG415A / 43521-20K00",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "owner_photo_69"
+    ],
+    "status": "r26_reconstructed_NOT_ACCEPTED",
+    "measurements_verified": [],
+    "uncertain": [
+      "casting thickness",
+      "transverse depth",
+      "folding hinge geometry",
+      "actual-year fitment"
+    ]
+  },
+  "Rider_Controls": {
+    "status": "r26_visible_structure_NOT_ACCEPTED",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "owner_photo_69",
+      "family FIG212A"
+    ],
+    "uncertain": [
+      "lever travel",
+      "hidden master-cylinder connections",
+      "lateral offsets",
+      "hydraulic hose route not invented"
     ]
   }
 }

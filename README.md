@@ -1,86 +1,77 @@
 # Suzuki GSX250R 实车重建
 
-以本机 `IMG/` 的12张实车照片为依据，使用 **Blender 5.2.2 LTS / Blender MCP** 重建用户的 GSX250R。目标包含蓝白版画、荧光轮圈贴、对称三角护杠、手机支架、方向阻尼器及指定京B牌照；排除尾包、网绳、骑手和手套。
+以本机 `IMG/` 的12张实车照片为依据，使用 **Blender 5.2.2 LTS / Blender MCP** 重建用户的 GSX250R。目标包括蓝白版画、荧光轮圈贴、对称护杠、手机支架、方向阻尼器和指定京B牌照；排除尾包、网绳、骑手及手套。
 
-**当前：V2 / r20，车头、驾驶位及轮组/发动机外露结构已有改进，但阶段 B、C 均未通过 1:1 验收，不能报告完成。** 全部使用 Blender MCP，没有使用 Computer Use；尚未进入最终版画、材质、4K 和导出。
+**当前 V2 / r26：阶段 B（准确灰模）、C（机械与附件）仍未通过，不能称完成或1:1。** 尚未进入最终贴花、材质、4K和导出。建模没有使用 Computer Use。
 
-## 当前成果
+## 最新成果
 
-项目位于 `D:\Work\gadgets\GSX`。r15及旧源保留；r16–r20是同一批次内部的候选和检查文件，不是已完成的阶段数量。
+项目路径：`D:\Work\gadgets\GSX`。本批次从r20连续修改到r26，旧源和失败候选保留。
 
 | 内容 | 本地路径 |
 |---|---|
-| 最新可编辑灰模 | `reconstruction_v2/blends/20_gray_review.blend` |
-| 实车／r15／r20三角度并排图 | `reconstruction_v2/renders/stage_bc_r20_comparison.jpg` |
-| 四角度照片／灰模／叠加／轮廓 | `reconstruction_v2/renders/review_r20_{62,63,64,69}.jpg` |
-| 对照总览 | `reconstruction_v2/renders/review_r20_contact_sheet.jpg` |
-| 车头、驾驶位及机械局部 | `reconstruction_v2/renders/stage_bc/r20_*.png` |
-| 实际几何、接口与保护检查 | `reconstruction_v2/qa/geometry_r20.json`、`seat_interfaces_r20.json`、`stage_bc_r20.json`、`drive_r20.json` |
+| 最新可编辑源 | `reconstruction_v2/blends/26_gray_review.blend` |
+| 实车／r20／r26三角度对照 | `reconstruction_v2/renders/stage_bc_r26_comparison.jpg` |
+| 四角度照片／灰模／叠加／边界 | `reconstruction_v2/renders/review_r26_{62,63,64,69}.jpg` |
+| 检查总览 | `reconstruction_v2/renders/review_r26_contact_sheet.jpg` |
+| 本批次结果与偏差 | [r26记录](reconstruction_v2/reviews/r26_stage_bc.md) |
 | 可编辑控制网格 | `reconstruction_v2/data/control_cages/` |
+| 冻结重放输入 | `reconstruction_v2/data/revisions/r24/`、`r25/`、`r26/` |
+| 本地检查 | `reconstruction_v2/qa/increment_r26.json`、`replay_r26.json` |
 
-本轮补建大灯周围外壳、侧面回折和风挡底座，重排内衬及前罩接边；驾驶位新增分件仪表、四爪手机夹、阻尼器。轮辐改为闭合弯曲实体，制动盘增加真实通孔、分体卡钳及ABS槽圈；修正侧盖螺栓和排气入口未跟随历史发动机位移的问题。原胎纹、车架、摇臂、后减震、脚踏、侧撑及对称护杠保留。侧罩尖端增加支持截面，消除圆钝下垂；链传动按同车型目录的14/46齿、116节520链条重新约束，纠正原前链轮与发动机分离的布局。50槽ABS圈、5组制动盘固定件及3组感应圈固定件也已按目录纠正。
+本批次调整风挡上缘，重建圆角镜壳和镜片；重做座下三角侧盖并替换旧件，补出左侧前链轮外罩；重新制作较短的后减震弹簧段、筒体、安装眼、贯穿轴、垫圈、双耳和紧凑连接横梁。r24曾误将新旧侧盖叠放，r25已清理，旧侧盖并非原本不存在。
 
-前罩保留三组隐藏四边面控制面，实时驱动1mm体素合并后的可见实体；控制面不单独导出。这用于修复薄壳重叠，不代表实测壁厚或制造拓扑。
+另外按实车分别重建左右脚踏架及长孔、折叠脚踏、换挡连杆和后刹操纵件，纠正旧脚踏明显偏前的位置。护杠后连接改成镜像扁条并接到安装点。详细局部对照：`reconstruction_v2/renders/rearset_r26_comparison.jpg`。
 
-**已核实：**审计分别列出未改结构与有意重建的传动对象，原照片相机保持不变；实际模型轴距1430mm、盘290/240mm、胎宽110/140mm满足名义构造检查。所查前罩、轮辐、侧盖、隔热罩和制动盘无非流形/退化面/实体自交；座垫对油箱及三处座尾分件未检出表面相交。这些不等于实车还原验收。
+局部几何检查覆盖99个本批次部件，未检出所查非流形、退化面或自交；侧盖、链轮外罩和减震对指定相邻部件的非配合表面相交已消除。22组控制网格与源同步。实际从r20重放后，926对象的几何、变换和相机签名一致。**这些检查不等于外形、所有修改器/材质或整车机械验收。**
 
-**仍未通过：**车头曲率、侧罩折面/开口、座尾形状与完整装配；机械铸件、盘孔模式、附件安装深度仍含近似。缺完整分件遮罩及两个有效独立角度，没有98%或整车还原率结论。[本轮结果和限制](reconstruction_v2/reviews/r20_stage_bc.md)。
+70右后照片得到新的相机诊断候选：轮圈RMS约0.62px；轮圈半径假设变化仍会影响镜头位置。正式相机没有替换，不能把这个分数称整车相似度或独立角度已通过。
 
-## 后续路线与预算
+## 尚未通过与后续
 
-用户已授权B/C并行推进；两者分别验收后才进入版画、最终材质和交付。下一批优先补前罩/侧罩的闭合可见区域、稳定特征及59/60等候选视角标定，再修控制曲面；机械部分先核对前链轮外罩、护杠支座、脚踏及悬挂连接；新链路的真实松弛量和安装深度仍未通过。
+车头包裹曲率、侧罩折面/开口、油箱肩部、座尾体量仍有可见差异；脚踏/脚踏架、发动机铸件、排气细部及附件安装深度未验收。脚踏位置已有可见改善，但隐藏安装深度和操纵行程未验收。下一主项是车头—侧罩整个装配组的多角度可见边界与控制网格；C同步处理发动机铸件和排气。
 
-61初次自动提取误把同一前轮两段当成两轮，结果已否决。人工纠正后，真正后轮仍因遮挡而欠约束，不能作为通过的独立相机。62/63/69已用于形体调整，64欠约束，70失败。
+完整闭合分件标注、两张可靠独立角度、98%轮廓与正式关键点门槛尚未通过。隐藏尺寸继续标为未验证。当前无法给出可信的完工轮数，r编号只表示源文件修订。[阶段计划](reconstruction_v2/ITERATION_PLAN.md) · [问题清单](reconstruction_v2/ISSUES.md)。
 
-此前10–14个大工作轮仍只是低可信度管理预算，当前证据不足以承诺完工轮数或r编号。同一误差连续两轮无实质改善，应改查证据、拓扑或装配，不能靠增加版本号放行。[阶段计划](reconstruction_v2/ITERATION_PLAN.md) · [问题清单](reconstruction_v2/ISSUES.md)。
+## 隐私
 
-## 隐私与文件范围
+GitHub只保存代码、文档和派生三维控制。真实照片、含原照对照、标注、镜头、参考下载、blend、渲染、车牌配置和相关成品均保持本地。当前灰模牌板空白。
 
-GitHub仅保存代码、文档和派生控制网格。真实照片、含原照对照图、私有车牌配置及相关成品不推送；参考下载、标注、相机、blend、渲染和QA也保持本地。当前灰模是空白牌板，没有真实牌号文字。
-
-旧图里的车尾黑箱是已纠正的二维尾包排除遮罩，不是模型尾箱。当前纯灰模面板不绘制遮罩，原照和叠加面板保留带文字的隐私/遮挡区域。
+旧图中的尾部黑箱是已纠正的二维尾包排除遮罩，不是模型尾箱。当前纯灰模面板没有该遮罩，照片面板保留隐私遮蔽。
 
 ## 重要命令
 
-在项目根目录PowerShell运行：
+在项目根目录的PowerShell运行；自动建模仍使用Blender MCP，下列命令用于本地检查和复现。
 
 ```powershell
 $blender = 'D:\Program Files\Steam\steamapps\common\Blender\blender.exe'
 $python = 'C:\Users\22797\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
 
-# 打开最新灰模
-& $blender reconstruction_v2/blends/20_gray_review.blend
+# 打开最新源
+& $blender reconstruction_v2/blends/26_gray_review.blend
 
-# 四角度低采样对照；不修改源文件
-& $blender --background reconstruction_v2/blends/20_gray_review.blend --python reconstruction_v2/scripts/render_gray.py -- 62 63 64 69 r20
-& $python reconstruction_v2/scripts/make_review_boards.py r20 62 63 64 69
-& $python reconstruction_v2/scripts/make_stage_bc_comparison.py r20
+# 固定照片相机的低采样对照，不修改源
+& $blender --background reconstruction_v2/blends/26_gray_review.blend --python reconstruction_v2/scripts/render_gray.py -- 62 63 64 69 r26
+& $python reconstruction_v2/scripts/make_review_boards.py r26 62 63 64 69
+& $python reconstruction_v2/scripts/make_stage_bc_comparison.py r26 r20
 
-# 实际几何、链传动及座尾接口检查
-& $blender --background reconstruction_v2/blends/20_gray_review.blend --python reconstruction_v2/scripts/audit_gray.py
-& $blender --background reconstruction_v2/blends/20_gray_review.blend --python reconstruction_v2/scripts/audit_drive.py
-& $blender --background reconstruction_v2/blends/20_gray_review.blend --python reconstruction_v2/scripts/audit_tank_interface.py
-& $blender --background reconstruction_v2/blends/20_gray_review.blend --python reconstruction_v2/scripts/audit_seat_interfaces.py
+# 实际求值几何和本批次保护范围检查
+& $blender --background reconstruction_v2/blends/26_gray_review.blend --python reconstruction_v2/scripts/audit_gray.py
+& $blender --background reconstruction_v2/blends/26_gray_review.blend --python reconstruction_v2/scripts/audit_reconstruction_increment.py
 
-# 油箱局部原生渲染与分件颜色诊断；材料不保存回源
-& $blender --background reconstruction_v2/blends/20_gray_review.blend --python reconstruction_v2/scripts/render_tank_review.py
-& $blender --background reconstruction_v2/blends/20_gray_review.blend --python reconstruction_v2/scripts/render_tank_review.py -- --ids
-& $blender --background reconstruction_v2/blends/20_gray_review.blend --python reconstruction_v2/scripts/render_tank_review.py -- --ids-full
-# 对照需要本地照片、标注及已保留的r13基线渲染
-& $python reconstruction_v2/scripts/review_tank_r15.py r15
+# 从保存的r20重放本批次；每次使用新的输出前缀，拒绝覆盖旧文件
+& $blender --background reconstruction_v2/blends/20_gray_review.blend --python reconstruction_v2/scripts/replay_r26.py -- verify_new
 
-# 显式同步控制数据到新源；拒绝覆盖和未经迁移的拓扑改变
-& $blender --background reconstruction_v2/blends/20_gray_review.blend --python reconstruction_v2/scripts/apply_cages.py -- working_next.blend r21
+# 仅同步兼容控制网格到一个新源文件
+& $blender --background reconstruction_v2/blends/26_gray_review.blend --python reconstruction_v2/scripts/apply_cages.py -- working_next.blend r27
 ```
 
-Blender手改后先同步控制JSON或另存精修源，不能用旧JSON覆盖手改。两个隐藏座垫避让工具共享Seat_Rider.data，换数据块时须同步。旧迁移、拟合脚本只用于明确冻结输入，不是日常重建命令；r16/r18迁移要求本地r15_body_frozen，r20侧罩迁移要求归档的r19控制网格，缺失时拒绝替用当前控制数据；当前油箱拓扑不能直接同步到r13而忽略检查。Python科学依赖位于`.tools/calibration/`，公开仓库不能替代本地照片和标定。
+手工精修后先同步控制JSON或另存源，不能用旧JSON覆盖修改。历史迁移脚本只用于其指定基线，不能对精修源反复运行。前罩三组隐藏四边面驱动可见合并外壳；座垫、输出链路及前链轮盖的隐藏避让工具是修改器依赖，不能删除。科学依赖在`.tools/calibration/`，照片对照需要本地照片与标定，公开仓库不包含它们。
 
-## 尺度与来源
+## 尺度与资料
 
-`+X`右、`+Y`前、`+Z`上；场景米制，控制网格毫米乘0.001。
+`+X`右、`+Y`前、`+Z`上；Blender场景米制，控制数据以毫米记录。轴距1430mm、前后制动盘290/240mm、胎宽110/140mm是名义构造约束，不是用户实车的实测结果。
 
-[豪爵官方GSX250R-A参数](https://en.haojue.com/NEWGSX250R/canshu.html)提供轴距1430mm、前后盘290/240mm等名义约束；[铃木L8型录](https://www.suzuki.hu/motor/files/document/document/294/GSX250R_ABS_L8_EN.pdf)提供车型家族的25.6°后倾角/104mm拖曳距，具体年份适配未确认。爆炸图不是精确尺寸图，隐藏尺寸未验收。[证据索引](reconstruction_v2/references/evidence.md) · [零件核对](reconstruction_v2/references/review.md)。
+[豪爵官方参数](https://en.haojue.com/NEWGSX250R/canshu.html) · [铃木家族零件目录](https://www1.suzuki.co.jp/motor/support/parts_catalog_manage/files/GSX250RAM1_GSX250RAZM1.pdf) · [DID链条规格](https://didmc.com/chain/engine/) · [证据索引](reconstruction_v2/references/evidence.md)。具体年份适配和隐藏尺寸未确认；爆炸图不能当尺寸蓝图。
 
-历史：[r14油箱候选](reconstruction_v2/reviews/r14_tank_crown.md) · [r13接口](reconstruction_v2/reviews/r13_tank_rear.md) · [r12镜头敏感性](reconstruction_v2/reviews/r12_camera_sensitivity.md) · [r6.2冻结记录](docs/legacy_r6_2.md)。
-
-链传动目录依据与构造假设详见[最终批次记录](reconstruction_v2/reviews/r20_stage_bc.md)。116个销轴的实测模型节距误差小于0.001mm，只证明名义链路构造一致，不代表实车毫米精度。
+历史：[r20链传动与覆盖件](reconstruction_v2/reviews/r20_stage_bc.md) · [r15油箱](reconstruction_v2/reviews/r15_tank_full.md) · [r6.2冻结记录](docs/legacy_r6_2.md)。
