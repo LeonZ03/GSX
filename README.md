@@ -4,7 +4,13 @@
 
 **当前 V2 / r26：阶段 B（准确灰模）、C（机械与附件）仍未通过，不能称完成或1:1。** 尚未进入最终贴花、材质、4K和导出。建模没有使用 Computer Use。
 
-## 最新成果
+## 本轮收尾：r27 待验收候选
+
+r26继续作为工作基线。本轮纠正侧罩外侧尖角的照片对应，制作4组前罩/侧罩/驾驶位控制候选并完成四角度检查。前上沿局部对齐改善，但前罩交界仍有重叠和自交候选，**r27没有提升为通过版本，B/C均未完成**。C本轮只有证据复核，没有新增机械建模。
+
+候选源：`reconstruction_v2/blends/27_front_review_candidate.blend`；前后对照：`reconstruction_v2/renders/stage_bc_r27_comparison.jpg`；[检查、偏差与下一步](reconstruction_v2/reviews/r27_front_candidate.md)。候选控制单独在`data/revisions/r27_front_candidate/`，canonical控制仍保留r26。
+
+## 上一批已保留成果（r26）
 
 项目路径：`D:\Work\gadgets\GSX`。本批次从r20连续修改到r26，旧源和失败候选保留。
 

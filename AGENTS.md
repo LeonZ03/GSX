@@ -15,7 +15,17 @@
 - origin使用ssh.github.com:443/LeonZ03/GSX.git；仓库为公开。命令级safe.directory，不改全局Git，不强推。
 - r15代码、文档与派生控制网格已推送（模型改动提交d13cfe1）；后续仍需核对范围，仅显式暂存代码/文档/控制数据。
 
-## 当前状态 V2 / r26（优先于以下历史状态）
+## 最新收尾 r27 候选（优先于历史）
+- 用户本轮最终要求收尾汇报，已停止扩展；B/C仍NOT_PASSED。r26仍为工作基线，最新待验收源blends/27_front_review_candidate.blend，不得宣传通过或1:1。
+- 4组候选Body_SideFairing/Body_UpperCowling/Body_CowlingSide/Cockpit_InnerPanel在data/revisions/r27_front_candidate，canonical control_cages未更新。旧3D控制归档data/archive/r26_front。严禁默认apply_cages用r26覆盖r27候选。
+- 修正外侧蓝色尖角与内侧灯旁点混淆；前上沿实际求值开放边界62/63/69局部误差改善，约±5px标注不确定，均为拟合角度，不是98%轮廓/关键点/独立验证。
+- 前罩侧回折面试改产生更多重叠已回退；最终候选从真实r26继承Body_NoseSideReturn。早期从JSON恢复该面有面连接顺序/方向差异，已弃用该恢复方式；最终候选直接继承r26原面，最终四角度和QA均重新从27_front_review_candidate生成。
+- 侧面折返13自交接触候选；侧罩/散热器202、鼻罩总成/上罩1945、上罩/折返209三角重叠候选仍未判通过。侧罩和内衬等局部非流形/退化为0不能代替装配。926对象，照片相机与机械未改。
+- renders/stage_bc_r27_comparison.jpg、review_r27四角度及contact_sheet；本地qa/front_r27的geometry/upper_rail_metrics/replay_final。最终从r26独立重放926对象的源几何/变换/相机签名一致，非材质/修改器等价认证。公开记录reviews/r27_front_candidate.md。
+- C本轮只证据复核，未新建发动机/排气；下一轮先重建前罩组连续边界及厚度，再排气异形截面/包裹隔热罩和发动机外壳。预算仍不可靠，不默许无限迭代或降门槛。
+- front_evidence与mechanical_evidence请求gpt-5.6-luna/medium，实际配置工具未确认；机械子任务本地读图失败，主线程复核了实际排气裁图，不采用未看的照片推测。所有照片、像素标注、镜头、源和渲染保持本地。
+
+## 历史状态 V2 / r26
 - 最新blends/26_gray_review.blend，926对象/22quad控制网格；B/C仍NOT_PASSED，D/E不启动。实际本机5.2.2LTS、MCP后台，无Computer Use。
 - 同一连续批次r20→r26；r25镜壳/风挡/侧盖/链轮罩/减震保留。r26根据62/63右侧安装点和69左侧轮廓重建不同Rearset_L/R，贯穿孔、折叠脚踏、橡胶/横纹、左换挡连杆、右后刹踏板/可见主缸。隐藏厚度、横向深度、运动行程未验收。
 - 旧脚踏确有r03随发动机+Y140/-Z50偏移；本次按可见安装点重新建，不只机械撤销旧位移。正式相机、车架/摇臂未改。新的扁条GuardMount_Rear左右镜像，主护杠中心线不变；data/guard_control.json已同步后连接端点，旧值data/archive/r20保留。
