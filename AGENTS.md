@@ -13,9 +13,36 @@
 - 真实牌号只使用config/*.local.json，不输出日志或文档。57/59指定京B；60及新增图片的旧牌不替换它。M1只有空白牌板、无文字对象。
 - 本地预览先遮蔽车牌及固定排除区，不推送照片。不可把允许推代码理解为允许发布真实号牌成品。
 - origin使用ssh.github.com:443/LeonZ03/GSX.git；仓库为公开。命令级safe.directory，不改全局Git，不强推。
-- 已推送至r12的222536c；本轮后续提交需再核对范围，仅显式暂存代码/文档/控制数据。
+- 已推送至r13的4b32f21；本轮后续提交需再核对范围，仅显式暂存代码/文档/控制数据。
 
-## 当前状态 V2 / r13（以本节为准）
+## 当前状态 V2 / r15（以本节为准）
+- 用户要求连续迭代到有明显进展再汇报，本轮从r13连续做到r14再r15，全部Blender MCP后台，不使用Computer Use。
+- 最新blends/15_gray_review.blend，589对象/19quad控制网格，M1_NOT_PASSED。只改Body_Tank及FuelCap/Core的Z；其它物件控制几何/变换和全部相机内参/矩阵签名未变。
+- 复核发现初版r14 crown项在循环外，只69上缘参与；62上缘仅事后检查。主线程确认、修复、加入实际参与视角断言，并继续全10截面/40参数拟合，选full_joint_w2_r15。旧r14实际渲染测量有效但不可称双上缘联合拟合。
+- 油箱保持80点/69quad封闭端盖；无Solidify、无Bevel，镜像/细分/三角化/seat Boolean保留。相对r13最大控制点位移49.13mm；油箱盖抬5.44mm。源/JSON已同步；内部壁厚和真实间隙未验证。
+- 实际Cycles：62上缘mean13.62→4.31/P9520.35→17.63；69上缘17.05→0.71/P9529.03→1.43；62后缘21.17→16.71；63后缘3.82→1.49。69后缘2.82→3.15/P954.39→6.19、接缝2.86→4.33/P956.45→8.63略退步。63接缝4.09→4.14。不得宣称全指标改善。
+- 旧标注约±4px，新62/69上缘约±5px。62/63/69均拟合，64欠约束回看，无新增独立holdout。不是IoU/关键点精度/整车百分比。62后缘/前端局部偏差、肩部折线和接缝仍开放。
+- 最终局部油箱/座垫相交、自交、非流形均0；座垫对Tail/SeatSide/PillionBase仍0。仅名义构造尺寸通过，全车装配未验收。
+- 本地renders/tank_crown_r15_comparison.jpg、review_r15四角度/contact_sheet；qa/tank_review_r15.json、tank_frozen_r15.json、geometry_r15.json、seat_interfaces_r15.json。记录reviews/r15_tank_full.md。
+- extract_tank_full_basis仅明确冻结r13；fit_tank_full为双上缘正确版本，读取本地r14候选作初值、默认拒绝已有报告。apply_tank_candidate另存并显式迁移端盖；不得在精修源盲目重跑历史拟合。review_tank_r15接受实际after修订tag。
+- 后续继续油箱残差/肩部/接缝，再车头/侧罩；镜头修订单独做。不进入贴花/材质/4K。
+- tank_evidence请求gpt-5.6-luna/low，实际配置未回传；其只读复核发现约束遗漏，主线程核实修复后重新计算和渲染。
+
+## 历史状态 V2 / r14
+- 用户要求连续迭代到有明显进展再汇报，不使用Computer Use；本轮全部建模经Blender MCP后台，非GUI操作。
+- 最新源blends/14_gray_review.blend；589对象、19个quad控制网格，M1_NOT_PASSED。油箱整段上缘/后部体量有可见改善，其余全车形体仍明显不符。
+- 仅Body_Tank、FuelCap/Core改变；其它对象控制几何/变换及全部相机矩阵/内参签名未变。油箱80顶点63面→80顶点69quad面，cap_ends=True，thickness_mm=0，移除旧Solidify；镜像/细分/三角化/座垫避让Boolean保留。未保留任何新增Bevel。
+- 后续确认r14只69上缘进入求解，62上缘仅事后诊断；r15已纠正。该轮36参数候选crown_w2_r14，最大控制点位移37.73mm；前9截面可改变。油箱盖XY不动，Z随表面抬1.05mm。封闭外形不代表真实油箱壁厚或容量已验证。
+- 原r13边界和镜头冻结；新增本地tank_crown_r14上缘标注约±5px。62/63/69都参与拟合，不能将69称本轮holdout。旧r13后缘/接缝标注约±4px。
+- 实际Cycles ID输出：62上缘均值13.62→7.27px、后缘21.17→17.24；63后缘3.82→2.09；69上缘17.05→1.18、后缘2.82→1.73。62上缘P95反而20.35→21.80；69接缝均值2.86→4.42/P956.45→7.63，必须保留退步项。不是IoU/关键点误差/整车百分比。
+- 失败候选只归档本地：较强侧面拟合破坏69；部分候选自交35–40；cap_shell与座垫相交444；crown_round新增1.5mm倒角自交6。不能把它们当最终版。最终源局部相交/自交/非流形均0，座垫对三处座尾分件相交仍0。
+- qa/tank_frozen_r14.json记录实际对象签名；calibration/r13_tank_frozen保存输入快照。油箱控制JSON已同步69quad拓扑；apply_cages能在r14上更新，在r13上直接套新版需显式迁移，不可忽略拓扑检查。
+- 本地renders/tank_crown_r14_comparison.jpg、review_r14四角度/contact_sheet；qa/tank_review_r14.json、geometry_r14.json、seat_interfaces_r14.json、tank_interface_14_gray_review.json。记录reviews/r14_tank_crown.md。
+- extract_tank_crown_basis仅从明确冻结r13提取无壳/无Boolean的线性提案，最终必须复核完整修改器；fit_tank_crown只写候选；apply_tank_candidate显式封闭端盖另存；不得对新精修源随意重放历史步骤。
+- 下一步先62后缘、前部上缘局部偏差与肩部折线/接缝，不继续用整体位移解决所有角度。相机修订另立记录；独立角度和整车mask未通过。不进入贴花/材质/4K。
+- tank_evidence请求gpt-5.6-luna/low，只读证据复核；实际运行配置未回传。主线程完成图检、改形和验收；没有采用其“69不能参与任何拟合”的过强推断。
+
+## 历史状态 V2 / r13
 - 最新源blends/13_gray_review.blend，589对象、19个quad控制网格，仍M1_NOT_PASSED。r11源与r6.2原件未变，r12没有几何文件。本轮MCP后台处理，不宣称GUI场景已更新。
 - 只修改Body_Tank前5个后部截面的Y，分别−3.5/−5/−10/−10/−3.5 mm；X/Z、其它18个cage、相机均未改。r11_interface_frozen的35项中仅Body_Tank JSON变化；实际相机签名未变。
 - 新本地annotations/tank_interface_r13.json：62/63/69油箱后缘、油箱—座垫开放接缝；62/63附黑饰板上沿，约±4px。不是闭合mask或同名三维关键点。62/63排序，69额外检查，不是独立holdout。

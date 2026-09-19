@@ -12,6 +12,7 @@ if subdir and (Path(subdir).name!=subdir or subdir in ('.','..')):raise ValueErr
 render_dir=V2/'renders'/subdir;render_dir.mkdir(exist_ok=True)
 percentage=60
 s.render.resolution_percentage=percentage;s.cycles.samples=24;s.render.film_transparent=True
+s.render.use_border=False;s.render.use_crop_to_border=False
 # GPU use re-checked in the actual rendering process.
 try:
  p=bpy.context.preferences.addons['cycles'].preferences;p.compute_device_type='CUDA';p.get_devices()

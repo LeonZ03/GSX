@@ -51,7 +51,7 @@ def main():
   message={62:'联合照片候选相机；外形未通过',63:'联合照片候选相机；外形未通过',64:'裁切轮圈；镜头欠约束',69:'倾斜转向轴候选；早期无三角护杠状态',70:'镜头拟合失败；仅展示诊断，不可验收'}[k]
   d.text((12,board.height-28),f'照片 {k} · {TAG} · '+message,font=SMALL,fill=(160,38,28))
   dest=V2/f'renders/review_{TAG}_{k}.jpg';board.save(dest,quality=93);boards.append(board)
-  report['views'][str(k)]={'role':cam.get('role','fit'),'camera_status':cam['status'],'board':str(dest.relative_to(ROOT)).replace('\\','/'),'photo_dimensions':photo.size,'render_dimensions':Image.open(V2/f'renders/gray_{TAG}_{k}.png').size,'camera_sha256':hashlib.sha256((V2/f'calibration/camera_{k}.json').read_bytes()).hexdigest(),'annotation_sha256':hashlib.sha256((V2/f'annotations/photo_{k}.json').read_bytes()).hexdigest(),'body_adjustment_uses_this_view':k in [62,63],'visual_reference_used':k in [62,63,69,70],'pose_note':message}
+  report['views'][str(k)]={'role':cam.get('role','fit'),'camera_status':cam['status'],'board':str(dest.relative_to(ROOT)).replace('\\','/'),'photo_dimensions':photo.size,'render_dimensions':Image.open(V2/f'renders/gray_{TAG}_{k}.png').size,'camera_sha256':hashlib.sha256((V2/f'calibration/camera_{k}.json').read_bytes()).hexdigest(),'annotation_sha256':hashlib.sha256((V2/f'annotations/photo_{k}.json').read_bytes()).hexdigest(),'body_adjustment_uses_this_view':k in ([62,63,69] if int(TAG[1:])>=14 else [62,63]),'visual_reference_used':k in [62,63,69,70],'pose_note':message}
  contact=Image.new('RGB',(1536,1480),'white')
  for i,b in enumerate(boards):
   thumb=b.copy();thumb.thumbnail((512,739));contact.paste(thumb,((i%3)*512,(i//3)*740))
