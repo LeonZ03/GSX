@@ -19,3 +19,6 @@ reconstruction_v2/baseline/
 reconstruction_v2/annotations/
 reconstruction_v2/calibration/
 reconstruction_v2/references/raw/
+
+# Private binary Git history; never publish owner model/photo assets
+reconstruction_v2/model_history/

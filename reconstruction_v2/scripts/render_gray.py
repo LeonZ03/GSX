@@ -26,7 +26,7 @@ steer_prefix=('Tire_Front','Wheel_Front','Spoke_Front','Hub_Front','Axle_Front',
 steering=[o for o in s.objects if o.name.startswith(steer_prefix) or o.get('steer_with_front',False)];original={o:o.matrix_world.copy() for o in steering}
 visibility={o:o.hide_render for o in s.objects if o.name.startswith(('GuardBar','GuardMount'))}
 for k in ids:
- for o,original_hide in visibility.items():o.hide_render=True if k==69 else original_hide
+ for o,original_hide in visibility.items():o.hide_render=original_hide
  c=json.loads((V2/f'calibration/camera_{k}.json').read_text());s.camera=next(o for o in s.objects if o.type=='CAMERA' and o.get('image_id')==k)
  s.render.resolution_x=c['image_size'][0];s.render.resolution_y=c['image_size'][1]
  if c.get('steering_model')=='raked_axis_25_6_trail104':
