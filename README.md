@@ -1,17 +1,21 @@
 # Suzuki GSX250R 实车重建
 
-## 当前状态 r36（覆盖历史状态）
+## 当前进展：r38，B/C仍未通过
 
-最新源 `reconstruction_v2/blends/36_gray_review.blend`，947对象。后部链条罩/轮拱、左右三角后座脚踏架及右排气吊耳已重建并完成局部网格/间隙检查。固定62/63/69镜头渲染完成，左右局部对照已查看。**B/C仍未通过，持续推进，D/E不启动。** 详细记录见 `reconstruction_v2/reviews/r36_rear_hardware.md`。
+本批新增后挡泥板、尾灯、后转向灯、牌照灯和空白牌架，纠正座尾支撑露出与尾尖自交；油箱盖按实车近照拆分为五螺栓外圈、锁盖和铰接件，并重新安装到油箱曲面。已完成局部几何检查、三视角对照和独立重放。
 
-主体控制仍用r35快照，r36附件控制在`data/revisions/r36_rear_hardware/control.json`；不要用旧canonical覆盖。支架隐藏焊接/厚度、脚踏姿态、整车曲面、完整分件遮罩、两独立角度仍未验收。新件局部检查不代表整车精度。下一项核对后部挡泥/牌照安装及胎肩证据。
+**这仍是未验收灰模，不是1:1成品。** 主要车身曲面、整体/分件轮廓、独立角度和若干机械细节尚未通过。隐藏尺寸和本轮尾部截面近似均保留说明，不以零件数或修订号代替完成度。
 
+- [本批记录与已知偏差](reconstruction_v2/reviews/r38_tail_and_cap.md)
+- 本地源：`reconstruction_v2/blends/38_gray_review.blend`
+- 本地对照：`reconstruction_v2/renders/stage_bc_r38_comparison.jpg`
+- 本地驾驶位：`reconstruction_v2/renders/stage_bc/r38_Cockpit.png`
 
 依据本地 `IMG/` 的 12 张实车照片，使用 **Blender 5.2.2 LTS / Blender MCP** 重建用户 GSX250R。还原蓝白版画、荧光轮圈贴、对称护杠、手机支架、方向阻尼器及指定京 B；排除尾包、网绳、骑手和手套。没有使用 Computer Use。
 
-**当前可编辑检查版本为 r36。阶段 B（准确灰模）和 C（外露结构与附件）均未通过，尚不是 1:1 成品。** 不进入最终贴花、材质、4K 成片或导出。r26 工作基线、r27 及本轮候选均保留。
+**当前可编辑检查版本为 r38。阶段 B（准确灰模）和 C（外露结构与附件）均未通过，尚不是 1:1 成品。** 不进入最终贴花、材质、4K 成片或导出。r26 工作基线、r27 及本轮候选均保留。
 
-## r28–r35 主体重建进展
+## 此前 r28–r35 主体重建进展
 
 - 前罩上肩与侧回折合并为共享四边面控制，重新处理车头侧回折和驾驶位接缝；消除本轮检查到的侧罩—散热器、前罩—内衬等表面交叉。
 - 主灯下半轮廓改为较宽的碗形，移除错误的蓝色中央下包围；主灯黑框改为开口框，位置灯更换折叠的旧控制网格。
@@ -27,7 +31,7 @@
 
 | 内容 | 路径 |
 |---|---|
-| 当前可编辑源 | `reconstruction_v2/blends/36_gray_review.blend` |
+| 当前可编辑源 | `reconstruction_v2/blends/38_gray_review.blend` |
 | 实车 / r26 / r35 对照 | `reconstruction_v2/renders/stage_bc_r35_comparison.jpg` |
 | 四角度叠加与轮廓检查 | `reconstruction_v2/renders/review_r35_{62,63,64,69}.jpg` |
 | 左发动机盖局部改前改后 | `reconstruction_v2/renders/alternator_r34_comparison.jpg` |
@@ -78,3 +82,16 @@ $python = 'C:\Users\22797\.cache\codex-runtimes\codex-primary-runtime\dependenci
 GitHub 只保存代码、文档及派生三维控制数据。原照片、含照片对照图、像素标注、镜头、参考下载、blend、渲染、车牌配置和相关成品仅保存在本地。当前灰模牌板空白，新增照片中的旧车牌不替换指定京 B。
 
 旧图车尾的黑箱是已修正的二维尾包排除遮罩，并非模型尾箱。纯灰模面板现在显示完整模型，照片面板保留隐私遮蔽。
+
+## r38 重放与检查
+
+通过Blender MCP在独立的`36_gray_review.blend`中调用：
+
+```python
+import sys
+sys.path.insert(0, "D:/Work/gadgets/GSX/reconstruction_v2/scripts")
+import replay_r38
+replay_r38.run("新的唯一前缀")
+```
+
+已有输出会被拒绝覆盖。重放包括r37尾部和r38油箱盖，保留编辑用布尔工具；`verify_r38.verify(参考源路径)`检查控制几何、相机、曲线和指定修改器。最新尾罩控制使用`data/revisions/r37_tail_assembly/Body_Tail.json`，不要用旧快照覆盖。检查不证明外形达到1:1。

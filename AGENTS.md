@@ -1,5 +1,16 @@
 # GSX250R 实车重建 — AI 工作记录
 
+## 当前状态 r38（覆盖全部历史状态）
+- 最新源reconstruction_v2/blends/38_gray_review.blend，988对象；B/C仍NOT_PASSED。用户要求持续推进直到B/C完成，未满足，不能宣称1:1或完成。
+- r37补后挡泥/后灯/后转向灯/牌照灯及空白牌架；座尾支撑入壳、端点连接封口、2mm构造避让；修复r36已有62对尾尖自交。隐藏车架路径/厚度、挡泥截面仍近似。
+- r38五螺栓油箱盖、锁盖/铰接及安装凹口，按求值油箱表面倾斜。直径114mm及XY沿用，非实测。4对原始三角接触用双半空间证明为边界接触，0.1微米浮点容差，保留原始计数；不推广成全车通过。
+- 关键记录reviews/r38_tail_and_cap.md；qa/tail_assembly_r37_mesh_clearance.json、fuel_cap_geometry_r38_review.json、replay_r38.json；最新三视角renders/stage_bc_r38_comparison.jpg及驾驶位stage_bc/r38_Cockpit.png。
+- 独立重放从36经replay_r38.run(唯一前缀)，拒绝覆盖；988对象控制几何/变换/相机/曲线手柄/所查修改器与可见性一致，不是全材质/求值网格证明。
+- Body_Tail控制指向data/revisions/r37_tail_assembly/Body_Tail.json；其他网格仍r35快照。保留Tool_TaillightAperture、Tool_TailFrameClearance、Tool_FuelCapRecess/Bore/Hex依赖。布尔操作数须Mesh，不能使用Curve假装切削生效。
+- 38最终父源37_tail_assembly_mesh_clearance→37_gray_review→38_fuel_cap_welded→38_gray_review。早期r37失败候选不能误用。
+- 本轮无新子智能体，全部由主线程实际看图与MCP复核。58/59重看仍欠约束，无新正式相机；62/63/69不变。像素标注/相机/照片/含照板/源/渲染仍本地。主要曲面、闭合mask/正式关键点和两独立视角未通过，D/E不启动。
+
+
 ## 当前状态 r36（覆盖历史状态）
 
 尾部下一候选尚未建模：63/69四点对应中三点触及宽度下界，两点残差8–10px，已拒绝；转向灯中心约0.5px仅是局部诊断。r36实际缺后灯/后挡泥总成，下一项先修正对应关系。
@@ -24,7 +35,7 @@
 - origin使用ssh.github.com:443/LeonZ03/GSX.git；仓库为公开。命令级safe.directory，不改全局Git，不强推。
 - r15代码、文档与派生控制网格已推送（模型改动提交d13cfe1）；后续仍需核对范围，仅显式暂存代码/文档/控制数据。
 
-## 当前执行 r35（优先于所有历史）
+## 历史执行 r35
 - 用户最新要求持续推进直到B/C完成；旧r27“收尾停止扩展”已失效。当前B/C仍NOT_PASSED，不能称本任务完成或1:1。D/E不启动。
 - 当前源blends/35_gray_review.blend，908对象，23控制快照（21有效+2 superseded）。本机5.2.2LTS、Blender MCP后台，无Computer Use。r26及全部候选保留。
 - 同一批次r28–r35：共享前罩肩部/侧回折、散热器间隙、灯罩碗形/开口灯框/位置灯、异形消音器/包裹隔热罩/空心出口、左右不规则发动机铸件与小检修盖。正式相机和本轮之外主要机械未改。

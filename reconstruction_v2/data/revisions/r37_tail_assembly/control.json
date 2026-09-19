@@ -1,0 +1,172 @@
+{
+  "units": "mm",
+  "status": "CANDIDATE_NOT_ACCEPTED",
+  "evidence": [
+    "owner63/69 visible fender and indicators",
+    "Suzuki FIG474A rear fender",
+    "Suzuki FIG339A rear lamp",
+    "official_turntable_05/10/14/19"
+  ],
+  "indicator_center_R": [
+    132.62628,
+    -835.72232,
+    847.18969
+  ],
+  "fender_sections_y_z_halfwidth": [
+    [
+      -722,
+      836,
+      43
+    ],
+    [
+      -800,
+      851,
+      51
+    ],
+    [
+      -853,
+      844,
+      57
+    ],
+    [
+      -940,
+      831,
+      54
+    ],
+    [
+      -1028,
+      815,
+      42
+    ]
+  ],
+  "side_panel_yz": [
+    [
+      -765,
+      826
+    ],
+    [
+      -850,
+      830
+    ],
+    [
+      -1028,
+      800
+    ],
+    [
+      -1080,
+      628
+    ],
+    [
+      -1056,
+      623
+    ],
+    [
+      -979,
+      688
+    ],
+    [
+      -902,
+      761
+    ],
+    [
+      -827,
+      803
+    ]
+  ],
+  "side_panel_x": 31,
+  "tail_lens_outline": [
+    [
+      0,
+      -948,
+      975
+    ],
+    [
+      49,
+      -941,
+      975
+    ],
+    [
+      55,
+      -928,
+      959
+    ],
+    [
+      38,
+      -915,
+      928
+    ],
+    [
+      0,
+      -912,
+      918
+    ],
+    [
+      -38,
+      -915,
+      928
+    ],
+    [
+      -55,
+      -928,
+      959
+    ],
+    [
+      -49,
+      -941,
+      975
+    ]
+  ],
+  "plate_center": [
+    0,
+    -1084,
+    655
+  ],
+  "uncertainties": [
+    "Fender section widths/crown and hidden underside inferred from family catalogue and photos; not measured",
+    "Rejected ambiguous manual corner fits are not treated as measurements",
+    "Tail lens fit to current tail shell pending multiview inspection",
+    "Plate holder dimensions and tilt provisional; plate remains blank",
+    "Inherited seat rail relocated inboard to remove visibly exposed proxy tubes; hidden width not measured"
+  ],
+  "seat_rail_x_factor": 0.55,
+  "frame_seat_rail_R": [
+    [
+      85,
+      -199,
+      744
+    ],
+    [
+      95,
+      -500,
+      777
+    ],
+    [
+      35,
+      -900,
+      983
+    ]
+  ],
+  "frame_subframe_R": [
+    [
+      133,
+      -226,
+      570
+    ],
+    [
+      108,
+      -631,
+      758
+    ],
+    [
+      35,
+      -900,
+      983
+    ]
+  ],
+  "tail_tip_z_mm": {
+    "2": 994,
+    "3": 985,
+    "4": 980,
+    "5": 979
+  }
+}
