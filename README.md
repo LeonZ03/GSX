@@ -1,10 +1,17 @@
 # Suzuki GSX250R 实车重建
 
+## 当前状态 r36（覆盖历史状态）
+
+最新源 `reconstruction_v2/blends/36_gray_review.blend`，947对象。后部链条罩/轮拱、左右三角后座脚踏架及右排气吊耳已重建并完成局部网格/间隙检查。固定62/63/69镜头渲染完成，左右局部对照已查看。**B/C仍未通过，持续推进，D/E不启动。** 详细记录见 `reconstruction_v2/reviews/r36_rear_hardware.md`。
+
+主体控制仍用r35快照，r36附件控制在`data/revisions/r36_rear_hardware/control.json`；不要用旧canonical覆盖。支架隐藏焊接/厚度、脚踏姿态、整车曲面、完整分件遮罩、两独立角度仍未验收。新件局部检查不代表整车精度。下一项核对后部挡泥/牌照安装及胎肩证据。
+
+
 依据本地 `IMG/` 的 12 张实车照片，使用 **Blender 5.2.2 LTS / Blender MCP** 重建用户 GSX250R。还原蓝白版画、荧光轮圈贴、对称护杠、手机支架、方向阻尼器及指定京 B；排除尾包、网绳、骑手和手套。没有使用 Computer Use。
 
-**当前可编辑检查版本为 r35。阶段 B（准确灰模）和 C（外露结构与附件）均未通过，尚不是 1:1 成品。** 不进入最终贴花、材质、4K 成片或导出。r26 工作基线、r27 及本轮候选均保留。
+**当前可编辑检查版本为 r36。阶段 B（准确灰模）和 C（外露结构与附件）均未通过，尚不是 1:1 成品。** 不进入最终贴花、材质、4K 成片或导出。r26 工作基线、r27 及本轮候选均保留。
 
-## 本批次进展
+## r28–r35 主体重建进展
 
 - 前罩上肩与侧回折合并为共享四边面控制，重新处理车头侧回折和驾驶位接缝；消除本轮检查到的侧罩—散热器、前罩—内衬等表面交叉。
 - 主灯下半轮廓改为较宽的碗形，移除错误的蓝色中央下包围；主灯黑框改为开口框，位置灯更换折叠的旧控制网格。
@@ -20,7 +27,7 @@
 
 | 内容 | 路径 |
 |---|---|
-| 当前可编辑源 | `reconstruction_v2/blends/35_gray_review.blend` |
+| 当前可编辑源 | `reconstruction_v2/blends/36_gray_review.blend` |
 | 实车 / r26 / r35 对照 | `reconstruction_v2/renders/stage_bc_r35_comparison.jpg` |
 | 四角度叠加与轮廓检查 | `reconstruction_v2/renders/review_r35_{62,63,64,69}.jpg` |
 | 左发动机盖局部改前改后 | `reconstruction_v2/renders/alternator_r34_comparison.jpg` |
