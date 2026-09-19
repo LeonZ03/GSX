@@ -6,7 +6,10 @@ V=Path(__file__).resolve().parents[1]
 
 def cameras(scene):
  col=next(c for c in scene.collection.children if c.name.startswith('Collection_Cameras'))
- configs={'Front':((2.8,3.2,1.65),(0,.15,.64),2.5),
+ configs={'CockpitTop':((0,-.48,1.78),(0,.40,.93),.86),
+ 'FrontSymmetry':((0,3,1.10),(0,.60,.82),.95),
+ 'SeatProfile':((-2.8,-.65,1.40),(0,-.48,.88),1.05),
+ 'Front':((2.8,3.2,1.65),(0,.15,.64),2.5),
  'Rear':((-2.8,-3.2,1.6),(0,-.12,.65),2.45),
  'Nose':((1.4,2.7,1.1),(0,.61,.88),.90),
  'Cockpit':((.70,-1.4,2.15),(0,.40,.96),.82),
@@ -20,12 +23,12 @@ def cameras(scene):
   o.location=eye;o.rotation_euler=(Vector(target)-o.location).to_track_quat('-Z','Y').to_euler();o.data.type='ORTHO';o.data.ortho_scale=scale;out[key]=o
  return out
 
-def render(scene,tag,keys):
+def render(scene,tag,keys,samples=24,percentage=75):
  sys.path.insert(0,str(V/'scripts'))
  from cache_review_geometry import cache_review_assembly
  cache_review_assembly(scene)
- cams=cameras(scene);scene.render.engine='CYCLES';scene.cycles.samples=24;scene.cycles.use_denoising=True
- scene.render.resolution_x=1440;scene.render.resolution_y=1080;scene.render.resolution_percentage=75
+ cams=cameras(scene);scene.render.engine='CYCLES';scene.cycles.samples=samples;scene.cycles.use_denoising=True
+ scene.render.resolution_x=1440;scene.render.resolution_y=1080;scene.render.resolution_percentage=percentage
  scene.render.film_transparent=False;scene.render.use_border=False;scene.render.use_crop_to_border=False
  scene.render.image_settings.file_format='PNG';scene.render.image_settings.color_mode='RGB'
  try:

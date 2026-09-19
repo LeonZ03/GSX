@@ -1,0 +1,20 @@
+{
+  "revision": "r42",
+  "scope": "Changed owner-feedback controls only; unchanged parts remain embedded in the single working blend.",
+  "files": {
+    "Body_NoseCheek.json": "93a2f8a5818cefd05641dfd3e6a530efd4d6bd25d296771882417075cb64b34e",
+    "Body_NoseSideReturn.json": "dcf5d0134dc50a5e1026b1b43c112290d841d2d6d4ef3174684d26e9e6549d38",
+    "Body_PillionBase.json": "63bb43472eb2578c3aa49cbf6fc47c502d8d350e03a314299e63cc5d72bd44d4",
+    "Body_PillionSidePanel.json": "087b260d85d269f36f7abe00886f352d3d837d5f7850c3a0c63367cb48ec33cd",
+    "Body_Tank.json": "dfeb15f41de923bee63691e3327fe63fe7febeda198b94a8780e383030620633",
+    "Fender_Front.json": "e24abc149beec22fa167bd22bd9da39f3c14a0da5367c27fc058c2566be2913d",
+    "guard_stand.json": "3524510159504eb1269420810f119b393a1a290f0df8eb130cf233be9f848e56",
+    "Headlight_Lens.json": "8b0215dc234d2ea9f88523f6e0d2d2ef745656981621c5cc105bb447c106751e",
+    "Headlight_PositionLens.json": "bcaa86d39ebf4edfa6ef9952b506b8aee3db92a5d2acd42062eaeb744e4b1f2b",
+    "position_lamp_bezel.json": "77947a8d1b476724de5e62412b402699933b01433c8e909f61072d2bc138523f",
+    "Seat_Pillion.json": "bd5de60760f534ad36aca8700e825da9d422eb642fd114b853d128eeca6f01a2",
+    "Seat_Pillion_Pan.json": "bb5a326e622ad98c240ece0ae31a26f8074ac9b6cdfc8c1bcb568bbd1f424b1b",
+    "Seat_Rider.json": "4f19b3b991207035c3739bcd45aaff2f1e533def75171fcebcb931fc5ccdbabd"
+  },
+  "replay": "Restore local r39, then rebuild_owner_shapes.run; refine_owner_interfaces.run; finish_owner_interfaces.run through Blender MCP. Never replay migrations on current refined output."
+}

@@ -1,0 +1,38 @@
+{
+  "guard_nodes_mm": {
+    "rear": [
+      150.75,
+      -34.68,
+      484.86
+    ],
+    "upper": [
+      282.63,
+      275.66,
+      544.3
+    ],
+    "lower": [
+      250.47,
+      225.15,
+      437.79
+    ],
+    "elbow": [
+      231.72,
+      141.42,
+      413.08
+    ]
+  },
+  "tube_radius_mm": 10.5,
+  "brace_fraction": 0.32,
+  "stand_pivot_mm": [
+    -145.0,
+    -5.860000133514404,
+    253.74000549316406
+  ],
+  "stand_foot_mm": [
+    -227.39999389648438,
+    17.280000686645508,
+    14.0
+  ],
+  "evidence": "62/63 tube junctions, 69 deployed stand; depths and tube diameters approximate",
+  "current_snapshot": "r42"
+}

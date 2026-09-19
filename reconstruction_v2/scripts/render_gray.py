@@ -14,7 +14,9 @@ sys.path.insert(0,str(V2/'scripts'))
 from cache_review_geometry import cache_review_assembly
 cache_review_assembly(s)
 percentage=60
-s.render.resolution_percentage=percentage;s.cycles.samples=24;s.render.film_transparent=True
+samples=int(next((x.split('=',1)[1] for x in args if x.startswith('samples=')),'24'))
+if not 8<=samples<=128:raise ValueError('Review samples must be 8..128')
+s.render.resolution_percentage=percentage;s.cycles.samples=samples;s.render.film_transparent=True
 s.render.use_border=False;s.render.use_crop_to_border=False
 # GPU use re-checked in the actual rendering process.
 try:

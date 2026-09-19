@@ -1,7 +1,3 @@
-# Suzuki GSX250R 实车重建
-
-根据车主多角度实拍，在本机 Blender 中重建实车；使用 Blender MCP，保留可编辑源文件。目标是尽可能1:1复刻，当前仍处于灰模形体校正，未完成最终贴花、材质、4K渲染和三格式导出。排除尾包、网绳与骑手。
-
 ## 当前 r42：九项反馈已逐项改模，实车精度验收仍未通过
 
 唯一工作模型：`reconstruction_v2/model_history/GSX250R.blend`。本轮通过本机 Blender MCP CLI 建模，没有使用 computer use，没有启用子智能体。
@@ -28,27 +24,5 @@
 
 后续按这些对照继续形似复核，优先核对护杠各连接节点、前挡泥板侧翼、两座垫轮廓，以及俯视油箱/驾驶位。不能以这次修改数量或局部检查为九项精度验收盖章。
 
+---
 
-## 重要操作
-
-使用本机可用Python。Blender保存当前工作文件后记录版本：
-
-```powershell
-python reconstruction_v2/scripts/model_history.py checkpoint "说明本次模型修改"
-# 恢复前必须先提交尚未保存到Git的模型变更
-python reconstruction_v2/scripts/model_history.py restore <本地模型提交号>
-```
-
-旧112个blend已归档到独立本地Git并逐个验证可恢复，原文件名映射见`reconstruction_v2/model_history/archive_manifest.json`。本地模型历史无remote，不随公共仓库push；不是异地备份。
-建模迁移只从指定父提交执行，不能重复覆盖精修源。最新批次入口/限制见`reconstruction_v2/data/current_controls/manifest.json`，进展与执行约束见`AGENTS.md`。
-
-## 坐标与参考
-
-场景米；控制数据以毫米表达，换算0.001。+X右、+Y前、+Z上。轴距1430mm；前后轮胎110/80-17、140/70-17；制动盘290/240mm。明确构造尺寸与未知隐藏尺寸分开验收。
-
-- 实车外观、附件与使用痕迹以本地`IMG/`为准；京B号牌配置仅本地使用。
-- 豪爵车型参数：https://en.haojue.com/NEWGSX250R/canshu.html
-- Suzuki零件目录：https://www1.suzuki.co.jp/motor/support/parts_catalog_manage/files/GSX250RAM1_GSX250RAZM1.pdf
-- 爆炸图用于结构辨认，不能作为精确尺寸蓝图；不同年份/市场资料须排除差异。
-
-真实照片、含照对照图、标注、相机、下载参考、模型、渲染和号牌相关成品均不推送公共仓库。
