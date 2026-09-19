@@ -10,6 +10,9 @@ tag=next((x for x in args if re.fullmatch(r'r\d+',x)),s.get('revision','r01'))
 subdir=next((x[4:] for x in args if x.startswith('out=')),'')
 if subdir and (Path(subdir).name!=subdir or subdir in ('.','..')):raise ValueError('Output subdirectory must be a local name')
 render_dir=V2/'renders'/subdir;render_dir.mkdir(exist_ok=True)
+sys.path.insert(0,str(V2/'scripts'))
+from cache_review_geometry import cache_review_assembly
+cache_review_assembly(s)
 percentage=60
 s.render.resolution_percentage=percentage;s.cycles.samples=24;s.render.film_transparent=True
 s.render.use_border=False;s.render.use_crop_to_border=False
@@ -20,7 +23,7 @@ try:
  s.cycles.device='GPU'
 except Exception:s.cycles.device='CPU'
 steer_prefix=('Tire_Front','Wheel_Front','Spoke_Front','Hub_Front','Axle_Front','BrakeDisc_Front','Caliper_Front','RotorCarrier_Front','Fork_','Fender_Front')
-steering=[o for o in s.objects if o.name.startswith(steer_prefix)];original={o:o.matrix_world.copy() for o in steering}
+steering=[o for o in s.objects if o.name.startswith(steer_prefix) or o.get('steer_with_front',False)];original={o:o.matrix_world.copy() for o in steering}
 visibility={o:o.hide_render for o in s.objects if o.name.startswith(('GuardBar','GuardMount'))}
 for k in ids:
  for o,original_hide in visibility.items():o.hide_render=True if k==69 else original_hide

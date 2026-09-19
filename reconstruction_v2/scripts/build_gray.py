@@ -70,6 +70,7 @@ def cage(data):
  md=o.modifiers.new('Editable_Subdivision','SUBSURF');md.levels=data['subdivision'];md.render_levels=data['subdivision']
  if data['thickness_mm']:
   md=o.modifiers.new('Shell_Thickness','SOLIDIFY');md.thickness=data['thickness_mm']*.001;md.offset=-1
+  md.solidify_mode=data.get('solidify_mode','EXTRUDE');md.use_even_offset=data.get('use_even_offset',False);md.thickness_clamp=data.get('thickness_clamp',0.0);md.use_thickness_angle_clamp=data.get('use_thickness_angle_clamp',False)
  apply_creases(o,data)
  return o
 

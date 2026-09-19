@@ -24,6 +24,7 @@ for p in sorted((V2/'data/control_cages').glob('*.json')):
  elif a.get('thickness_mm'):
   if solid is None:solid=o.modifiers.new('Shell_Thickness','SOLIDIFY');solid.offset=-1
   solid.thickness=a['thickness_mm']*.001
+  solid.solidify_mode=a.get('solidify_mode','EXTRUDE');solid.use_even_offset=a.get('use_even_offset',False);solid.thickness_clamp=a.get('thickness_clamp',0.0);solid.use_thickness_angle_clamp=a.get('use_thickness_angle_clamp',False)
  o.data.update()
 args=sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else []
 name=args[0] if args else 'working_'+datetime.now().strftime('%Y%m%d_%H%M%S')+'.blend'

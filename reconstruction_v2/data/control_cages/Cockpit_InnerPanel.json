@@ -189,39 +189,39 @@
     ],
     [
       [
-        135.0,
-        611.2848,
-        829.5119
+        149.0,
+        550.0,
+        935.0
       ],
       [
-        135.08,
-        611.2672,
-        829.3817
+        147.0,
+        560.1406860351562,
+        916.8759765625
       ],
       [
-        135.4,
-        611.1967,
-        828.8607
+        145.0,
+        570.2813720703125,
+        898.751953125
       ],
       [
-        135.92,
-        611.0821,
-        828.0141
+        143.0,
+        580.4220581054688,
+        880.6279296875
       ],
       [
-        136.48,
-        610.9587,
-        827.1025
+        141.0,
+        590.562744140625,
+        862.50390625
       ],
       [
-        136.92,
-        610.8617,
-        826.3861
+        139.0,
+        600.7034301757812,
+        844.3799438476562
       ],
       [
         137.0,
-        610.8441,
-        826.2559
+        610.8441162109375,
+        826.2559204101562
       ]
     ]
   ],
@@ -233,7 +233,8 @@
     "owner_photo_62",
     "owner_photo_63"
   ],
-  "status": "provisional_multiview_review_required",
-  "revision": "r05",
-  "notes": "Black inner infill visible between tank front and upper fairing. Separate shell, no decals."
+  "status": "REVIEWED_CANDIDATE_NOT_PHOTO_ACCEPTED",
+  "revision": "r19",
+  "notes": "Black inner infill visible between tank front and upper fairing. Separate shell, no decals.",
+  "crease_boundary": 0.65
 }

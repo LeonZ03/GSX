@@ -26,20 +26,6 @@
     ],
     "status": "editable_gray_cage_not_accepted"
   },
-  "Body_FairingBlade": {
-    "control_cage": "reconstruction_v2/data/control_cages/Body_FairingBlade.json",
-    "evidence": [
-      "owner_photo_62",
-      "owner_photo_63",
-      "official_turntable_05"
-    ],
-    "measurements_verified": [],
-    "uncertain": [
-      "transverse section and hidden joins",
-      "full multiview silhouette acceptance"
-    ],
-    "status": "editable_gray_cage_not_accepted"
-  },
   "Body_MidSideCover": {
     "control_cage": "reconstruction_v2/data/control_cages/Body_MidSideCover.json",
     "evidence": [
@@ -254,5 +240,64 @@
       "instrument pod"
     ],
     "status": "must_rebuild_or_verify_individually"
+  },
+  "Body_NoseCheek": {
+    "control_cage": "reconstruction_v2/data/control_cages/Body_NoseCheek.json",
+    "status": "hidden_live_construction_control_NOT_ACCEPTED",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "owner_photo_66",
+      "owner_photo_69"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "unmeasured transverse depth",
+      "photo shape gate",
+      "real wall thickness"
+    ]
+  },
+  "Body_NoseSideReturn": {
+    "control_cage": "reconstruction_v2/data/control_cages/Body_NoseSideReturn.json",
+    "status": "hidden_live_construction_control_NOT_ACCEPTED",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "owner_photo_66",
+      "owner_photo_69"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "unmeasured transverse depth",
+      "photo shape gate",
+      "real wall thickness"
+    ]
+  },
+  "Body_WindscreenSeat": {
+    "control_cage": "reconstruction_v2/data/control_cages/Body_WindscreenSeat.json",
+    "status": "hidden_live_construction_control_NOT_ACCEPTED",
+    "evidence": [
+      "owner_photo_62",
+      "owner_photo_63",
+      "owner_photo_66",
+      "owner_photo_69"
+    ],
+    "measurements_verified": [],
+    "uncertain": [
+      "unmeasured transverse depth",
+      "photo shape gate",
+      "real wall thickness"
+    ]
+  },
+  "Body_NoseAssembly": {
+    "status": "reviewed_watertight_candidate_NOT_PHOTO_ACCEPTED",
+    "live_controls": [
+      "Body_NoseCheek",
+      "Body_NoseSideReturn",
+      "Body_WindscreenSeat"
+    ],
+    "uncertain": [
+      "1mm voxel reconstruction is not manufacturing topology or physical wall evidence"
+    ]
   }
 }
