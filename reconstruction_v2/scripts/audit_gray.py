@@ -18,7 +18,7 @@ out['construction_dimension_checks']={'wheelbase_within_1mm':abs(out['measuremen
 out['construction_dimension_checks']['note']='Only model geometry versus documented nominal dimensions. Not a measurement of the real motorcycle.'
 quads={}
 for o in s.objects:
- if o.get('control_cage_source'):quads[o.name]={'vertices':len(o.data.vertices),'faces':len(o.data.polygons),'all_quads':all(len(p.vertices)==4 for p in o.data.polygons),'subdivision_retained':any(m.type=='SUBSURF' for m in o.modifiers),'source':o['control_cage_source']}
+ if o.get('control_cage_source') and 'grid' in json.loads((ROOT/o['control_cage_source']).read_text(encoding='utf-8-sig')):quads[o.name]={'vertices':len(o.data.vertices),'faces':len(o.data.polygons),'all_quads':all(len(p.vertices)==4 for p in o.data.polygons),'subdivision_retained':any(m.type=='SUBSURF' for m in o.modifiers),'source':o['control_cage_source']}
 out['control_cages']=quads
 out['cameras']=[{'name':o.name,'photo':o.get('image_id'),'status':o.get('fit_status')} for o in s.objects if o.type=='CAMERA']
 left=obj('GuardBar_L');right=obj('GuardBar_R')

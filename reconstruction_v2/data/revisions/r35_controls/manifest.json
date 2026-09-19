@@ -1,0 +1,167 @@
+{
+  "revision": "r35",
+  "acceptance": "B_AND_C_NOT_PASSED",
+  "objects": {
+    "Fender_Front": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Fender_Front.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 32,
+      "faces": 21
+    },
+    "Headlight_Lens": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Headlight_Lens.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 28,
+      "faces": 18
+    },
+    "Headlight_Surround": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Headlight_Surround.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 52,
+      "faces": 36
+    },
+    "Windscreen": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Windscreen.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 24,
+      "faces": 15
+    },
+    "Headlight_PositionLens": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Headlight_PositionLens.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 24,
+      "faces": 15
+    },
+    "Headlight_PositionSurround": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Headlight_PositionSurround.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 24,
+      "faces": 15
+    },
+    "Cockpit_InnerPanel": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Cockpit_InnerPanel.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 42,
+      "faces": 30
+    },
+    "Body_BellyPan": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Body_BellyPan.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 35,
+      "faces": 24
+    },
+    "Body_SideFairing": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Body_SideFairing.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 77,
+      "faces": 60
+    },
+    "Body_Tail": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Body_Tail.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 36,
+      "faces": 25
+    },
+    "Body_Tank": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Body_Tank.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 80,
+      "faces": 69
+    },
+    "Body_TankSideTrim": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Body_TankSideTrim.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 56,
+      "faces": 42
+    },
+    "Body_UpperCowling": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Body_UpperCowling.json",
+      "construction_only": true,
+      "superseded_by": "Body_UpperSideCowl",
+      "vertices": 56,
+      "faces": 42
+    },
+    "Seat_Pillion": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Seat_Pillion.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 42,
+      "faces": 34
+    },
+    "Seat_Rider": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Seat_Rider.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 48,
+      "faces": 39
+    },
+    "Body_CowlingSide": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Body_CowlingSide.json",
+      "construction_only": true,
+      "superseded_by": "Body_UpperSideCowl",
+      "vertices": 56,
+      "faces": 42
+    },
+    "Body_SeatSide": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Body_SeatSide.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 42,
+      "faces": 30
+    },
+    "Body_PillionBase": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Body_PillionBase.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 27,
+      "faces": 16
+    },
+    "Body_NoseCheek": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Body_NoseCheek.json",
+      "construction_only": true,
+      "superseded_by": null,
+      "vertices": 42,
+      "faces": 30
+    },
+    "Body_NoseSideReturn": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Body_NoseSideReturn.json",
+      "construction_only": true,
+      "superseded_by": null,
+      "vertices": 56,
+      "faces": 42
+    },
+    "Body_WindscreenSeat": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Body_WindscreenSeat.json",
+      "construction_only": true,
+      "superseded_by": null,
+      "vertices": 21,
+      "faces": 12
+    },
+    "Body_MidSideCover": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Body_MidSideCover.json",
+      "construction_only": false,
+      "superseded_by": null,
+      "vertices": 56,
+      "faces": 42
+    },
+    "Body_UpperSideCowl": {
+      "file": "reconstruction_v2/data/revisions/r35_controls/Body_UpperSideCowl.json",
+      "construction_only": true,
+      "superseded_by": null,
+      "vertices": 104,
+      "faces": 84
+    }
+  }
+}

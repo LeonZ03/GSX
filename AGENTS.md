@@ -15,7 +15,22 @@
 - origin使用ssh.github.com:443/LeonZ03/GSX.git；仓库为公开。命令级safe.directory，不改全局Git，不强推。
 - r15代码、文档与派生控制网格已推送（模型改动提交d13cfe1）；后续仍需核对范围，仅显式暂存代码/文档/控制数据。
 
-## 最新收尾 r27 候选（优先于历史）
+## 当前执行 r35（优先于所有历史）
+- 用户最新要求持续推进直到B/C完成；旧r27“收尾停止扩展”已失效。当前B/C仍NOT_PASSED，不能称本任务完成或1:1。D/E不启动。
+- 当前源blends/35_gray_review.blend，908对象，23控制快照（21有效+2 superseded）。本机5.2.2LTS、Blender MCP后台，无Computer Use。r26及全部候选保留。
+- 同一批次r28–r35：共享前罩肩部/侧回折、散热器间隙、灯罩碗形/开口灯框/位置灯、异形消音器/包裹隔热罩/空心出口、左右不规则发动机铸件与小检修盖。正式相机和本轮之外主要机械未改。
+- 本轮19件求值QA非流形/退化/非共享顶点自交全0；指定8组非配合表面交叉0。右盖/曲轴箱38对装配接触未作全配合认证。隐藏控制片可接触，最终联合实体另检，不能扩大为全车通过。
+- r31排气及r33 Boolean切缝失败候选未采用。正确父链28_front_connected→30_engine_exhaust_fixed→31_front_lamp_exhaust_fixed→32_front_frame_candidate→33_front_seam_review→34_engine_review→35_gray_review。33_gray_review.blend不是最终可用r33，不要误选。
+- 前罩内衬接缝最终靠NoseSideReturn首排+Y4.5mm构造间隙，不含失败切缝Boolean。共享Body_UpperSideCowl加入实时GN，旧UpperCowling/CowlingSide隐藏且superseded，不恢复导出。
+- r35 data/revisions/r35_controls/manifest.json为当前23组源几何快照，含显式faces；每对象control_cage_source指向此目录。canonical control_cages仍旧r26输入，不能默认apply_cages覆盖r35。发动机两份参数控制在r30_engine_candidate/r34_engine_candidate。
+- Tool_TransmissionCaseSupport保留曲轴箱联合依赖；Tool_AlternatorHexSocket为浅孔工具；Tool_SprocketCoverClearance共享新左盖mesh，替换时同步。均隐藏/export_exclude，不删。
+- 从r26运行replay_r35.py实际重放成功；908对象签名、所查modifier属性、visibility和照片camera一致，qa/replay_r35.json。不是全部材质/GN/求值网格完全等价认证。
+- 最终renders/stage_bc_r35_comparison.jpg及review_r35四角度；qa/assembly_r35.json、geometry_r35.json。本批详细reviews/r35_stage_bc.md。所有照片、含照板、像素标注、镜头、QA、源、渲染仍本地，公开仅代码/文档/3D控制。
+- 右盖只建5个可辨螺栓，目录家族13孔其余未定位；左盖4个可辨位置，单69拟合、X深度假设未独立验证。剩余车头/油箱/座尾外形、整车闭合mask、两有效独立角度、灯具内部与附件安装仍未通过。下一轮不得以新增小零件代替这些主要验收缺口。
+- 原厂转台诊断calibrate_oem_turntable输出本地，中位1.79/P955.69px，未接受；不要作为用户实车独立角度。62/63/69已用于调整，64欠约束；70与59/60旧失败诊断仍不能直接转正。
+- 本轮1子任务exhaust_rebuild请求gpt-5.6-luna/medium，实际配置未回传；独立排气QA由主线程复核。子任务后续看图失败不提供视觉结论，主线程已实际看原照/渲染。
+
+## 历史收尾 r27 候选
 - 用户本轮最终要求收尾汇报，已停止扩展；B/C仍NOT_PASSED。r26仍为工作基线，最新待验收源blends/27_front_review_candidate.blend，不得宣传通过或1:1。
 - 4组候选Body_SideFairing/Body_UpperCowling/Body_CowlingSide/Cockpit_InnerPanel在data/revisions/r27_front_candidate，canonical control_cages未更新。旧3D控制归档data/archive/r26_front。严禁默认apply_cages用r26覆盖r27候选。
 - 修正外侧蓝色尖角与内侧灯旁点混淆；前上沿实际求值开放边界62/63/69局部误差改善，约±5px标注不确定，均为拟合角度，不是98%轮廓/关键点/独立验证。
