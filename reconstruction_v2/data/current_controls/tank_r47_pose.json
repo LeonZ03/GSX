@@ -1,0 +1,57 @@
+{
+  "revision": "r47",
+  "old_cap_center_mm": [
+    -8.537124074337044e-08,
+    188.18841552734375,
+    955.9013061523438
+  ],
+  "new_cap_center_mm": [
+    0.0,
+    99.89161682128906,
+    973.157470703125
+  ],
+  "old_cap_normal": [
+    4.566854272525234e-08,
+    0.37714722752571106,
+    0.926153302192688
+  ],
+  "new_cap_normal": [
+    0.0,
+    -0.21677449345588684,
+    0.9762216806411743
+  ],
+  "normal_rotation_deg": 34.6767406425605,
+  "moved_cap_objects": [
+    "FuelCap",
+    "FuelCap_Bolt_0",
+    "FuelCap_Bolt_1",
+    "FuelCap_Bolt_2",
+    "FuelCap_Bolt_3",
+    "FuelCap_Bolt_4",
+    "FuelCap_Core",
+    "FuelCap_Gasket",
+    "FuelCap_Hinge",
+    "FuelCap_LockCover",
+    "Tool_FuelCapBore_0",
+    "Tool_FuelCapBore_1",
+    "Tool_FuelCapBore_2",
+    "Tool_FuelCapBore_3",
+    "Tool_FuelCapBore_4",
+    "Tool_FuelCapHex_0",
+    "Tool_FuelCapHex_1",
+    "Tool_FuelCapHex_2",
+    "Tool_FuelCapHex_3",
+    "Tool_FuelCapHex_4",
+    "Tool_FuelCapRecess"
+  ],
+  "changed_control_points": 66,
+  "fixed_interface_rows": [
+    0,
+    1,
+    8,
+    9
+  ],
+  "evidence": "Actually viewed IMG65/62/63/69/77 and rider screenshot; circular cap visible to rider, broad crowned pressed tank flank",
+  "uncertainty": "Y=100mm is proportional estimate; no calibrated IMG65 camera, measured cap tilt or hidden tank dimensions",
+  "acceptance": "NOT_PASSED"
+}

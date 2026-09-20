@@ -1,7 +1,3 @@
-# Suzuki GSX250R 实车重建
-
-根据车主多角度实拍，在本机 Blender 中重建实车；使用 Blender MCP，保留可编辑源文件。目标是尽可能1:1复刻，当前仍处于灰模形体校正，未完成最终贴花、材质、4K渲染和三格式导出。排除尾包、网绳与骑手。
-
 ## 当前 r47：六项反馈的连续改模批次
 
 唯一工作模型：`reconstruction_v2/model_history/GSX250R.blend`。本机 Blender 5.2.2 LTS，全部通过 Blender MCP CLI 修改与检查，未使用 computer use。源文件已更新；后台操作不等于已刷新用户打开的 Blender 窗口。
@@ -23,27 +19,3 @@
 重放仅从已提交r46执行`integrate_r47.run()`，入口拒绝当前r47，禁止重复叠加。`Body_Tank`控制源为`tank_r47_control.json`；旧`Body_Tank.json`已经过时。主灯可编辑源在`Tool_R47Cage_Headlight_Lens`，位置灯源为显式顶点/面`position_lens_r47.json`，不是旧grid。保留`Tool_TankR47SurfaceNormals`、`Tool_R47Aperture_*`、`Tool_R47TankTrimClearance`和隐藏的前罩控制面/下唇依赖。不得在精修源盲目运行旧apply_cages或历史构建入口。完整独立重放尚未认证。
 
 油箱子任务请求配置为gpt-6-astra/high，显式指定；工具没有回传可独立核验的实际运行配置。主智能体完成其余修改、集成与检查。下一批重点仍是固定原照下前脸/侧面轮廓、灯具内部和牌架姿态，不用小零件数量代替形似验收。
-
-## 重要操作
-
-使用本机可用Python。Blender保存当前工作文件后记录版本：
-
-```powershell
-python reconstruction_v2/scripts/model_history.py checkpoint "说明本次模型修改"
-# 恢复前必须先提交尚未保存到Git的模型变更
-python reconstruction_v2/scripts/model_history.py restore <本地模型提交号>
-```
-
-旧112个blend已归档到独立本地Git并逐个验证可恢复，原文件名映射见`reconstruction_v2/model_history/archive_manifest.json`。本地模型历史无remote，不随公共仓库push；不是异地备份。
-建模迁移只从指定父提交执行，不能重复覆盖精修源。最新批次入口/限制见`reconstruction_v2/data/current_controls/manifest.json`，进展与执行约束见`AGENTS.md`。
-
-## 坐标与参考
-
-场景米；控制数据以毫米表达，换算0.001。+X右、+Y前、+Z上。轴距1430mm；前后轮胎110/80-17、140/70-17；制动盘290/240mm。明确构造尺寸与未知隐藏尺寸分开验收。
-
-- 实车外观、附件与使用痕迹以本地`IMG/`为准；京B号牌配置仅本地使用。
-- 豪爵车型参数：https://en.haojue.com/NEWGSX250R/canshu.html
-- Suzuki零件目录：https://www1.suzuki.co.jp/motor/support/parts_catalog_manage/files/GSX250RAM1_GSX250RAZM1.pdf
-- 爆炸图用于结构辨认，不能作为精确尺寸蓝图；不同年份/市场资料须排除差异。
-
-真实照片、含照对照图、标注、相机、下载参考、模型、渲染和号牌相关成品均不推送公共仓库。
