@@ -8,7 +8,7 @@ from render_stage_bc import cameras
 
 def render(keys=('CockpitTop','FrontSymmetry','SeatProfile','Underside'),tag='r45'):
  s=bpy.context.scene;cache_review_assembly(s);cams=cameras(s);col=next(c for c in s.collection.children if c.name.startswith('Collection_Cameras'))
- for n,eye,tar,scale in [('Underside',(1,-1,-2.4),(0,0,.37),2.1),('RightSide',(3,-.1,1),(0,-.1,.58),2.5),('PhoneMount',(-.55,-.4,1.4),(-.185,.408,1),.27)]:
+ for n,eye,tar,scale in [('TankSeatTop',(0,-1,2.9),(0,-.22,.74),1.3),('SideSeam',(2,-.15,1.02),(0,-.27,.76),1.0),('NoseSide',(3,.55,1.03),(0,.63,.87),.95),('Underside',(1,-1,-2.4),(0,0,.37),2.1),('RightSide',(3,-.1,1),(0,-.1,.58),2.5),('PhoneMount',(-.55,-.4,1.4),(-.185,.408,1),.27)]:
   d=bpy.data.cameras.new(n);o=bpy.data.objects.new(n,d);col.objects.link(o);o.location=eye;o.rotation_euler=(Vector(tar)-o.location).to_track_quat('-Z','Y').to_euler();d.type='ORTHO';d.ortho_scale=scale;cams[n]=o
  s.render.engine='BLENDER_WORKBENCH';s.display.shading.light='STUDIO';s.display.shading.color_type='MATERIAL';s.display.shading.show_shadows=True;s.display.shading.show_cavity=True;s.display.shading.cavity_type='BOTH';s.display.shading.background_type='WORLD';s.world.color=(.23,.23,.23)
  s.view_settings.view_transform='Standard';s.view_settings.exposure=0

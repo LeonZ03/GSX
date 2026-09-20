@@ -1,19 +1,20 @@
 {
-  "revision": "r48",
+  "revision": "r49",
   "status": "NOT_PASSED",
   "files": {
     "assembly_r45.json": "aea44ff17d08cd984cdbd91e114a7cfa9ebb88019d66225d313da00b56688c9e",
     "Body_BellyPan.json": "ffe87c2db1bfdec1b090c43ead6c471b2a6c8c2f8a15d8eed3e44b9fe8294024",
     "Body_MidSideCover.json": "94c9caeb03dd110e13f1e57977e69f65eb69f29d01623d6021aa293124132fb1",
-    "Body_NoseCheek.json": "520f54dec07b631a387b057f4f8a6597da315d55ab544b2dba395d250647b5b9",
-    "Body_NoseSideReturn.json": "6b464e8e39c1682d63a8b3687e37a3cc6f8d4c7360383b429ac98b06e1d0926b",
+    "Body_NoseCheek.json": "1a5bd4155f0830565e995d8add2dc654b3f93c65b6b5b558b25d603b82c3616a",
+    "Body_NoseSideReturn.json": "bfcd79b673e56d11f395c0f9fcf948ec88e3530ffce287212fdd177ca9017bd7",
     "Body_PillionBase.json": "3e75ce356386d73ad8261f21f71bbaa4f0bcb03c06a345a9340c62f0259cc556",
     "Body_PillionSidePanel.json": "a9121ee2dd49167890ec4c8f654abf0c1daa5b251d68978419de031a3601f6d6",
-    "Body_SeatSide.json": "923a795ba79a3505c1076b4244518a84fa7fe5f41da1e1c938a84949553b3b68",
+    "Body_SeatSide.json": "ad6126e3f1f3e4546e39f8278d3e43c5468d3502775f130ee51d71976536a29b",
     "Body_Tail.json": "74c3c70741f6c0e66ce02227ba53ba484ac3a2d543b17624e9e4da60096aa4f1",
     "Body_Tank.json": "72faef3a9582db050cbbfc36a949f200f20ee156892e4aad4cbf941338c8b4d3",
     "Body_TankSideTrim.json": "2b5c53c645ab98fb89d4dececc90d2f2f072e0f0499e34253389a39c721dd0ea",
-    "Cockpit_InnerPanel.json": "ec0cf4ebe583fc356286cb301e1ca3ca191d3f896607fa3557b659ec77ae3cb6",
+    "Body_UpperSideCowl.json": "78364498dc4bd82be7b6ee26b112c0258b2431f23ede8da865c1e77dded60bb4",
+    "Cockpit_InnerPanel.json": "f407868002459dbc718307d9155cd3fd0173b24d64cf8eb7ccbea55b905cf7f2",
     "Fender_Front.json": "e0f6ddc770ed25f7888d515292bdd57b456fd9da04bd260cbdcdc5d34f1c2bea",
     "guard_product_r46.json": "355c0244c3eefa2e7a96a1250ee43c4855a70ff2381c484f255623a347f8ad93",
     "guard_stand.json": "dd1eb737fb5e18c2d96f07283e452d19934d2107ab9f73ba95116811f014448c",
@@ -29,21 +30,23 @@
     "Seat_Pillion_Pan.json": "7de351eccdac4a36de8b6b517e962672e5ca2aa4ae1a54732595d5bda414d90d",
     "Seat_Rider.json": "870bbb03633384d1a9946e6d4d04f4adae8bd3b55d062f42b3d3222ebd5a0ed0",
     "shell_front_r47_layout.json": "a283fe0c54afe366c4b17fa10a7299ba4e9e1d4dbff6a7e09c6956f0c025edc9",
+    "shell_r49_layout.json": "1262e7cbabc298d6bd183978b1656f9bfb2c422a1d5e00a999f49e01a20e998f",
     "tank_product_reference_r45.json": "9ee5974755512babcec2ea60f9035dcffb6bd2e4f3c1d43b84485d6a56369623",
     "tank_r47_control.json": "db4499344116832819e3e9e3bdee121ee6e6d8892c5142198131b5065a63791e",
     "tank_r47_pose.json": "e2b457f086745978642058e7860f0abca35edb84ba9e31cd0b11848c9bb6cb27",
     "tank_trim_r47_interface.json": "4dadc07eb5735b2e33f104ef08f492ebb6cf73ff2e1caecfe1c41854eb529058",
     "Windscreen.json": "c3a1a236c58aa0f11ae4e90418e35dce1e126fa11a91a06420476e6e5015c822"
   },
-  "replay": "Only checkpointed r47 c4b3bd5: integrate_r48.run(). Reject r48. Rebuild saddle and both live clearance helpers together. Inspection renders are disposable and must not be saved. Full independent replay is not certified.",
-  "model_local_commit": "a41c4dbcc40ff288b903ce9f4b44a7bf08d9a42d",
+  "replay": "Only checkpointed r48 a41c4db: integrate_r49.run(). Reject r49. Preserve live Tool_R49NoseJoint, Tool_R49TrimJoint and Tool_R49TailJoint dependencies. Keep hidden cowl controls. Preview caching is disposable; never save a render process. Full independent replay is not certified.",
+  "model_local_commit": "a8063151e64965825dc72758676c5c898b6eb86c",
   "superseded": {
     "assembly_r45.json": "Frame, plate carrier, headlamp, windscreen and front shell records additionally superseded by r47; not a full current assembly.",
     "Body_Tank.json": "Use tank_r47_control.json; r46 tank shape is obsolete.",
     "Headlight_PositionLens.json": "Use position_lens_r47.json, explicit closed mesh, not rectangular grid.",
     "position_lamp_bezel.json": "Rebuilt by r47 triangular-lamp contour; old single object removed.",
     "Headlight_Lens.json": "Editable surface only. Visible lens is the evaluated constant-Y closed shell; Tool_R47Cage_Headlight_Lens preserves the cage.",
-    "shell_front_r47_layout.json": "Plate carrier and frame subframe records superseded by owner_r48_layout.json and rebuild_owner_r48.py. Other r47 components retained.",
-    "saddle_r48_control.json": "This file records estimated section parameters only. Editable mesh grid and faces are in Seat_Rider.json (80 points, units mm)."
+    "shell_front_r47_layout.json": "Front cowl side boundaries additionally superseded by shell_r49_layout.json; other r47 components retained except r48 plate/frame updates.",
+    "saddle_r48_control.json": "This file records estimated section parameters only. Editable mesh grid and faces are in Seat_Rider.json (80 points, units mm).",
+    "owner_r48_layout.json": "Plate and hardware retained. Seat-side upper return, nose cheek/return/cowl and cockpit panel now use r49 controls and live neighbor seam tools."
   }
 }

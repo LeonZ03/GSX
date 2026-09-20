@@ -1,6 +1,4 @@
-# Suzuki GSX250R 实车重建
-
-根据车主多角度实拍，在本机 Blender 中重建实车；使用 Blender MCP，保留可编辑源文件。目标是尽可能1:1复刻，当前仍处于灰模形体校正，未完成最终贴花、材质、4K渲染和三格式导出。排除尾包、网绳与骑手。
+# r49 外板接缝与前罩复核
 
 ## 当前 r49：外板接缝与车头侧面重建
 
@@ -20,26 +18,6 @@
 
 重建入口`integrate_r49.run()`仅接受已提交r48，拒绝重复运行于r49；父控制快照在`data/revisions/r48_shell_baseline/controls.json`。新Body_SeatSide为21×11控制网格，Body_UpperSideCowl为6×13；其余现行曲面源见manifest。保留`Tool_R49NoseJoint`、`Tool_R49TrimJoint`、`Tool_R49TailJoint`的实时邻面依赖；隐藏前罩控制面不能删除。侧包围接缝采用EXACT布尔，不能换回产生两个微小自交的MANIFOLD候选；上折返与驾驶位切口保留体积整理与碎片过滤，仍需检查左右各一个连通侧件。不要在精修源盲目执行旧apply_cages或历史入口。完整独立重放未认证。
 
-## 重要操作
+## 被排除的候选
 
-使用本机可用Python。Blender保存当前工作文件后记录版本：
-
-```powershell
-python reconstruction_v2/scripts/model_history.py checkpoint "说明本次模型修改"
-# 恢复前必须先提交尚未保存到Git的模型变更
-python reconstruction_v2/scripts/model_history.py restore <本地模型提交号>
-```
-
-旧112个blend已归档到独立本地Git并逐个验证可恢复，原文件名映射见`reconstruction_v2/model_history/archive_manifest.json`。本地模型历史无remote，不随公共仓库push；不是异地备份。
-建模迁移只从指定父提交执行，不能重复覆盖精修源。最新批次入口/限制见`reconstruction_v2/data/current_controls/manifest.json`，进展与执行约束见`AGENTS.md`。
-
-## 坐标与参考
-
-场景米；控制数据以毫米表达，换算0.001。+X右、+Y前、+Z上。轴距1430mm；前后轮胎110/80-17、140/70-17；制动盘290/240mm。明确构造尺寸与未知隐藏尺寸分开验收。
-
-- 实车外观、附件与使用痕迹以本地`IMG/`为准；京B号牌配置仅本地使用。
-- 豪爵车型参数：https://en.haojue.com/NEWGSX250R/canshu.html
-- Suzuki零件目录：https://www1.suzuki.co.jp/motor/support/parts_catalog_manage/files/GSX250RAM1_GSX250RAZM1.pdf
-- 爆炸图用于结构辨认，不能作为精确尺寸蓝图；不同年份/市场资料须排除差异。
-
-真实照片、含照对照图、标注、相机、下载参考、模型、渲染和号牌相关成品均不推送公共仓库。
+第一候选旧EXACT座垫避让产生整片空网格，已拒绝；网格检查必须要求顶点/面非空，不能把空网格的零错误当作通过。后续候选边界切削存在碎片和自交，未保存为主模型。最终清理后检查前罩一个主体、其他三组各两个侧件，防止通过删除主要表面取得零计数。最终侧包围1个边界接触保留在原始报告中。
