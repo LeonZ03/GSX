@@ -22,3 +22,6 @@ reconstruction_v2/references/raw/
 
 # Private binary Git history; never publish owner model/photo assets
 reconstruction_v2/model_history/
+
+# User-provided commercial preview references, local only
+references/3d/

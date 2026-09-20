@@ -1,3 +1,35 @@
+## 当前r51：用户下载多视图后的前脸重建（覆盖历史状态）
+
+唯一源 `reconstruction_v2/model_history/GSX250R.blend`；本地模型提交 `220d8ef7d6e5865033ae05b7bd0a8826d1056a49`，Git回读SHA256一致。Blender 5.2.2 LTS / MCP CLI，无Computer Use，无新子智能体。B/C仍NOT_PASSED。
+
+- 已实际查看references/3d全部10图（7大图/3缩略）；重点0003/0004线框、0010正面、0009俯视、0011/0012灰模、0008轮组，并重看IMG72/69/63。商业图片仅形状参考，不能当正交尺寸图或覆盖用户改装件；整个references/3d已加入.gitignore。没有获取商业源/所有转台帧。
+- 前罩新234点四边面控制Tool_R51NoseCage，环绕灯具开口、上肩、侧折和回接；与既有Body_UpperSideCowl实时合并，保留Body_NoseAssembly对象及Tool_R49NoseJoint下游依赖。旧Cheek/SideReturn/LowerValance/ApertureReturn源仍隐藏但不再驱动新前罩。最后0.7mm体积整理和主体过滤是构造清理，不是实测精度。
+- 主灯透镜、纵横分区反射碗、后壳、灯泡座和遮光片重做；位置灯现为Headlight_PositionLens_L/R及各自反射片。旧单一Headlight_PositionLens已经移除，历史审计入口需更新名字，不能直接跑旧r50脚本冒充新版本验证。新增闭合面先固定三角化，防非平面四边面前后壳使用不同对角线造成自交。
+- 黑色内框对现行前罩做邻面避让，0.65mm体积整理。侧包围过滤小切削碎片，保留左右2主体。反射器深度对实际透镜射线限制，不能穿透透镜。
+- 后视镜按旧镜片空间基底重新建圆角多边形壳/镜片，保留非对称可调姿态及原杆，增加内部支承；前挡泥板保持外缘和叉管安装翼，补照片可见两道浅槽。挡泥板父控制单独存在data/revisions/r50_front_parent/Fender_Front.json，候选重试必须从此父控制，不能从已经写出的新网格按旧列数重建。
+- 补回旧前缀清理误删的后转向灯：Indicator_Rear_Bridge/Stem/Housing/Lens/Bulb，左右短柄连接现短牌架。安装深度非实测。
+- 18对象闭合/非流形/零面积/未解释自交0，8重点邻面交叉0；前罩1连通体，侧罩及内板各2。621个受保护源签名与相机不变；轮胎求值包络中心水平轴距1430.00005mm。详细qa/r51_geometry.json、r51_integration.json、r51_history_verified.json；不是全车装配/1:1验收。
+- integrate_r51.run仅接受已提交r50；run_r51_final_job经MCP从只读内置asset启动同版本后台Blender，检查后保存唯一源，再对一次性缓存场景出六视图；渲染缓存禁止保存。正式图renders/assembly_review/r51_{Nose,FrontSymmetry,NoseSide,RightSide,Rear,CockpitTop}.png；汇总r51_front_before_after.jpg、r51_system_review.jpg。检查相机不是正式照片标定。
+- 后续优先：前脸整体与原照的准确投影、光学分区逐片轮廓；然后油箱/座尾截面、轮组铸造和侧面折线。系统检查清单reviews/r51_system_review.md。没有新增正式照片IoU/关键点或两个独立角度验收，不能称车头/全车形似通过。不启动最终PBR/4K/导出。
+
+- 保存后verify_r51_saved检查新安装链；两片后灯透镜原有间隙，finish_signal_seats_r51已把后缘向灯壳延伸1.1mm，左右实际接触120/112组候选，闭合/零面积/自交复查通过。最终hash以qa/r51_signal_finish.json和更新后的r51_integration.json为准。r51_saved_readback与六视图属于此内部接合修正之前的主体保存状态；没有冒充最终文件全部重渲染。最终本地提交已再次回读验证。
+
+---
+
+## 2026-09-20 公开转台截图授权与阻塞（优先于此前禁止CU说明）
+
+用户明确允许“仅用于网页参考截图”的Computer Use，范围为3DModels GSX250R商品页公开转台和商品展示图；Blender仍用MCP。此项不需重新确认。目标保存全部不同公开转台帧和商品图，保留来源/帧序及原图，仅本地参考；不把商品透视图当正交尺寸图，不获取付费源。
+
+本次统一浏览器CUA启动两次失败（含reset），已安装Computer Use技能的node_repl+@oai/sky初始化及重试也失败，尚未发生浏览器UI输入。错误：windows sandbox failed: helper_unknown_error: setup refresh had errors。直接HTTP仍403。采集数0，不能报告“已保存所有角度”。本地references/public/3dmodels_gsx250r_233069/capture_manifest.json状态BLOCKED_TOOL_RUNTIME；待工具环境恢复可继续，不以此替代采集完成。r50模型未改。
+
+---
+
+## 2026-09-20 现成模型检索（模型仍为r50）
+
+用户要求找免费GSX250R素材，随后询问3DModels商品页能否提取或利用。只核查公开目录/预览；不绕过付费或登录限制。3DModels h3dA233069 为收费模型，直接请求公开商品/转台/缩略图均403，未获得模型或完整预览。Warehouse ad8d1864-91a1-43e9-a91f-bf894c26e8a8 标题Gixxer250SF但描述/预览接近GSX250R；2817 polygons，公开预览粗糙且大量贴图，官方ZIP源下载401，未采用。不要宣称已有可用免费精模或已扒出商业模型。研究记录 reviews/model_asset_search_2026-09-20.md，元数据 references/public/model_search_2026-09-20/仅本地。无新子智能体、无computer use、无Blender改动；r50/B/C未通过状态不变。
+
+---
+
 ## 当前 r50：灯旁凹槽、外罩翻边与相邻板缝（覆盖历史状态）
 
 唯一源`reconstruction_v2/model_history/GSX250R.blend`；本地commit `c1cb9559c9a4103cb292ac17870af3eaf79544fc`，已回读SHA256一致。MCP CLI / 本机5.2.2 LTS，无computer use，无子智能体。B/C仍NOT_PASSED。
