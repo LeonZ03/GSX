@@ -1,0 +1,17 @@
+{
+  "revision": "r48",
+  "units": "mm",
+  "profile": "ten-point half section with downturned side and underside return",
+  "control_drop_top_to_outer_bottom_mm": [
+    25.58,
+    35.133,
+    46.261,
+    59.841,
+    65.805,
+    76.173,
+    77.216,
+    78.755
+  ],
+  "thickness_measured": false,
+  "source": "reconstruction_v2/data/current_controls/Seat_Rider.json"
+}
