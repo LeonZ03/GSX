@@ -1,3 +1,22 @@
+## 当前 r50：灯旁凹槽、外罩翻边与相邻板缝（覆盖历史状态）
+
+唯一源`reconstruction_v2/model_history/GSX250R.blend`；本地commit `c1cb9559c9a4103cb292ac17870af3eaf79544fc`，已回读SHA256一致。MCP CLI / 本机5.2.2 LTS，无computer use，无子智能体。B/C仍NOT_PASSED。
+
+- 用户本次指向主灯/位置灯/前罩交界，并要求所有板件接缝按实拍处理。实际重看72、63、69；69历史无现款护杠，不能据此隐藏护杠。
+- r50用实际细分后的Body_NoseCheek内边、现有主灯轮廓生成连续厚壁Headlight_InnerMask；位置灯贴合凹槽，窄Headlight_PositionSeat_L/R取代旧三角外框。旧Headlight_Surround与PositionSurround移除；主灯玻璃/反射器主体保留。
+- 新Body_NoseApertureReturn是隐藏可编辑翻边控制，通过GN进入Body_NoseAssembly。旧EXACT开口在加入翻边后产生空输出，候选作废；当前前罩的两项R47 aperture BOOLEAN改为MANIFOLD，最终971168点、1连通体。其余构造/集合保留。
+- Headlight_InnerMask经Tool_R49NoseJoint差集、0.6mm体积整理、只保留主体，236020点/1连通体。裁掉的埋入前罩的上沿片和小碎片不作为独立零件保留。Body_SideFairing继续EXACT接缝差集，后加0.7mm体积整理和0.15简化，259114点/2个侧件；不以增加面数冒充精度。
+- 两批合计19对象闭合有效，10组重点自交未解释计数0，19组邻面交叉0，位置灯嵌边对前罩另查2组交叉0。灯座对后壳/嵌边安装交叠单列，不称全部穿插为0。12个局部开口射线覆盖，仅诊断，非98%IoU或照片特征点精度。
+- 612个轮组/油箱/座垫/护杠/号牌/驾驶位阻尼器等受保护对象及相机源签名不变。座侧板沿用r49连续上折返，5组相邻接口复查0交叉；其余全车板缝实物形似没有因此通过。
+- 入口先从r49运行integrate_r50.run()，保存后另一个进程运行run(additional_only=True)。最终r50含r50_remaining_panel_joints=True，禁止重复迁移。原父控制在data/revisions/r49_front_baseline，当前灯座/灯片/嵌边显式网格为*_r50.json，front_junction_r50.json记录翻边控制和未实测尺寸。旧position_lens_r47等不能覆盖现行件。
+- qa/front_junction_r50.json、r50_bezel_clearance.json、r50_integration.json及本地历史验证是本轮检查。render_front_junction_r50先同时缓存依赖曲面，再替换预览对象，禁止保存该一次性场景。
+- 补充finish_panel_junctions_r50：修侧包围/油箱侧饰板、下包围/侧包围、后座侧板/尾罩、底托/尾罩。下包围2侧、后座侧板2侧、底托1主体；已实检Seat_Pillion_Pan独立闭合，移除被尾罩切断的重复后段底片。qa/panel_junctions_r50.json、r50_panel_integration.json与r50_final_scope_summary.json记录最终批次。
+- 单次MCP CLI有120秒限制。较重任务由MCP从本机只读内置asset blend启动同版本后台Blender作业，跟踪qa/*job_status.json与日志直至完成；不要反复超时重跑。run_r50_panel_job会保存后出图；run_r50_review_job仅读取并验证源hash不变。不修改内置asset，不使用computer use。
+- 最终五视角已从保存源重读生成并实际查看，qa/r50_review_job_status.json为complete/source_unchanged。对照renders/r50_junctions_before_after.jpg；整车侧面/座尾renders/r50_body_panel_review.jpg。以上及照片、源、QA仅本地，公开只提交文档、脚本和派生3D控制。
+- 下一项仍为前脸的实拍形似、主灯内部及各接缝的实际轮廓；1mm间隙/8.5mm翻边等只是构造值。不能用局部拓扑检查宣布所有板件已1:1。最终材质/4K/导出不启动。
+
+---
+
 # 当前r49执行状态（优先于历史记录）
 
 ## 当前 r49：外板接缝与车头侧面重建

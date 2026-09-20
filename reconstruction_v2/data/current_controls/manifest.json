@@ -1,5 +1,5 @@
 {
-  "revision": "r49",
+  "revision": "r50",
   "status": "NOT_PASSED",
   "files": {
     "assembly_r45.json": "aea44ff17d08cd984cdbd91e114a7cfa9ebb88019d66225d313da00b56688c9e",
@@ -16,12 +16,18 @@
     "Body_UpperSideCowl.json": "78364498dc4bd82be7b6ee26b112c0258b2431f23ede8da865c1e77dded60bb4",
     "Cockpit_InnerPanel.json": "f407868002459dbc718307d9155cd3fd0173b24d64cf8eb7ccbea55b905cf7f2",
     "Fender_Front.json": "e0f6ddc770ed25f7888d515292bdd57b456fd9da04bd260cbdcdc5d34f1c2bea",
+    "front_junction_r50.json": "353d750e2e78e413854c56e87d3c1ccda24385235c84f77d106d1eb4357eadbe",
     "guard_product_r46.json": "355c0244c3eefa2e7a96a1250ee43c4855a70ff2381c484f255623a347f8ad93",
     "guard_stand.json": "dd1eb737fb5e18c2d96f07283e452d19934d2107ab9f73ba95116811f014448c",
+    "Headlight_InnerMask_r50.json": "00b451746ec48cbacbdbbb28d8eb0fec41d82cde96e7f8ba9ce3174bc3c70369",
     "Headlight_Lens.json": "3a8cd42344e7deb9c31433a6386edcf034b34a38f63a40337f232963671b67e1",
     "Headlight_PositionLens.json": "69ab58f4df56c3d78eac80736ec33c78019e67a3ca7640ad7bbed3693299bd7e",
+    "Headlight_PositionLens_r50.json": "67c19f5f2a160729d7c103097b4318927bedef95cf428b28d5ca62daea987cb9",
+    "Headlight_PositionSeat_L_r50.json": "5cce39340567eef125e8d7ffee8c216a4f0fb62e14a65edebf4637acea3cdcdf",
+    "Headlight_PositionSeat_R_r50.json": "0656c8305b98289961fc04350783cf34e6b8b5cfe6da7283766a2ac32b808b76",
     "nose_valance_r47.json": "6fb0b6aa85fdf1e8589079bd6b4c944f0bb123a887f5b3cd22949e7ca84b270b",
     "owner_r48_layout.json": "80520a0e250675c948718ad5d13b555c9682f2d85c4532f552f390f2ca2ac1d6",
+    "panel_joints_r50.json": "83502501fc9d513eb4e14bea05fc083319adcb15316f344cc790cb26e58fde97",
     "position_lamp_bezel.json": "b04f29caf4e24987aa331d65eff33b3aa3e45c8a90d25036a4541a93bf09873c",
     "position_lens_r47.json": "33cb189f9f49a7544298d70954c09fab6f331c729c5e718b66cdb366416fc27e",
     "r39_shape_basis.json": "970ce6e4a40df74cb922b982c00cb66f49a5dfb92e3b1fd0821ca36312d886ef",
@@ -37,16 +43,19 @@
     "tank_trim_r47_interface.json": "4dadc07eb5735b2e33f104ef08f492ebb6cf73ff2e1caecfe1c41854eb529058",
     "Windscreen.json": "c3a1a236c58aa0f11ae4e90418e35dce1e126fa11a91a06420476e6e5015c822"
   },
-  "replay": "Only checkpointed r48 a41c4db: integrate_r49.run(). Reject r49. Preserve live Tool_R49NoseJoint, Tool_R49TrimJoint and Tool_R49TailJoint dependencies. Keep hidden cowl controls. Preview caching is disposable; never save a render process. Full independent replay is not certified.",
-  "model_local_commit": "a8063151e64965825dc72758676c5c898b6eb86c",
+  "replay": "Two separate Blender MCP jobs: checkpointed r49 -> integrate_r50.run() -> saved r50 -> integrate_r50.run(additional_only=True). Final r50 rejects replay. Keep editable aperture-return and live neighbor tools. Never save a preview-cached scene. Full independent replay is not certified.",
+  "model_local_commit": "c1cb9559c9a4103cb292ac17870af3eaf79544fc",
   "superseded": {
     "assembly_r45.json": "Frame, plate carrier, headlamp, windscreen and front shell records additionally superseded by r47; not a full current assembly.",
     "Body_Tank.json": "Use tank_r47_control.json; r46 tank shape is obsolete.",
-    "Headlight_PositionLens.json": "Use position_lens_r47.json, explicit closed mesh, not rectangular grid.",
-    "position_lamp_bezel.json": "Rebuilt by r47 triangular-lamp contour; old single object removed.",
+    "Headlight_PositionLens.json": "Use Headlight_PositionLens_r50.json, explicit closed mesh plus mirror.",
+    "position_lamp_bezel.json": "Superseded by Headlight_PositionSeat_L_r50.json and Headlight_PositionSeat_R_r50.json.",
     "Headlight_Lens.json": "Editable surface only. Visible lens is the evaluated constant-Y closed shell; Tool_R47Cage_Headlight_Lens preserves the cage.",
     "shell_front_r47_layout.json": "Front cowl side boundaries additionally superseded by shell_r49_layout.json; other r47 components retained except r48 plate/frame updates.",
     "saddle_r48_control.json": "This file records estimated section parameters only. Editable mesh grid and faces are in Seat_Rider.json (80 points, units mm).",
-    "owner_r48_layout.json": "Plate and hardware retained. Seat-side upper return, nose cheek/return/cowl and cockpit panel now use r49 controls and live neighbor seam tools."
+    "owner_r48_layout.json": "Plate and hardware retained. Seat-side upper return, nose cheek/return/cowl and cockpit panel now use r49 controls and live neighbor seam tools.",
+    "position_lens_r47.json": "Superseded by fitted Headlight_PositionLens_r50.json.",
+    "shell_r49_layout.json": "Side-shell controls retained. Front opening additionally uses r50 inward return and lamp recess; evaluated neighbor seam finish is r50.",
+    "panel_joints_r50.json": "Additional evaluated finishes only. Keep original BellyPan/Pillion/SideFairing editable cages and live Tool_R50FairingJoint, Tool_R49TrimJoint, Tool_R49TailJoint dependencies."
   }
 }

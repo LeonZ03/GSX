@@ -1,7 +1,3 @@
-# Suzuki GSX250R 实车重建
-
-根据车主多角度实拍，在本机 Blender 中重建实车；使用 Blender MCP，保留可编辑源文件。目标是尽可能1:1复刻，当前仍处于灰模形体校正，未完成最终贴花、材质、4K渲染和三格式导出。排除尾包、网绳与骑手。
-
 ## 当前 r50：车头灯旁接边与凹槽修复
 
 唯一工作模型：`reconstruction_v2/model_history/GSX250R.blend`。本机 Blender 5.2.2 LTS，通过 Blender MCP CLI 修改和保存；本轮未启用子智能体，未使用 computer use。
@@ -21,27 +17,3 @@
 检查图：`reconstruction_v2/renders/r50_junctions_before_after.jpg`（固定斜前/正面/侧面改前改后）及`renders/r50_body_panel_review.jpg`（最终侧面/座尾）。五张原始预览在`renders/assembly_review/r50_{Nose,FrontSymmetry,NoseSide,RightSide,SeatProfile}.png`。全部已从最终保存源重新生成并查看；渲染前后源文件SHA256未改变。
 
 检查记录：`reconstruction_v2/qa/front_junction_r50.json`、`qa/r50_bezel_clearance.json`、`qa/r50_integration.json`、`qa/panel_junctions_r50.json`和`qa/r50_final_scope_summary.json`。入口分两步：从已提交r49运行`integrate_r50.run()`保存前脸，再重新读取保存的r50运行`integrate_r50.run(additional_only=True)`完成其余板缝；最终r50拒绝重复执行。保留隐藏的`Body_NoseApertureReturn`、前罩控制面和`Tool_R49NoseJoint`依赖；预览缓存仅用于一次性渲染，不得保存为工作源。完整重放和全车装配尚未认证。
-
-## 重要操作
-
-使用本机可用Python。Blender保存当前工作文件后记录版本：
-
-```powershell
-python reconstruction_v2/scripts/model_history.py checkpoint "说明本次模型修改"
-# 恢复前必须先提交尚未保存到Git的模型变更
-python reconstruction_v2/scripts/model_history.py restore <本地模型提交号>
-```
-
-旧112个blend已归档到独立本地Git并逐个验证可恢复，原文件名映射见`reconstruction_v2/model_history/archive_manifest.json`。本地模型历史无remote，不随公共仓库push；不是异地备份。
-建模迁移只从指定父提交执行，不能重复覆盖精修源。最新批次入口/限制见`reconstruction_v2/data/current_controls/manifest.json`，进展与执行约束见`AGENTS.md`。
-
-## 坐标与参考
-
-场景米；控制数据以毫米表达，换算0.001。+X右、+Y前、+Z上。轴距1430mm；前后轮胎110/80-17、140/70-17；制动盘290/240mm。明确构造尺寸与未知隐藏尺寸分开验收。
-
-- 实车外观、附件与使用痕迹以本地`IMG/`为准；京B号牌配置仅本地使用。
-- 豪爵车型参数：https://en.haojue.com/NEWGSX250R/canshu.html
-- Suzuki零件目录：https://www1.suzuki.co.jp/motor/support/parts_catalog_manage/files/GSX250RAM1_GSX250RAZM1.pdf
-- 爆炸图用于结构辨认，不能作为精确尺寸蓝图；不同年份/市场资料须排除差异。
-
-真实照片、含照对照图、标注、相机、下载参考、模型、渲染和号牌相关成品均不推送公共仓库。

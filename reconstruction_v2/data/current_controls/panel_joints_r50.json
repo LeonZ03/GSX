@@ -1,0 +1,12 @@
+{
+  "revision": "r50",
+  "nominal_neighbor_clearance_mm": 1.0,
+  "measured": false,
+  "changes": [
+    "SideFairing/TankSideTrim",
+    "BellyPan/SideFairing",
+    "PillionSidePanel/Tail",
+    "PillionBase/Tail"
+  ],
+  "preserved": "Tank, seats, exterior tail cage, photograph cameras"
+}
