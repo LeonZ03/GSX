@@ -1,5 +1,5 @@
 {
-  "revision": "r45",
+  "revision": "r46",
   "status": "NOT_PASSED",
   "files": {
     "assembly_r45.json": "aea44ff17d08cd984cdbd91e114a7cfa9ebb88019d66225d313da00b56688c9e",
@@ -7,8 +7,9 @@
     "Body_NoseSideReturn.json": "0ac1343d4d8d379e9edd69fd94f6c00323d97f773858e9215a3aae745732dfb3",
     "Body_PillionBase.json": "3e75ce356386d73ad8261f21f71bbaa4f0bcb03c06a345a9340c62f0259cc556",
     "Body_PillionSidePanel.json": "a9121ee2dd49167890ec4c8f654abf0c1daa5b251d68978419de031a3601f6d6",
-    "Body_Tank.json": "5153800b99e8326470ff4f92247f98a7c5b67b1e7f4cc077992461674cce10c9",
+    "Body_Tank.json": "72faef3a9582db050cbbfc36a949f200f20ee156892e4aad4cbf941338c8b4d3",
     "Fender_Front.json": "e0f6ddc770ed25f7888d515292bdd57b456fd9da04bd260cbdcdc5d34f1c2bea",
+    "guard_product_r46.json": "355c0244c3eefa2e7a96a1250ee43c4855a70ff2381c484f255623a347f8ad93",
     "guard_stand.json": "dd1eb737fb5e18c2d96f07283e452d19934d2107ab9f73ba95116811f014448c",
     "Headlight_Lens.json": "5ca1be285e504fd7e624e1dc8411adc714a06a6289ae1c9f3be7620233cbaf90",
     "Headlight_PositionLens.json": "844ef435d63931181438d6461e11d28249ff94ebef0da7c09913ad0a9840d128",
@@ -17,7 +18,12 @@
     "Seat_Pillion.json": "87fb5994b6bdbc5c177556a78e96f3c5a86b8029c71ef989bb4a02188193ba11",
     "Seat_Pillion_Pan.json": "7de351eccdac4a36de8b6b517e962672e5ca2aa4ae1a54732595d5bda414d90d",
     "Seat_Rider.json": "31a510f5251f13e6d6b127900f75236e5b18154fcb791cacef31b734ef116d94",
+    "tank_product_reference_r45.json": "9ee5974755512babcec2ea60f9035dcffb6bd2e4f3c1d43b84485d6a56369623",
     "Windscreen.json": "76b526163fc3c2d1b2900e47544beb4615808b033028bccf1c7b9be4d9ed2faa"
   },
-  "replay": "From committed r42: rebuild_owner_structure.run, rebuild_owner_front_underbody.run, repair_owner_integration.run, finish_owner_fifteen.run. Historical candidate steps have known defects fixed by the following migration; never run them on refined source. Current blend remains authoritative; independent full replay not yet verified."
+  "replay": "Only checkpointed r45: apply_product_refinement.run(). Reject other revisions. Full-source independent replay not certified. Body_Tank 10x12; live GN right guard and mirrored left, majority-shell filters required.",
+  "model_local_commit": "e7f385e7c364c2a6176b72e92b595eb0b41f6d96",
+  "superseded": {
+    "assembly_r45.json": "GuardBar/GuardMount records superseded by guard_product_r46.json + rebuild script; other r45 components retained."
+  }
 }

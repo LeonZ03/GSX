@@ -1,0 +1,243 @@
+{
+  "revision": "r45_tank_product_reference",
+  "basis": "r39_shape_basis.json",
+  "grid_shape": [
+    10,
+    12
+  ],
+  "mirror_x": true,
+  "changed_points": 36,
+  "changes": [
+    {
+      "row": 2,
+      "col": 1,
+      "dx_mm": 0.8,
+      "dz_mm": 1.0
+    },
+    {
+      "row": 2,
+      "col": 2,
+      "dx_mm": 3.75,
+      "dz_mm": 4.95
+    },
+    {
+      "row": 2,
+      "col": 3,
+      "dx_mm": 1.25,
+      "dz_mm": 3.4
+    },
+    {
+      "row": 2,
+      "col": 4,
+      "dx_mm": -4.0,
+      "dz_mm": -0.0
+    },
+    {
+      "row": 2,
+      "col": 5,
+      "dx_mm": -6.275,
+      "dz_mm": -1.425
+    },
+    {
+      "row": 2,
+      "col": 6,
+      "dx_mm": -3.0,
+      "dz_mm": -0.8
+    },
+    {
+      "row": 3,
+      "col": 1,
+      "dx_mm": 1.6,
+      "dz_mm": 1.8
+    },
+    {
+      "row": 3,
+      "col": 2,
+      "dx_mm": 7.45,
+      "dz_mm": 8.875
+    },
+    {
+      "row": 3,
+      "col": 3,
+      "dx_mm": 2.15,
+      "dz_mm": 5.875
+    },
+    {
+      "row": 3,
+      "col": 4,
+      "dx_mm": -8.9,
+      "dz_mm": -0.65
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "dx_mm": -13.55,
+      "dz_mm": -3.35
+    },
+    {
+      "row": 3,
+      "col": 6,
+      "dx_mm": -6.3,
+      "dz_mm": -1.75
+    },
+    {
+      "row": 4,
+      "col": 1,
+      "dx_mm": 2.0,
+      "dz_mm": 2.0
+    },
+    {
+      "row": 4,
+      "col": 2,
+      "dx_mm": 9.3,
+      "dz_mm": 9.8
+    },
+    {
+      "row": 4,
+      "col": 3,
+      "dx_mm": 2.6,
+      "dz_mm": 6.1
+    },
+    {
+      "row": 4,
+      "col": 4,
+      "dx_mm": -11.4,
+      "dz_mm": -1.9
+    },
+    {
+      "row": 4,
+      "col": 5,
+      "dx_mm": -17.4,
+      "dz_mm": -5.275
+    },
+    {
+      "row": 4,
+      "col": 6,
+      "dx_mm": -8.2,
+      "dz_mm": -2.7
+    },
+    {
+      "row": 5,
+      "col": 1,
+      "dx_mm": 2.0,
+      "dz_mm": 1.6
+    },
+    {
+      "row": 5,
+      "col": 2,
+      "dx_mm": 9.2,
+      "dz_mm": 7.75
+    },
+    {
+      "row": 5,
+      "col": 3,
+      "dx_mm": 1.9,
+      "dz_mm": 4.25
+    },
+    {
+      "row": 5,
+      "col": 4,
+      "dx_mm": -13.4,
+      "dz_mm": -3.3
+    },
+    {
+      "row": 5,
+      "col": 5,
+      "dx_mm": -20.25,
+      "dz_mm": -6.7
+    },
+    {
+      "row": 5,
+      "col": 6,
+      "dx_mm": -9.8,
+      "dz_mm": -3.5
+    },
+    {
+      "row": 6,
+      "col": 1,
+      "dx_mm": 1.4,
+      "dz_mm": 1.0
+    },
+    {
+      "row": 6,
+      "col": 2,
+      "dx_mm": 6.3,
+      "dz_mm": 4.8
+    },
+    {
+      "row": 6,
+      "col": 3,
+      "dx_mm": 0.35,
+      "dz_mm": 2.35
+    },
+    {
+      "row": 6,
+      "col": 4,
+      "dx_mm": -12.2,
+      "dz_mm": -3.0
+    },
+    {
+      "row": 6,
+      "col": 5,
+      "dx_mm": -18.25,
+      "dz_mm": -5.7
+    },
+    {
+      "row": 6,
+      "col": 6,
+      "dx_mm": -9.2,
+      "dz_mm": -3.2
+    },
+    {
+      "row": 7,
+      "col": 1,
+      "dx_mm": 0.8,
+      "dz_mm": 0.4
+    },
+    {
+      "row": 7,
+      "col": 2,
+      "dx_mm": 3.55,
+      "dz_mm": 1.9
+    },
+    {
+      "row": 7,
+      "col": 3,
+      "dx_mm": -0.15,
+      "dz_mm": 0.8
+    },
+    {
+      "row": 7,
+      "col": 4,
+      "dx_mm": -7.9,
+      "dz_mm": -1.6
+    },
+    {
+      "row": 7,
+      "col": 5,
+      "dx_mm": -11.55,
+      "dz_mm": -2.85
+    },
+    {
+      "row": 7,
+      "col": 6,
+      "dx_mm": -5.7,
+      "dz_mm": -1.6
+    }
+  ],
+  "protected": [
+    "columns 0 and 7 centreline closures",
+    "rows 0,1,8,9 end interfaces",
+    "all Y coordinates, fuel-cap and seat interface objects"
+  ],
+  "evidence": [
+    "local product tank photo 20260920",
+    "owner IMG65",
+    "owner IMG62",
+    "owner IMG69"
+  ],
+  "uncertainty": "proportional shape controls; no physical measurements inferred",
+  "cap_centre_control_unchanged": true,
+  "source": "r39 envelope with protected r45 cap region",
+  "acceptance": "NOT_PASSED"
+}
